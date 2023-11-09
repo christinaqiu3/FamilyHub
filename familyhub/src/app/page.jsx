@@ -5,9 +5,9 @@ import {isBrowser} from 'react-device-detect';
 import 'react-device-frameset/styles/marvel-devices.min.css'
 import './globals.css'
 
-export default function App() {
+export default function Page() {
     return (
-      <main className="flex min-h-screen flex-column items-center justify-center">
+      <main className="">
       </main>
     )
   }
