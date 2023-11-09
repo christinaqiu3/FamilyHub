@@ -2,13 +2,13 @@ function Post() {
     return(
         <div style={{
             position: 'relative',
-            margin: 'auto'
+            margin: 'auto',
         }}>
             <img
                 src="https://64.media.tumblr.com/bff48b81714434830009b585a56bcfb6/5a69653ddc705238-72/s640x960/5c68eda0ec89ab529735e1f0d3eb6d167ef3ad1b.png"
                 alt="post"
                 style={{
-                    width: 200,
+                    width: '60%',
                     height: 'auto',
                     borderRadius: 10
                 }}
@@ -43,8 +43,15 @@ function Post() {
 
 export default function Page() {
     return (
-        <main>
-            <div>
+        <main style={{
+            color: 'black',
+            height: '80%'
+        }}>
+            <div style={{
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'space-around'
+            }}>
                 <div>Upload</div>
                 <div>Search</div>
                 <div>Filter</div>
@@ -52,7 +59,8 @@ export default function Page() {
             <div style={{
                 display: 'flex',
                 flexDirection: 'row',
-                flexWrap: 'wrap'
+                flexWrap: 'wrap',
+                overflow: 'scroll'
             }}>
                 <Post />
                 <Post />
