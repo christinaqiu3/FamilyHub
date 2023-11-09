@@ -1,7 +1,10 @@
 export default function SettingsPage() {
     return (
         <main>
-            <h1>33333</h1>
+            <div>
+                <p>Current: Mob's Family</p>
+            </div>
+
         </main>
     )
 }
