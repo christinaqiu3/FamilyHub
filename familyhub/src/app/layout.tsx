@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import localFont from 'next/font/local'
 import './globals.css'
 
 import { DeviceFrameset } from 'react-device-frameset'
@@ -9,6 +10,7 @@ import Navigation from './components/navigation'
 import Header from './components/header'
 
 const inter = Inter({ subsets: ['latin'] })
+const satoshi = localFont({ src: '../../assets/fonts/Satoshi-Variable.woff'})
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -23,7 +25,7 @@ export default function RootLayout({
   if (isBrowser) {
     return (
       <html lang="en">
-        <body className={inter.className}>
+        <body className={satoshi.className}>
         <DeviceFrameset device="iPhone 8" color="gold">
           <Header />
           {children}
