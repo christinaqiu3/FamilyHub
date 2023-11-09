@@ -1,5 +1,6 @@
 import Header from "../components/header";
 import Navigation from "../components/navigation";
+import Image from "next/image";
 
 function Post() {
     return(
@@ -11,7 +12,7 @@ function Post() {
                 src="https://64.media.tumblr.com/bff48b81714434830009b585a56bcfb6/5a69653ddc705238-72/s640x960/5c68eda0ec89ab529735e1f0d3eb6d167ef3ad1b.png"
                 alt="post"
                 style={{
-                    width: '60%',
+                    width: 180,
                     height: 'auto',
                     borderRadius: 10
                 }}
@@ -38,7 +39,7 @@ function Post() {
             padding: '0px 5px',
             borderRadius: 20
         }}>
-            photo caption
+            caption
         </p>
         </div>
     )
@@ -54,19 +55,54 @@ export default function Page() {
             <div style={{
                 display: 'flex',
                 flexDirection: 'row',
-                justifyContent: 'space-around'
+                justifyContent: 'space-around',
+                margin: '10px'
             }}>
-                <div>Upload</div>
-                <div>Search</div>
-                <div>Filter</div>
+                <div style={{
+                    borderRadius: 100,
+                    border: '1px solid black',
+                    padding: '10px',
+                    width: 40,
+                    height: 40,
+                }}>
+                    <Image src='/upload.svg' alt='upload' width={20} height={20} priority/>
+                </div>
+                <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    border: '1px solid black',
+                    width: '220px',
+                    borderRadius: 20
+                }}>
+                    <div style={{
+                        margin: '0px 7px'
+                    }}>
+                        <Image src='/search.svg' alt='search' width={27} height={27} priority/>
+                    </div>
+                    Search
+                </div>
+                <div style={{
+                    borderRadius: 100,
+                    border: '1px solid black',
+                    padding: '6px',
+                    width: 40,
+                    height: 40,
+                }}>
+                    <Image src='/filter.svg' alt='filter' width={29} height={29} priority/>
+                </div>
             </div>
             <div style={{
                 display: 'flex',
                 flexDirection: 'row',
                 flexWrap: 'wrap',
-                maxHeight: '77%',
-                overflow: 'scroll'
+                maxHeight: '70%',
+                overflow: 'scroll',
+                margin: '4px',
+                rowGap: '4px'
             }}>
+                <Post />
+                <Post />
+                <Post />
                 <Post />
                 <Post />
                 <Post />
