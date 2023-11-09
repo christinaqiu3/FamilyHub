@@ -1,3 +1,6 @@
+import Header from "../components/header";
+import Navigation from "../components/navigation";
+
 function Post() {
     return(
         <div style={{
@@ -45,8 +48,9 @@ export default function Page() {
     return (
         <main style={{
             color: 'black',
-            height: '80%'
+            height: '100%'
         }}>
+            <Header title = "Memories"/>
             <div style={{
                 display: 'flex',
                 flexDirection: 'row',
@@ -60,6 +64,7 @@ export default function Page() {
                 display: 'flex',
                 flexDirection: 'row',
                 flexWrap: 'wrap',
+                maxHeight: '77%',
                 overflow: 'scroll'
             }}>
                 <Post />
@@ -69,6 +74,7 @@ export default function Page() {
                 <Post />
                 <Post />
             </div>
+            <Navigation page = 'memories'/>
         </main>
     )
 }
