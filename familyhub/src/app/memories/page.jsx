@@ -98,7 +98,14 @@ export default function Page() {
                 maxHeight: '70%',
                 overflow: 'scroll',
                 margin: '4px',
-                rowGap: '4px'
+                rowGap: '4px',
+                scrollbarWidth: "none", // Hide the scrollbar for firefox
+                '&::-webkit-scrollbar': {
+                    display: 'none', // Hide the scrollbar for WebKit browsers (Chrome, Safari, Edge, etc.)
+                },
+                '&-ms-overflow-style:': {
+                    display: 'none', // Hide the scrollbar for IE
+                },
             }}>
                 <Post />
                 <Post />
