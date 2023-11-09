@@ -18,20 +18,24 @@ function Picture() {
 function Cal() {
     const daysOfWeek = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
     const dates = Array.from({ length: 31 }, (_, index) => index + 1);
+    const eventDay = 5;
 
     return(
         <div className="border-2 border-slate-950 rounded-md w-full text-black">
         <div className="grid grid-cols-8 gap-4-custom bg-black w-full h-5 flex">
         {daysOfWeek.map((day, index) => (
-          <div key={index} className="text-right font-bold text-white bg-black h-custom ${index < 6 ? 'border-2 border-black p-20' : ''}">
+          <div key={index} className="text-right font-bold text-white bg-black h-custom border-2 border-gray">
             {day}
           </div>
         ))}
         </div>
         <div className="px-2 grid grid-cols-7 grid-rows-6 gap-x-3 gap-y-8 text-left ">
         {dates.map((date, index) => (
-          <div key={index} className="flex justify-left items-left text-black">
+          <div key={index} className="flex-col justify-left items-left text-black">
             {date}
+            {/* {date === eventDay ? (
+              <div className="p-2 rounded-full border-2 border-amber-300"></div>
+            ) : null} */}
           </div>
         ))}
         </div>
@@ -51,22 +55,22 @@ export default function Page() {
                 <div className="overflow-auto whitespace-nowrap flex flex-row gap-2">
                 <div className="flex flex-col gap-1 w-full">
                     <div className="border-2 text-center border-slate-950 rounded-md w-full p-1 text-black flex">
-                    <Image src='/plus-icon.png' alt='search' width={27} height={27} />
+                    <Image src='/plus.png' alt='search' width={27} height={27} />
                     <span style={{ marginLeft: '20px' }}>Add New</span>
                     </div>
                 </div>
                 <div className="flex flex-col gap-1 w-full">
                     <div className="border-2 text-center border-slate-950 rounded-md w-full p-1 text-black flex">
                     <span style={{ marginRight: '30px', marginLeft: '35px'}}>Monthly</span>
-                    <Image src='/arrow-icon.png' alt='search' width={27} height={27} /> </div>
+                    <Image src='/arrow-down.png' alt='search' width={27} height={27} /> </div>
                 </div>
                 </div>
 
                 <div className="w-full">
                 <div className="w-full flex justify-center items-center text-black flex">
-                    <Image src='/arrow-side.png' alt='search' width={27} height={27} style={{ transform: 'rotate(180deg)', marginRight: '8px' }}/>
+                    <Image src='/arrow-icon-side.png' alt='search' width={20} height={20} style={{ transform: 'rotate(180deg)', marginRight: '8px' }}/>
                     <span style={{ marginRight: '10px', marginLeft: '10px' }}>October 2023</span>
-                    <Image src='/arrow-side.png' alt='search' width={27} height={27} />
+                    <Image src='/arrow-icon-side.png' alt='search' width={20} height={20} />
                     </div>
                 </div>
 
