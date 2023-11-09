@@ -26,20 +26,18 @@ export default function RootLayout({
     return (
       <html lang="en">
         <body className={satoshi.className}>
+        <div className = "justify-center flex">
         <DeviceFrameset device="iPhone 8" color="gold">
-          <Header />
           {children}
-          <Navigation/>
         </DeviceFrameset>
-          </body>
+        </div>
+        </body>
       </html>
     )
   } else {
     <html lang="en">
-        <body className={inter.className}>
-        <Header />
-        <Navigation/>
-          {children}
+        <body className={satoshi.className}>
+        {children}
           </body>
       </html>
   }

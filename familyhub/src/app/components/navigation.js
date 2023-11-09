@@ -1,46 +1,73 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
-const Navigation = () => {
-
+const Navigation = ({page}) => {
     return (
       <div className="bottom-0 relative flex py-1 items-center justify-center bg-gray-100 rounded-full mb-4 shadow-lg">
         <ul className="flex flex-row gap-10">
           <li className="hover:bg-gray-200 rounded-md px-2 py-2"><Link href="/">
-            <Image
+            {(page === "home") ? 
+            (<Image
+              src="/h-home.svg"
+              alt="home"
+              width={28}
+              height={28}
+              priority
+            />) : (<Image
               src="/home.svg"
               alt="home"
               width={28}
               height={28}
               priority
-            />
+            />)}
             </Link></li>
             <li className="hover:bg-gray-200 rounded-md px-2 py-2"><Link href="/calendar">
-            <Image
+            {(page === "calendar") ? 
+            (<Image
+              src="/h-calendar.svg"
+              alt="home"
+              width={30}
+              height={30}
+              priority
+            />) : (<Image
               src="/calendar.svg"
               alt="home"
-              width={32}
-              height={32}
+              width={30}
+              height={30}
               priority
-            />
+            />)}
             </Link></li>
             <li className="hover:bg-gray-200 rounded-md px-2 py-2"><Link href="/checkin">
-            <Image
+            {(page === "checkin") ? 
+            (<Image
+              src="/h-checkin.svg"
+              alt="home"
+              width={30}
+              height={30}
+              priority
+            />) : (<Image
               src="/checkin.svg"
               alt="home"
-              width={32}
-              height={32}
+              width={30}
+              height={30}
               priority
-            />
+            />)}
             </Link></li>
             <li className="hover:bg-gray-200 rounded-md px-2 py-2"><Link href="/memories">
-            <Image
+            {(page === "memories") ? 
+            (<Image
+              src="/h-memories.svg"
+              alt="home"
+              width={35}
+              height={35}
+              priority
+            />) : (<Image
               src="/memories.svg"
               alt="home"
-              width={36}
-              height={36}
+              width={35}
+              height={35}
               priority
-            />
+            />)}
             </Link></li>
         </ul>
       </div>

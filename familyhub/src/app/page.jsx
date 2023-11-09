@@ -8,6 +8,8 @@ import './globals.css'
 export default function Page() {
     return (
       <main className="">
+        <Header title = "Home"/>
+        <Navigation page = 'home'/>
       </main>
     )
   }
