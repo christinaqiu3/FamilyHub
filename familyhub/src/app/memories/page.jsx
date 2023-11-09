@@ -8,7 +8,7 @@ function Post() {
     return(
         <div style={{
             position: 'relative',
-            margin: 'auto',
+            margin: '5px'
         }}>
             <img
                 src="https://64.media.tumblr.com/bff48b81714434830009b585a56bcfb6/5a69653ddc705238-72/s640x960/5c68eda0ec89ab529735e1f0d3eb6d167ef3ad1b.png"
@@ -99,15 +99,7 @@ export default function Page() {
                 flexWrap: 'wrap',
                 maxHeight: '70%',
                 overflow: 'scroll',
-                margin: '4px',
-                rowGap: '4px',
-                scrollbarWidth: "none", // Hide the scrollbar for firefox
-                '&::-webkit-scrollbar': {
-                    display: 'none', // Hide the scrollbar for WebKit browsers (Chrome, Safari, Edge, etc.)
-                },
-                '&-ms-overflow-style:': {
-                    display: 'none', // Hide the scrollbar for IE
-                },
+                justifyContent: 'center'
             }}>
                 <Post />
                 <Post />
