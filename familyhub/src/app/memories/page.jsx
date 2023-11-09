@@ -2,6 +2,8 @@ import Header from "../components/header";
 import Navigation from "../components/navigation";
 import Image from "next/image";
 
+import "./style.css"
+
 function Post() {
     return(
         <div style={{
@@ -12,7 +14,7 @@ function Post() {
                 src="https://64.media.tumblr.com/bff48b81714434830009b585a56bcfb6/5a69653ddc705238-72/s640x960/5c68eda0ec89ab529735e1f0d3eb6d167ef3ad1b.png"
                 alt="post"
                 style={{
-                    width: 180,
+                    width: 150,
                     height: 'auto',
                     borderRadius: 10
                 }}
