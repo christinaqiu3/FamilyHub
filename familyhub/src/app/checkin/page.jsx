@@ -35,7 +35,7 @@ export default function Page() {
     return (
         <main>
             <Header title = "Home"/>
-            <div className="mx-4 py-4 flex gap-4 flex-col">
+            <div className="mx-4 py-4 flex gap-4 flex-col text-gray-800">
                 <div className="overflow-auto whitespace-nowrap flex flex-row gap-2">
                     <Status/>
                     <Status/>
