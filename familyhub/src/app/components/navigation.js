@@ -1,11 +1,12 @@
 import Image from 'next/image'
+import Link from 'next/link'
 
 const Navigation = () => {
 
     return (
       <div className="bottom-0 flex py-4 w-11/12 items-center justify-center bg-gray-100 rounded-full mb-4 shadow-lg">
         <ul className="flex flex-row gap-10">
-          <li className="hover:bg-gray-200 rounded-md px-2 py-2"><a href="">
+          <li className="hover:bg-gray-200 rounded-md px-2 py-2"><Link href="/">
             <Image
               src="/home.svg"
               alt="home"
@@ -13,8 +14,8 @@ const Navigation = () => {
               height={28}
               priority
             />
-            </a></li>
-            <li className="hover:bg-gray-200 rounded-md px-2 py-2"><a href="">
+            </Link></li>
+            <li className="hover:bg-gray-200 rounded-md px-2 py-2"><Link href="/calendar">
             <Image
               src="/calendar.svg"
               alt="home"
@@ -22,8 +23,8 @@ const Navigation = () => {
               height={32}
               priority
             />
-            </a></li>
-            <li className="hover:bg-gray-200 rounded-md px-2 py-2"><a href="">
+            </Link></li>
+            <li className="hover:bg-gray-200 rounded-md px-2 py-2"><Link href="/checkin">
             <Image
               src="/checkin.svg"
               alt="home"
@@ -31,8 +32,8 @@ const Navigation = () => {
               height={32}
               priority
             />
-            </a></li>
-            <li className="hover:bg-gray-200 rounded-md px-2 py-2"><a href="">
+            </Link></li>
+            <li className="hover:bg-gray-200 rounded-md px-2 py-2"><Link href="/memories">
             <Image
               src="/memories.svg"
               alt="home"
@@ -40,7 +41,7 @@ const Navigation = () => {
               height={36}
               priority
             />
-            </a></li>
+            </Link></li>
         </ul>
       </div>
     )
