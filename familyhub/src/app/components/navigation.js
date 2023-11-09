@@ -3,7 +3,7 @@ import Image from 'next/image'
 const Navigation = () => {
 
     return (
-      <div className="bottom-0 fixed flex py-4 w-11/12 items-center justify-center bg-gray-100 rounded-full mb-4 shadow-lg">
+      <div className="bottom-0 flex py-4 w-11/12 items-center justify-center bg-gray-100 rounded-full mb-4 shadow-lg">
         <ul className="flex flex-row gap-10">
           <li className="hover:bg-gray-200 rounded-md px-2 py-2"><a href="">
             <Image

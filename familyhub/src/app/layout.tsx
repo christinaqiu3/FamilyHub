@@ -2,6 +2,12 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 
+import { DeviceFrameset } from 'react-device-frameset'
+import { isBrowser } from 'react-device-detect';
+
+import Navigation from './components/navigation'
+import Header from './components/header'
+
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -14,9 +20,26 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  return (
+  if (isBrowser) {
+    return (
+      <html lang="en">
+        <body className={inter.className}>
+        <DeviceFrameset device="iPhone 8" color="gold">
+          <Header />
+          {children}
+          <Navigation/>
+        </DeviceFrameset>
+          </body>
+      </html>
+    )
+  } else {
     <html lang="en">
-      <body className={inter.className}>{children}</body>
-    </html>
-  )
+        <body className={inter.className}>
+        <Header />
+        <Navigation/>
+          {children}
+          </body>
+      </html>
+  }
+  
 }
