@@ -1,3 +1,4 @@
+"use client";
 import Navigation from '../components/navigation'
 import Header from '../components/header'
 import { DeviceFrameset } from 'react-device-frameset'
@@ -6,7 +7,46 @@ import 'react-device-frameset/styles/marvel-devices.min.css'
 import '../globals.css'
 import Image from "next/image";
 import './calendar.css'
+import format from "date-fns/format";
+import getDay from "date-fns/getDay";
+import parse from "date-fns/parse";
+import startOfWeek from "date-fns/startOfWeek";
+import React, { useState } from "react";
+import { Calendar, dateFnsLocalizer } from "react-big-calendar";
+import { useClient } from "next/client";
+import "react-big-calendar/lib/css/react-big-calendar.css";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
+const locales = {
+  "en-US": require("date-fns/locale/en-US"),
+};
+const localizer = dateFnsLocalizer({
+  format,
+  parse,
+  startOfWeek,
+  getDay,
+  locales,
+});
+
+const events = [
+  {
+      title: "Big Meeting",
+      allDay: true,
+      start: new Date(2023, 10, 1),
+      end: new Date(2023, 10, 1),
+  },
+  {
+      title: "Vacation",
+      start: new Date(2023, 10, 7),
+      end: new Date(2023, 10, 10),
+  },
+  {
+      title: "Conference",
+      start: new Date(2023, 10, 20),
+      end: new Date(2023, 10, 23),
+  },
+];
 
 function Picture() {
     return(
@@ -45,6 +85,39 @@ function Cal() {
 
 
 export default function Page() {
+
+    const [newEvent, setNewEvent] = useState({ title: "", start: "", end: "" });
+    const [allEvents, setAllEvents] = useState(events);
+
+    function handleAddEvent() {
+        
+        for (let i=0; i<allEvents.length; i++){
+
+            const d1 = new Date (allEvents[i].start);
+            const d2 = new Date(newEvent.start);
+            const d3 = new Date(allEvents[i].end);
+            const d4 = new Date(newEvent.end);
+      /*
+          console.log(d1 <= d2);
+          console.log(d2 <= d3);
+          console.log(d1 <= d4);
+          console.log(d4 <= d3);
+            */
+
+             if (
+              ( (d1  <= d2) && (d2 <= d3) ) || ( (d1  <= d4) &&
+                (d4 <= d3) )
+              )
+            {   
+                alert("CLASH"); 
+                break;
+             }
+    
+        }
+        
+        
+        setAllEvents([...allEvents, newEvent]);
+    }
     
 
     return (
@@ -74,9 +147,44 @@ export default function Page() {
                     </div>
                 </div>
 
+                
+
+        
+                
+                <div>
+        <input
+          type="text"
+          placeholder="Add Title"
+          style={{ width: "20%", marginRight: "10px" }}
+          value={newEvent.title}
+          onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })}
+        />
+        <DatePicker
+          placeholderText="Start Date"
+          style={{ marginRight: "10px" }}
+          selected={newEvent.start}
+          onChange={(start) => setNewEvent({ ...newEvent, start })}
+        />
+        <DatePicker
+          placeholderText="End Date"
+          selected={newEvent.end}
+          onChange={(end) => setNewEvent({ ...newEvent, end })}
+        />
+        <button style={{ marginTop: "10px" }} onClick={handleAddEvent}>
+          Add Event
+        </button>
+      </div>
+
+      <Calendar
+        localizer={localizer}
+        events={allEvents}
+        startAccessor="start"
+        endAccessor="end"
+        style={{ height: 500, margin: "50px" }}
+      />
 
 
-                <Cal></Cal>
+
 
                 <div className="overflow-auto whitespace-nowrap flex flex-row gap-2">
               <Picture/>

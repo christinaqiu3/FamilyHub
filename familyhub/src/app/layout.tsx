@@ -27,9 +27,9 @@ export default function RootLayout({
       <html lang="en">
         <body className={satoshi.className}>
         <div className = "justify-center flex">
-        <DeviceFrameset device="iPhone 8" color="gold">
+        {/* <DeviceFrameset device="iPhone 8" color="gold"> */}
           {children}
-        </DeviceFrameset>
+        {/* </DeviceFrameset> */}
         </div>
         </body>
       </html>
