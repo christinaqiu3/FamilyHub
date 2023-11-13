@@ -51,7 +51,7 @@ export default function Page() {
     return (
         <main style={{
             color: 'black',
-            height: '100%'
+            height: '100%',
         }}>
             <Header title = "Memories"/>
             <div style={{
