@@ -1,3 +1,4 @@
+"use client";
 import Navigation from '../components/navigation'
 import Header from '../components/header'
 import 'react-device-frameset/styles/marvel-devices.min.css'
@@ -10,11 +11,41 @@ import parse from "date-fns/parse";
 import startOfWeek from "date-fns/startOfWeek";
 import React, { useState } from "react";
 import { BigCalendar, Calendar, dateFnsLocalizer } from "react-big-calendar";
+import { useClient } from "next/client";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "../../../assets/device-css/scss/style.scss";
 
+const locales = {
+  "en-US": require("date-fns/locale/en-US"),
+};
+const localizer = dateFnsLocalizer({
+  format,
+  parse,
+  startOfWeek,
+  getDay,
+  locales,
+});
+
+const events = [
+  {
+      title: "Big Meeting",
+      allDay: true,
+      start: new Date(2023, 10, 1),
+      end: new Date(2023, 10, 1),
+  },
+  {
+      title: "Vacation",
+      start: new Date(2023, 10, 7),
+      end: new Date(2023, 10, 10),
+  },
+  {
+      title: "Conference",
+      start: new Date(2023, 10, 20),
+      end: new Date(2023, 10, 23),
+  },
+];
 
 function Picture() {
     return(
@@ -133,7 +164,7 @@ const Page = () => {
       />
 
 
-                <Cal></Cal>
+                
 
                 <div className="overflow-auto whitespace-nowrap flex flex-row gap-2">
               <Picture/>
@@ -152,7 +183,7 @@ const Page = () => {
 
             {isToggled && (
                 <div>
-                    <div class="bg-gray-900 opacity-50 drop-shadow-lg absolute top-0 w-full h-full left-0 z-50"></div>
+                    <div class="bg-gray-900 opacity-50 drop-shadow-lg absolute top-0 w-full h-full left-0 z-51"></div>
                     <button class="absolute top-56 right-4 z-51" onClick={() => setToggle(false)}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="34" height="35" viewBox="0 0 34 35" fill="none" z="100">
                                 <path d="M24.778 9.72179C28.8504 13.7942 28.7489 20.6002 24.4244 24.9246C20.1 29.249 13.2941 29.3506 9.22165 25.2781C5.1492 21.2057 5.25077 14.3998 9.5752 10.0753C13.8996 5.75091 20.7056 5.64934 24.778 9.72179Z" fill="#FFB800" stroke="black" stroke-width="2" z="100"/>
@@ -197,9 +228,7 @@ const Page = () => {
                     </div>
                 </div>
 
-            )}
-
-
+)}
           <Navigation page = 'calendar'/>
         </main>
     )
