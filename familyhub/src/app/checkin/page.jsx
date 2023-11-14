@@ -17,23 +17,6 @@ function Status() {
     )
 }
 
-function Poll() {
-    return(
-        <div className="flex flex-col gap-2 bg-amber-100 rounded-lg drop-shadow-lg p-4">
-            <div className="flex flex-row items-center gap-2">
-                <div className="bg-blue-400 rounded-full p-5"></div>
-                <div className="text-sm">What should I make for dinner??</div>
-            </div>
-            <div className="w-full bg-white px-4 py-1 rounded-full drop-shadow-md text-gray-600">
-                Spaghetti
-            </div>
-            <div className="w-full bg-white px-4 py-1 rounded-full drop-shadow-md text-gray-600">
-                Ramen
-            </div>
-        </div>
-    )
-}
-
 function EditIcon() {
     return (
         <svg width="24" height="24" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -47,13 +30,57 @@ function EditIcon() {
     )
 }
 
+function Poll({question, option1, option2}) {
+        
+    return(
+        <div className="flex flex-col gap-2 bg-amber-100 rounded-lg drop-shadow-lg p-4">
+            <div className="flex flex-row items-center gap-2">
+                <div className="bg-blue-400 rounded-full p-5"></div>
+                <div className="text-sm">{question}</div>
+            </div>
+            <div className="w-full bg-white px-4 py-1 rounded-full drop-shadow-md text-gray-600">
+                {option1}
+            </div>
+            <div className="w-full bg-white px-4 py-1 rounded-full drop-shadow-md text-gray-600">
+                {option2}
+            </div>
+        </div>
+    )
+}
+
 export default function Page() {
     const [addPoll, setNewPoll] = useState(false);
-    const [hasPoll, setPoll] = useState(false);
+    const [pollList, setPollList] = useState([]);
+    const [question,setQuestion] = useState("");
+    const [option1,setOption1] = useState("");
+    const [option2,setOption2] = useState("");
+
+    const Input = () => {
+        return <Poll 
+                    question={question}
+                    option1={option1}
+                    option2={option2}
+                />
+    }
+
+    const questionChangeHandler = (e) => {
+        setQuestion(e.target.value)
+    };
+
+    const option1ChangeHandler = (e) => {
+        setOption1(e.target.value)
+    };
+
+    const option2ChangeHandler = (e) => {
+        setOption2(e.target.value)
+    };
 
     function savePoll() {
+        setPollList(pollList.concat(<Input key={pollList.length} />));
+        setQuestion("");
+        setOption1("");
+        setOption2("");
         setNewPoll(false);
-        setPoll(true);
     }
 
     return (
@@ -85,15 +112,15 @@ export default function Page() {
                             <div className="flex flex-row items-center gap-2">
                                 <div className="bg-blue-400 rounded-full p-5"></div>
                                 <EditIcon/>
-                                <input className="px-2 py-1 w-full rounded-lg bg-amber-100 text-sm" type="text" placeholder="Set your prompt..."></input>
+                                <input className="px-2 py-1 w-full rounded-lg bg-amber-100 text-sm" type="text" placeholder="Set your prompt..." onChange={questionChangeHandler} value={question}></input>
                             </div>
                             <div className="w-full bg-white py-1 pl-4 rounded-full drop-shadow-md flex flex-row gap-2 text-black border-2 border-black">
                                 <EditIcon/>
-                                <input className="w-4/5" type="text" placeholder="Insert item..."></input>
+                                <input className="w-4/5" type="text" placeholder="Insert item..." onChange={option1ChangeHandler} value={option1}></input>
                             </div>
                             <div className="w-full bg-white py-1 pl-4 rounded-full drop-shadow-md flex flex-row gap-2 text-black border-2 border-black">
                                 <EditIcon/>
-                                <input className="w-4/5" type="text" placeholder="Insert item..."></input>
+                                <input className="w-4/5" type="text" placeholder="Insert item..." onChange={option2ChangeHandler} value={option2}></input>
                             </div>
                             <div className="flex flex-row justify-between pt-2">
                                 <button class="bg-gray-300 px-6 py-2 rounded-lg text-gray-700 shadow-md" onClick={() => setNewPoll(false)}>Cancel</button>
@@ -102,9 +129,10 @@ export default function Page() {
                         </div>
                     </div>  
                 )}
-                {hasPoll && (
-                    <Poll/>
-                )}
+                <div class="flex flex-col-reverse gap-4">
+                    {pollList}
+                </div>
+                
             </div>
             
             <Navigation page = 'checkin'/>
