@@ -1,8 +1,5 @@
-"use client";
 import Navigation from '../components/navigation'
 import Header from '../components/header'
-import { DeviceFrameset } from 'react-device-frameset'
-import {isBrowser} from 'react-device-detect';
 import 'react-device-frameset/styles/marvel-devices.min.css'
 import '../globals.css'
 import Image from "next/image";
@@ -12,41 +9,12 @@ import getDay from "date-fns/getDay";
 import parse from "date-fns/parse";
 import startOfWeek from "date-fns/startOfWeek";
 import React, { useState } from "react";
-import { Calendar, dateFnsLocalizer } from "react-big-calendar";
-import { useClient } from "next/client";
+import { BigCalendar, Calendar, dateFnsLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import "../../../assets/device-css/scss/style.scss";
 
-const locales = {
-  "en-US": require("date-fns/locale/en-US"),
-};
-const localizer = dateFnsLocalizer({
-  format,
-  parse,
-  startOfWeek,
-  getDay,
-  locales,
-});
-
-const events = [
-  {
-      title: "Big Meeting",
-      allDay: true,
-      start: new Date(2023, 10, 1),
-      end: new Date(2023, 10, 1),
-  },
-  {
-      title: "Vacation",
-      start: new Date(2023, 10, 7),
-      end: new Date(2023, 10, 10),
-  },
-  {
-      title: "Conference",
-      start: new Date(2023, 10, 20),
-      end: new Date(2023, 10, 23),
-  },
-];
 
 function Picture() {
     return(
@@ -84,7 +52,8 @@ function Cal() {
 }
 
 
-export default function Page() {
+//export default function Page() {
+const Page = () => {
 
     const [newEvent, setNewEvent] = useState({ title: "", start: "", end: "" });
     const [allEvents, setAllEvents] = useState(events);
@@ -109,7 +78,7 @@ export default function Page() {
                 (d4 <= d3) )
               )
             {   
-                alert("CLASH"); 
+                //alert("CLASH"); 
                 break;
              }
     
@@ -119,6 +88,8 @@ export default function Page() {
         setAllEvents([...allEvents, newEvent]);
     }
     
+    const [isToggled, setToggle] = useState(false);
+
 
     return (
         <main>
@@ -127,10 +98,10 @@ export default function Page() {
 
                 <div className="overflow-auto whitespace-nowrap flex flex-row gap-2">
                 <div className="flex flex-col gap-1 w-full">
-                    <div className="border-2 text-center border-slate-950 rounded-md w-full p-1 text-black flex">
+                    <button onClick={() => setToggle(true)} className="border-2 text-center border-slate-950 rounded-md w-full p-1 text-black flex">
                     <Image src='/plus.png' alt='search' width={27} height={27} />
                     <span style={{ marginLeft: '20px' }}>Add New</span>
-                    </div>
+                    </button>
                 </div>
                 <div className="flex flex-col gap-1 w-full">
                     <div className="border-2 text-center border-slate-950 rounded-md w-full p-1 text-black flex">
@@ -151,29 +122,7 @@ export default function Page() {
 
         
                 
-                <div>
-        <input
-          type="text"
-          placeholder="Add Title"
-          style={{ width: "20%", marginRight: "10px" }}
-          value={newEvent.title}
-          onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })}
-        />
-        <DatePicker
-          placeholderText="Start Date"
-          style={{ marginRight: "10px" }}
-          selected={newEvent.start}
-          onChange={(start) => setNewEvent({ ...newEvent, start })}
-        />
-        <DatePicker
-          placeholderText="End Date"
-          selected={newEvent.end}
-          onChange={(end) => setNewEvent({ ...newEvent, end })}
-        />
-        <button style={{ marginTop: "10px" }} onClick={handleAddEvent}>
-          Add Event
-        </button>
-      </div>
+              
 
       <Calendar
         localizer={localizer}
@@ -184,7 +133,7 @@ export default function Page() {
       />
 
 
-
+                <Cal></Cal>
 
                 <div className="overflow-auto whitespace-nowrap flex flex-row gap-2">
               <Picture/>
@@ -197,7 +146,63 @@ export default function Page() {
 
 
             </div>
-            <Navigation page = 'calendar'/>
+
+
+
+
+            {isToggled && (
+                <div>
+                    <div class="bg-gray-900 opacity-50 drop-shadow-lg absolute top-0 w-full h-full left-0 z-50"></div>
+                    <button class="absolute top-56 right-4 z-51" onClick={() => setToggle(false)}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="34" height="35" viewBox="0 0 34 35" fill="none" z="100">
+                                <path d="M24.778 9.72179C28.8504 13.7942 28.7489 20.6002 24.4244 24.9246C20.1 29.249 13.2941 29.3506 9.22165 25.2781C5.1492 21.2057 5.25077 14.3998 9.5752 10.0753C13.8996 5.75091 20.7056 5.64934 24.778 9.72179Z" fill="#FFB800" stroke="black" stroke-width="2" z="100"/>
+
+                                <rect x="12.0972" y="13.7288" width="1.6" height="12.2667" transform="rotate(-45 12.0972 13.7288)" fill="black" z="100" />
+                                <rect x="11.9321" y="21.4834" width="12.8" height="1.53333" transform="rotate(-45 11.9321 21.4834)" fill="black" z="100" />
+                        </svg>
+                    </button>
+                    <div class="flex flex-col gap-2 p-4 bg-amber-100 drop-shadow-lg absolute top-64 mt-2 left-4 w-11/12 h-1/4 rounded-lg z-50">
+                    <div>
+        <input
+          type="text"
+          placeholder="Add Title"
+          style={{ width: "20%", marginRight: "10px" }}
+          value={newEvent.title}
+          onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })}
+        />
+        <DatePicker
+          placeholderText="Start Date"
+          style={{ width: "20%", marginRight: "10px", stroke:"black", color:"black", backgroundColor:"white", padding:"5px", borderRadius:"15px", borderColor:"black", borderWidth:"2px"}}
+          selected={newEvent.start}
+          onChange={(start) => setNewEvent({ ...newEvent, start })}
+        />
+        <DatePicker
+          placeholderText="End Date"
+          style={{ width: "20%", marginRight: "10px" }}
+          // placeholderTextColor="black"
+          // stroke="black"
+          // color="black" 
+          // backgroundColor="white"
+          // padding="5px"
+          // borderRadius="15px"
+          // borderColor="black"
+          // borderWidth="2px"
+          selected={newEvent.end}
+          onChange={(end) => setNewEvent({ ...newEvent, end })}
+        />
+        <button style={{ marginTop: "10px", stroke:"black", color:"black", backgroundColor:"white", padding:"5px", borderRadius:"15px", borderColor:"black", borderWidth:"2px"}} onClick={() => { handleAddEvent(); setToggle(false); }}>
+          Add Event
+        </button>
+      </div>
+                    </div>
+                </div>
+
+            )}
+
+
+          <Navigation page = 'calendar'/>
         </main>
     )
 }
+
+export default Page

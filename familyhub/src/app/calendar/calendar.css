@@ -1,3 +1,7 @@
+body {
+    background-color: white;
+  }
+
 .gap-15-custom {
     gap: 1.5rem;
 }
@@ -9,3 +13,4 @@
 .h-custom {
     height: 20rem;
 }
+
