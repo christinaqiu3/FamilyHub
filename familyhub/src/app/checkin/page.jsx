@@ -30,20 +30,20 @@ function EditIcon() {
     )
 }
 
-function Poll({question, option1, option2}) {
-        
+function Poll({question, option1, option2}) {     
     return(
+        
         <div className="flex flex-col gap-2 bg-amber-100 rounded-lg drop-shadow-lg p-4">
             <div className="flex flex-row items-center gap-2">
                 <div className="bg-blue-400 rounded-full p-5"></div>
                 <div className="text-sm">{question}</div>
             </div>
-            <div className="w-full bg-white px-4 py-1 rounded-full drop-shadow-md text-gray-600">
+            <button className="w-full bg-white px-4 py-1 rounded-full drop-shadow-md text-gray-600 text-left">
                 {option1}
-            </div>
-            <div className="w-full bg-white px-4 py-1 rounded-full drop-shadow-md text-gray-600">
+            </button>
+            <button className="w-full bg-white px-4 py-1 rounded-full drop-shadow-md text-gray-600 text-left">
                 {option2}
-            </div>
+            </button>
         </div>
     )
 }
