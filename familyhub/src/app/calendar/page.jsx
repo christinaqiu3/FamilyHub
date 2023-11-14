@@ -128,13 +128,22 @@ const Page = () => {
 
         <div className="overflow-auto whitespace-nowrap flex flex-row gap-2">
           <div className="flex flex-col gap-1 w-full">
-            <button onClick={() => setToggle(true)} className="border-2 text-center border-slate-950 rounded-md w-full p-1 text-black flex">
+            <button onClick={() => setToggle(true)} className="border-2 text-center border-slate-950 rounded-md w-full p-1 text-black flex"
+            style={{
+              display: 'flex',
+              alignItems: 'center'
+            }}>
               <Image src='/plus.png' alt='search' width={27} height={27} />
               <span style={{ marginLeft: '20px' }}>Add New</span>
             </button>
           </div>
           <div className="flex flex-col gap-1 w-full">
-            <div className="border-2 text-center border-slate-950 rounded-md w-full p-1 text-black flex">
+            <div className="border-2 text-center border-slate-950 rounded-md w-full p-1 text-black flex"
+                 style={{
+                   display: 'flex',
+                   alignItems: 'center',
+                   border: '2px solid black'
+                 }}>
               <span style={{ marginRight: '30px', marginLeft: '35px' }}>Monthly</span>
               <Image src='/arrow-down.png' alt='search' width={27} height={27} /> </div>
           </div>
@@ -185,33 +194,55 @@ const Page = () => {
 
       {isToggled && (
         <div>
-          <div class="bg-gray-900 opacity-50 drop-shadow-lg absolute top-0 w-full h-full left-0 z-51"></div>
-          <button class="absolute top-56 right-4 z-51" onClick={() => setToggle(false)}>
+          <div className="bg-gray-900 opacity-50 drop-shadow-lg absolute top-0 w-full h-full left-0 z-51"></div>
+            <button onClick={() => setToggle(false)}
+            style={{
+              position: 'absolute',
+              top: '30vh',
+              left: '60vw'
+            }}>
             <svg xmlns="http://www.w3.org/2000/svg" width="34" height="35" viewBox="0 0 34 35" fill="none" z="100">
               <path d="M24.778 9.72179C28.8504 13.7942 28.7489 20.6002 24.4244 24.9246C20.1 29.249 13.2941 29.3506 9.22165 25.2781C5.1492 21.2057 5.25077 14.3998 9.5752 10.0753C13.8996 5.75091 20.7056 5.64934 24.778 9.72179Z" fill="#FFB800" stroke="black" stroke-width="2" z="100" />
 
               <rect x="12.0972" y="13.7288" width="1.6" height="12.2667" transform="rotate(-45 12.0972 13.7288)" fill="black" z="100" />
               <rect x="11.9321" y="21.4834" width="12.8" height="1.53333" transform="rotate(-45 11.9321 21.4834)" fill="black" z="100" />
             </svg>
-          </button>
-          <div class="flex flex-col gap-2 p-4 bg-amber-100 drop-shadow-lg absolute top-64 mt-2 left-4 w-11/12 h-1/4 rounded-lg z-50">
+            </button>
             <div>
+            <div className="bg-amber-200 rounded-md" style={{
+              left: '40vw',
+              zIndex: 10,
+              position: 'absolute',
+              width: '20vw',
+              height: '30vh',
+              top: '35vh',
+              border: '2px solid black',
+              padding: '10px',
+              display: 'flex',
+              justifyContent: 'center',
+              flexWrap: 'wrap',
+              alignContent: 'center'
+            }}>
               <input
                 type="text"
                 placeholder="Add Title"
-                style={{ width: "20%", marginRight: "10px" }}
+                style={{
+                  width: '150px',
+                  border: '2px solid black',
+                  borderRadius: '50px',
+                  padding: '5px',
+                  margin: '5px'
+                }}
                 value={newEvent.title}
                 onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })}
               />
-              <DatePicker
+              <DatePicker wrapperClassName="datePicker"
                 placeholderText="Start Date"
-                style={{ width: "20%", marginRight: "10px", stroke: "black", color: "black", backgroundColor: "white", padding: "5px", borderRadius: "15px", borderColor: "black", borderWidth: "2px" }}
                 selected={newEvent.start}
                 onChange={(start) => setNewEvent({ ...newEvent, start })}
               />
               <DatePicker
                 placeholderText="End Date"
-                style={{ width: "20%", marginRight: "10px" }}
                 // placeholderTextColor="black"
                 // stroke="black"
                 // color="black" 
@@ -227,7 +258,7 @@ const Page = () => {
                 Add Event
               </button>
             </div>
-          </div>
+            </div>
         </div>
 
       )}
