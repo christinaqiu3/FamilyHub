@@ -1,7 +1,70 @@
+'use client';
+import * as React from 'react'
 import Header from '../components/header'
 import Navigation from '../components/navigation'
 import Switch from '@mui/material/Switch';
 import Image from 'next/image'
+
+function GroupSettings() {
+    const [isCreate, setCreate] = React.useState(false) ;
+
+    const handleExpand = () => (setCreate(!isCreate)) ;
+
+    if (isCreate) {
+        return (
+            <div className = 'px-2'>
+            <div className = 'bg-white drop-shadow-lg rounded-md'>
+                <div className = 'px-2 flex py-2 flex-column rounded-md ml-auto pr-4'
+                    onClick = {() => handleExpand()}
+                    >
+                        <Image src='/group.svg' 
+                                    width = {25} 
+                                    height = {25}/>
+                        <p className = 'px-2'>Current: Mob's Family</p>
+                        <Image src='/deflate.svg'
+                                    width = {15}
+                                    height = {15}/>    
+                </div>
+
+                <div>
+                    <div className = 'flex py-2 flex-column rounded-md ml-auto pl-8'>
+                            <Image src='/group.svg' 
+                                        width = {20} 
+                                        height = {20}/>
+                            <p className = 'px-2' style = {{fontSize: 14}}>Body Improvement Club!</p>
+                    </div>
+                    <div className = 'flex py-2 flex-column rounded-md ml-auto pl-8'>
+                            <Image src='/group.svg' 
+                                        width = {20} 
+                                        height = {20}/>
+                            <p className = 'px-2' style = {{fontSize: 14}}>Sus Soccer Students</p>
+                    </div>
+                </div>
+                <div style = {{ marginBottom: 'auto'}}>
+                    <Image src = '/create-group-button.png'
+                            width = {172}
+                            height = {30}
+                            style = {{marginLeft: 'auto'}}/>
+                </div>
+            </div>
+            </div>
+            
+            
+        )
+    }
+    return(
+        <div className = 'flex py-2 flex-column hover:bg-gray-200 rounded-md ml-auto pl-4'
+                onClick = {() => handleExpand()}>
+                        <Image src='/group.svg' 
+                                width = {25} 
+                                height = {25}/>
+                        <p className = 'px-2'>Current: Mob's Family</p>
+                        <Image src='/expand-down.svg'
+                                width = {20}
+                                height = {20}/>
+        </div>
+    )
+}
 
 function LabelSwitch({label}) {
     return (
@@ -93,17 +156,9 @@ export default function SettingsPage() {
             height: '100%'
         }}>
             <Header title = "Settings"/>
-            <div style = {{overflow: 'scroll', maxHeight: '80%'}}>
-                <div style = {{paddingLeft: 10}}>
-                    <div className = 'flex py-2 flex-column hover:bg-gray-200 rounded-md ml-auto pr-4'>
-                        <Image src='/group.svg' 
-                                width = {25} 
-                                height = {25}/>
-                        <p className = 'px-2'>Current: Mob's Family</p>
-                        <Image src='/expand-down.svg'
-                                width = {20}
-                                height = {20}/>
-                    </div>
+            <div style = {{overflow: 'scroll', maxHeight: '80%', paddingTop: 10}}>
+                <GroupSettings/>
+                <div style = {{paddingLeft: 20, paddingRight: 20}}>
                     <div>
                         <div className='flex flex-column px-1'>
                             <Image src='/bell.svg'
@@ -119,7 +174,7 @@ export default function SettingsPage() {
                         </div>
                     </div>
                 </div>
-                <div style = {{overflow: 'scroll', paddingLeft: 10}}>
+                <div style = {{overflow: 'scroll', paddingLeft: 20}}>
                 <div className = 'flex py-2 flex-column'>
                     <Image src='/edit.svg' 
                             width = {18} 
