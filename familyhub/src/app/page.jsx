@@ -94,7 +94,6 @@ export default function Page() {
             <p>Recent Polls</p>
             <div className="overflow-auto whitespace-nowrap flex flex-col gap-2">
               <Poll/>
-              <Poll/>
             </div>
           </div>
         </div>
