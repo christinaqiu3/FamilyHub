@@ -27,7 +27,7 @@ export default function RootLayout({
       <html lang="en">
         <body className={satoshi.className}>
         <div style = {{display: 'flex', justifyContent: 'center'}}>
-          <div style = {{height: 667, width: 376, overflow: 'scroll', backgroundColor: '#FFFFFF'}}>
+          <div style = {{height: 667, width: 376, backgroundColor: '#FFFFFF'}}>
             {children}
           </div>
           
