@@ -4,13 +4,38 @@ import Header from '../components/header'
 import Navigation from '../components/navigation'
 import Switch from '@mui/material/Switch';
 import Image from 'next/image'
+import TextField from '@mui/material/TextField'
+import {createTheme} from '@mui/material/styles'
+
 
 function GroupSettings() {
-    const [isCreate, setCreate] = React.useState(false) ;
+    const [isSet, setSet] = React.useState(false) ;
+    const [isCreate, setCreate] = React.useState(false)
+    const [inputName, setName] = React.useState('')
+    
+    const theme = createTheme({
+    })
 
-    const handleExpand = () => (setCreate(!isCreate)) ;
+    function handleExpand() {
+        setSet(!isSet)
+        setCreate(false)
+    }
+    function handleNew() {
+        setSet(!isSet)
+        setCreate(!isCreate)
+    }
 
-    if (isCreate) {
+    var addedGroup = null;
+    if (!(inputName === '')) {
+        addedGroup = (<div className = 'flex py-2 flex-column rounded-md ml-auto pl-8'>
+                            <Image src='/group.svg' 
+                                        width = {20} 
+                                        height = {20}/>
+                            <p className = 'px-2' style = {{fontSize: 14}}>{inputName}</p>
+        </div>)
+    }
+
+    if (isSet) {
         return (
             <div className = 'px-2'>
             <div className = 'bg-white drop-shadow-lg rounded-md'>
@@ -23,9 +48,9 @@ function GroupSettings() {
                         <p className = 'px-2'>Current: Mob's Family</p>
                         <Image src='/deflate.svg'
                                     width = {15}
-                                    height = {15}/>    
+                                    height = {15}
+                                style = {{marginLeft: 'auto'}}/>    
                 </div>
-
                 <div>
                     <div className = 'flex py-2 flex-column rounded-md ml-auto pl-8'>
                             <Image src='/group.svg' 
@@ -39,18 +64,71 @@ function GroupSettings() {
                                         height = {20}/>
                             <p className = 'px-2' style = {{fontSize: 14}}>Sus Soccer Students</p>
                     </div>
+                    {addedGroup}
                 </div>
-                <div style = {{ marginBottom: 'auto'}}>
-                    <Image src = '/create-group-button.png'
-                            width = {172}
-                            height = {30}
-                            style = {{marginLeft: 'auto'}}/>
+                <div style = {{display: 'flex',
+                                padding: 8}}>
+                    <div onClick={() => handleNew()}
+                            style = {{height: 33, width: 176, 
+                                    backgroundColor: 'rgb(253 230 138)',
+                                    borderRadius: 15,
+                                    display: 'flex',
+                                    flexDirection: 'row',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                    marginLeft: 'auto'}}>
+                        <p style = {{fontSize: 12}}>Create New Family</p>
+                        <Image src ='/group-add.svg'
+                                width = {25}
+                                height = {25}/>
+                    </div>
                 </div>
             </div>
-            </div>
-            
-            
+            </div> 
         )
+    } else if (isCreate) {
+        return(
+        <div className = 'px-2'>
+        <div className = 'bg-white drop-shadow-lg rounded-md'>
+            <div className = 'px-2 flex py-2 flex-column rounded-md ml-auto pr-4'
+                onClick = {() => handleExpand()}
+                >
+                    <Image src='/back.png'
+                                width = {25}
+                                height = {15}/>                      
+                    <Image src='/group-add.svg' 
+                                width = {25} 
+                                height = {25}/>
+                    <p className = 'px-2'>Creating New Family</p>
+            </div>
+            <div>
+                <div style = {{display: 'flex', flexDirection: 'row',
+                                justifyContent: 'center'}}>
+                    <TextField id="standard-basic" label="Group Name" variant="standard"
+                            onChange={(e) => { 
+                                setName(e.target.value); 
+                            }}  />
+                    <Image src='/edit.svg'
+                            width = {18}
+                            height = {18}/>
+                </div>
+            </div>
+            <div style = {{display: 'flex',
+                                padding: 8}}>
+                    <div onClick={() => handleNew()}
+                            style = {{height: 33, width: 100, 
+                                    backgroundColor: 'rgb(253 230 138)',
+                                    borderRadius: 15,
+                                    display: 'flex',
+                                    flexDirection: 'row',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                    marginLeft: 'auto'}}>
+                        <p style = {{fontSize: 12}}>Create</p>
+                    </div>
+                </div>
+        </div>
+        </div>)
     }
     return(
         <div className = 'flex py-2 flex-column hover:bg-gray-200 rounded-md ml-auto pl-4'
