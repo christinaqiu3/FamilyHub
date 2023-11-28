@@ -99,7 +99,7 @@ function Poll({question, option1, option2}) {
 }
 
 export default function Page() {
-    const [addPoll, setNewPoll] = useState(false);
+    const [addPoll, setNewPoll] = useState(true);
     const [pollList, setPollList] = useState([]);
     const [question,setQuestion] = useState("");
     const [option1,setOption1] = useState("");
@@ -126,17 +126,24 @@ export default function Page() {
     };
 
     function savePoll() {
-        setPollList(pollList.concat(<Input key={pollList.length} />));
+        if (!(question.length === 0 || option1.length === 0 || option2.length === 0)) {
+            setPollList(pollList.concat(<Input key={pollList.length} />));
+        }
         setQuestion("");
         setOption1("");
         setOption2("");
-        setNewPoll(false);
+    }
+
+    function clearPoll() {
+        setQuestion("");
+        setOption1("");
+        setOption2("");
     }
 
     return (
         <main style = {{display: 'flex', flexDirection: 'column', height: 667, width: 376, left: 0, right: 0}}>
             <Header title = "Check-in"/>
-            <div style = {{overflow: 'scroll', maxHeight: '80%', paddingTop:10}}>
+            <div style = {{overflow: 'scroll', maxHeight: '80%'}}>
                 <div className="mx-4 py-4 flex gap-4 flex-col text-gray-800">
                     <div className="overflow-auto whitespace-nowrap flex flex-row gap-2">
                         <Status/>
@@ -181,13 +188,17 @@ export default function Page() {
                                     <input className="w-4/5" type="text" placeholder="Insert item..." onChange={option2ChangeHandler} value={option2}></input>
                                 </div>
                                 <div className="flex flex-row justify-between pt-2">
-                                    <button class="bg-gray-300 px-6 py-2 rounded-lg text-gray-700 shadow-md" onClick={() => setNewPoll(false)}>Cancel</button>
-                                    <button class="bg-amber-500 px-8 py-2 rounded-lg shadow-md" onClick={savePoll}>Save</button>
+                                    <button class="bg-gray-300 px-6 py-2 rounded-lg text-gray-700 shadow-md" onClick={() => clearPoll()}>Clear</button>
+                                    <button class="bg-amber-500 px-8 py-2 rounded-lg shadow-md" onClick={savePoll}>Add</button>
                                 </div>
                             </div>
                         </div>  
                     )}
                     <div class="flex flex-col-reverse gap-4 grow">
+                        <Poll question = "Is it cool to say poggers?"
+                            option1 = "No" option2 = "No."/>
+                        <Poll question = "Final Vacation Poll" option1 = "Beach"
+                            option2 = "Home"/>
                         {pollList}
                     </div>
                     

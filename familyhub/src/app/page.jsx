@@ -109,7 +109,7 @@ export default function Page() {
     return (
       <main style = {{display: 'flex', flexDirection: 'column', height: 667, width: 376, left: 0, right: 0}}>
         <Header title = "Home"/>
-        <div style = {{overflow: 'scroll', maxHeight: '80%', paddingTop:10}}>
+        <div style = {{overflow: 'scroll', maxHeight: '80%'}}>
           <div className="mx-4 py-3 flex gap-2 flex-col text-gray-800">
             <div className="px-2">
             <form>
