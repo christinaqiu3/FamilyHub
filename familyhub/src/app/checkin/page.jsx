@@ -155,14 +155,6 @@ export default function Page() {
                     </div>
                     <div className="flex justify-between w-full grow">
                         <div class="">Polls</div>
-                        <button onClick={() => setNewPoll(true)}>
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M23 11.5C23 17.2593 18.1157 22 12 22C5.88433 22 1 17.2593 1 11.5C1 5.74069 5.88433 1 12 1C18.1157 1 23 5.74069 23 11.5Z" fill="white" stroke="black" stroke-width="2"/>
-                                <path d="M23 11.5C23 17.2593 18.1157 22 12 22C5.88433 22 1 17.2593 1 11.5C1 5.74069 5.88433 1 12 1C18.1157 1 23 5.74069 23 11.5Z" fill="white" stroke="black" stroke-width="2"/>
-                                <rect x="11.2002" y="5.3667" width="1.6" height="12.2667" fill="black"/>
-                                <rect x="5.6001" y="10.7334" width="12.8" height="1.53333" fill="black"/>
-                            </svg>
-                        </button>
                     </div>
                     {addPoll && (
                         <div class=""> 
