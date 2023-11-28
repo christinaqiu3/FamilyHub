@@ -97,7 +97,7 @@ function SmileIcon() {
 
 export default function Page() {
     const [showEmojiDropdown, setShowEmojiDropdown] = useState(false);
-    const [addPoll, setNewPoll] = useState(true);
+    const [addPoll, setNewPoll] = useState(false);
 
     const handleEmojiClick = () => {
         console.log('Emoji Clicked');
@@ -134,13 +134,13 @@ export default function Page() {
                         <form>
 
                             <div className="flex justify-between w-full grow">
-                                <div class="">{emoj}{title}</div>
-                                <button onClick={() => setNewPoll(true)}>
+                                <div className="">{emoj}{title}</div>
+                                <button type="button" onClick={() => setNewPoll(true)}>
                                     <EditIcon/>
                                 </button>
                             </div>
                             {addPoll && (
-                                <div class="">
+                                <div className="">
                                     <div className="flex flex-col gap-2 bg-amber-100 rounded-lg drop-shadow-lg p-4">
                                         <div className="flex flex-row items-center gap-2">
 
