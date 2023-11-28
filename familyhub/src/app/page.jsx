@@ -109,11 +109,19 @@ export default function Page() {
         // Handle the selected emoji (e.g., update state, form input, etc.)
         console.log('Selected Emoji:', selectedEmoji);
         setShowEmojiDropdown(false);
+        setEmoj(selectedEmoji + " ");
     };
 
     const emojiList = ['😊', '😂', '😍', '🥺', '😎', '🤔', '🚀']; // Add more emojis as needed
 
-    const savePoll = () => {
+    const [statusInput, setStatusInput] = useState('');
+
+    const [title, setTitle] =  useState('Set Your Status');
+
+    const [emoj, setEmoj] =  useState('');
+
+    const savePoll = (status) => {
+        setTitle( status);
         setNewPoll(false);
     };
 
@@ -126,19 +134,9 @@ export default function Page() {
                         <form>
 
                             <div className="flex justify-between w-full grow">
-                                <div class="">Set Status</div>
+                                <div class="">{emoj}{title}</div>
                                 <button onClick={() => setNewPoll(true)}>
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                         xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M23 11.5C23 17.2593 18.1157 22 12 22C5.88433 22 1 17.2593 1 11.5C1 5.74069 5.88433 1 12 1C18.1157 1 23 5.74069 23 11.5Z"
-                                            fill="white" stroke="black" stroke-width="2"/>
-                                        <path
-                                            d="M23 11.5C23 17.2593 18.1157 22 12 22C5.88433 22 1 17.2593 1 11.5C1 5.74069 5.88433 1 12 1C18.1157 1 23 5.74069 23 11.5Z"
-                                            fill="white" stroke="black" stroke-width="2"/>
-                                        <rect x="11.2002" y="5.3667" width="1.6" height="12.2667" fill="black"/>
-                                        <rect x="5.6001" y="10.7334" width="12.8" height="1.53333" fill="black"/>
-                                    </svg>
+                                    <EditIcon/>
                                 </button>
                             </div>
                             {addPoll && (
@@ -151,7 +149,9 @@ export default function Page() {
                                                 <div
                                                     className="w-full bg-white py-1 pl-4 rounded-md drop-shadow-md flex flex-row gap-2 text-black border-2 border-black">
                                                     <input className="w-4/5 outline-none" type="text"
-                                                           placeholder="Set your status . . ."></input>
+                                                           placeholder="Set your status . . ."
+                                                           value={statusInput}
+                                                           onChange={(e) => setStatusInput(e.target.value)}></input>
                                                     <EditIcon/>
                                                     <button type="button" onClick={handleEmojiClick}
                                                             className="focus:outline-none">
@@ -183,7 +183,7 @@ export default function Page() {
                                                         onClick={() => setNewPoll(false)}>Cancel
                                                     </button>
                                                     <button className="bg-amber-500 px-8 py-2 rounded-lg shadow-md"
-                                                            onClick={savePoll}>Save
+                                                            onClick={() => savePoll(statusInput)}>Save
                                                     </button>
                                                 </div>
 
