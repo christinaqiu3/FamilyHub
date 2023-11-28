@@ -25,13 +25,11 @@ export default function RootLayout({
   if (isBrowser) {
     return (
       <html lang="en">
-        <body className={satoshi.className}>
-        <div style = {{display: 'flex', justifyContent: 'center'}}>
-          <div style = {{height: 667, width: 376, backgroundColor: '#FFFFFF'}}>
-            {children}
+        <body className={satoshi.className} style = {{display: 'flex', justifyContent: 'center'}}>
+          <div style = {{height: 667, width: 376, backgroundColor: '#FFFFFF',
+                 display: 'flex', justifyContent: 'center'}}>
+              {children}
           </div>
-          
-        </div>
         </body>
       </html>
     )

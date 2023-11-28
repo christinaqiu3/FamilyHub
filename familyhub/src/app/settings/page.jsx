@@ -231,7 +231,8 @@ export default function SettingsPage() {
     return (
         <main style = {{
             color: 'black',
-            height: '100%'
+            height: '100%',
+            display: 'flex', flexDirection: 'column', height: 667, width: 376, left: 0, right: 0
         }}>
             <Header title = "Settings"/>
             <div style = {{overflow: 'scroll', maxHeight: '80%', paddingTop: 10}}>

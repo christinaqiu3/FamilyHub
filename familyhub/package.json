@@ -23,8 +23,8 @@
     "react-dom": "^18",
     "react-router-dom": "^6.18.0",
     "request": "^2.88.2",
-    "styled-components": "^6.1.1",
-    "scss": "^0.2.4"
+    "scss": "^0.2.4",
+    "styled-components": "^6.1.1"
   },
   "devDependencies": {
     "@types/node": "^20",

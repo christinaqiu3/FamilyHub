@@ -107,66 +107,71 @@ export default function Page() {
   const emojiList = ['😊', '😂', '😍', '🥺', '😎', '🤔', '🚀']; // Add more emojis as needed
 
     return (
-      <main className="relative">
+      <main style = {{display: 'flex', flexDirection: 'column', height: 667, width: 376, left: 0, right: 0}}>
         <Header title = "Home"/>
-        <div className="mx-4 py-3 flex gap-2 flex-col text-gray-800">
-          <div className="px-2">
-          <form>
-            <label className="mb-1">How are you feeling?
-            <div className="w-full bg-white py-1 pl-4 rounded-md drop-shadow-md flex flex-row gap-2 text-black border-2 border-black">
-            <input className="w-4/5 outline-none" type="text" placeholder="Set your status . . ." ></input>
-            <EditIcon/>
-            <button type="button" onClick={handleEmojiClick} className="focus:outline-none">
-              <SmileIcon />
-            </button>
-            <div className="p-.5"></div>
+        <div style = {{overflow: 'scroll', maxHeight: '80%', paddingTop:10}}>
+          <div className="mx-4 py-3 flex gap-2 flex-col text-gray-800">
+            <div className="px-2">
+            <form>
+              <label className="mb-1">How are you feeling?
+              <div className="w-full bg-white py-1 pl-4 rounded-md drop-shadow-md flex flex-row gap-2 text-black border-2 border-black">
+              <input className="w-4/5 outline-none" type="text" placeholder="Set your status . . ." ></input>
+              <EditIcon/>
+              <button type="button" onClick={handleEmojiClick} className="focus:outline-none">
+                <SmileIcon />
+              </button>
+              <div className="p-.5"></div>
 
-            {showEmojiDropdown && (
-            <div className="absolute top-8 right-0 bg-white p-2 rounded-md border border-black">
-              {emojiList.map((emoji, index) => (
-                <span
-                  key={index}
-                  className="cursor-pointer hover:bg-gray-200 p-1 rounded-md"
-                  onClick={() => {
-                    handleEmojiSelection(emoji);
-                    setShowEmojiDropdown(false);
-                  }}                >
-                  {emoji}
-                </span>
-              ))}
+              {showEmojiDropdown && (
+              <div className="absolute top-8 right-0 bg-white p-2 rounded-md border border-black">
+                {emojiList.map((emoji, index) => (
+                  <span
+                    key={index}
+                    className="cursor-pointer hover:bg-gray-200 p-1 rounded-md"
+                    onClick={() => {
+                      handleEmojiSelection(emoji);
+                      setShowEmojiDropdown(false);
+                    }}                >
+                    {emoji}
+                  </span>
+                ))}
+              </div>
+            )}
+              </div>
+              </label>
+            </form>
             </div>
-          )}
+            <div className="flex gap-2 flex-col px-2">
+              <p>Family Members</p>
+              <div className="overflow-auto whitespace-nowrap flex flex-row gap-2">
+                <Picture/>
+                <Picture/>
+                <Picture/>
+                <Picture/>
+                <Picture/>
+                <Picture/>
+              </div>
             </div>
-            </label>
-          </form>
-          </div>
-          <div className="flex gap-2 flex-col px-2">
-            <p>Family Members</p>
-            <div className="overflow-auto whitespace-nowrap flex flex-row gap-2">
-              <Picture/>
-              <Picture/>
-              <Picture/>
-              <Picture/>
-              <Picture/>
-              <Picture/>
+            <div className="flex gap-4 flex-col px-2">
+              <p>Upcoming Events</p>
+              <div className="overflow-auto whitespace-nowrap flex flex-row gap-2">
+                <Event/>
+                <Event/>
+                <Event/>
+              </div>
             </div>
-          </div>
-          <div className="flex gap-4 flex-col px-2">
-            <p>Upcoming Events</p>
-            <div className="overflow-auto whitespace-nowrap flex flex-row gap-2">
-              <Event/>
-              <Event/>
-              <Event/>
-            </div>
-          </div>
-          <div className="flex gap-2 flex-col px-2">
-            <p>Recent Polls</p>
-            <div className="overflow-auto whitespace-nowrap flex flex-col gap-2">
-              <Poll/>
+            <div className="flex gap-2 flex-col px-2">
+              <p>Recent Polls</p>
+              <div className="overflow-auto whitespace-nowrap flex flex-col gap-2">
+                <Poll/>
+              </div>
             </div>
           </div>
         </div>
-        <Navigation page = 'home'/>
+        
+        <div style = {{marginTop: 'auto'}}>
+          <Navigation page = 'home'/>
+        </div>
       </main>
     )
   }
