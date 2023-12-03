@@ -2,12 +2,9 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import localFont from 'next/font/local'
 import './globals.css'
-
-import { DeviceFrameset } from 'react-device-frameset'
 import { isBrowser } from 'react-device-detect';
 
-import Navigation from './components/navigation'
-import Header from './components/header'
+import {GroupProvider} from './providers' ;
 
 const inter = Inter({ subsets: ['latin'] })
 const satoshi = localFont({ src: '../../assets/fonts/Satoshi-Variable.woff'})
@@ -28,7 +25,7 @@ export default function RootLayout({
         <body className={satoshi.className} style = {{display: 'flex', justifyContent: 'center'}}>
           <div style = {{height: 667, width: 376, backgroundColor: '#FFFFFF',
                  display: 'flex', justifyContent: 'center'}}>
-              {children}
+              <GroupProvider>{children}</GroupProvider>
           </div>
         </body>
       </html>
