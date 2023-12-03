@@ -3,8 +3,10 @@
 import Navigation from './components/navigation'
 import Header from './components/header'
 import './globals.css'
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 import "./home.css"
+
+import {GroupContext} from './providers'
 
 function Picture() {
     return (
@@ -116,6 +118,7 @@ function UserProfile({picture, style}) {
 export default function Page() {
     const [showEmojiDropdown, setShowEmojiDropdown] = useState(false);
     const [addPoll, setNewPoll] = useState(false);
+    let {group} = useContext(GroupContext)
 
     const handleEmojiClick = () => {
         console.log('Emoji Clicked');
@@ -159,7 +162,6 @@ export default function Page() {
                 <div className="mx-4 py-3 flex gap-2 flex-col text-gray-800">
                     <div className="px-2">
                         <form>
-
                             <div className="flex justify-between w-full grow">
                                 <div className="">{emoj}{title}</div>
                                 <button type="button" onClick={() => setNewPoll(true)}>
