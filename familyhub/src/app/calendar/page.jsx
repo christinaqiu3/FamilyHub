@@ -86,10 +86,10 @@ export default function Page() {
 
     const Input = () => {
         return <Event
-            title={title}
-            dateTime={dateTime}
-            location={location}
-            description={description}
+            title={"Title: "+title}
+            dateTime={"Date/Time: "+dateTime}
+            location={"Location: "+location}
+            description={"Description: "+description}
         />
     }
 

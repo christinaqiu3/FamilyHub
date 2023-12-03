@@ -15,7 +15,7 @@ function UserProfile({picture, style, status}) {
                 alt="reigen"
                 style={style}
             />
-            <div className="border-2 text-center border-slate-950 rounded-md w-full w-20">{status}</div>
+            <div style={{}} className="border-2 text-center border-slate-950 rounded-md w-20">{status}</div>
         </div>
     )
 }
