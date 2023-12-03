@@ -23,33 +23,45 @@ function RSVP() {
         <button onClick={handleToggle}>
 
             {isToggled ?
-                <div className="bg-gray-300 text-gray-400 px-2 py-1 rounded-full">RSVP</div>
+                <div className="bg-gray-300 text-gray-400 px-3 py-1 rounded-full">RSVP</div>
                 :
-                <div className="dark-theme-color px-2 py-1 rounded-full drop-shadow-sm">RSVP</div>
+                <div className="dark-theme-color px-3 py-1 rounded-full drop-shadow-sm">RSVP</div>
             }
         </button>
     )
 }
 
-function Event() {
+function Event({icon}) {
     return (
-        <div className="light-theme-color p-4 w-1/2 rounded-md flex flex-col flex-wrap drop-shadow-md">
+        <div className="light-theme-color p-4 w-1/2 pr-14 rounded-md flex flex-col flex-wrap drop-shadow-md">
             <div>Date</div>
             <div className="text-sm">Description</div>
-            <div className="flex flex-row pt-2 gap-4">
-                <div className="bg-gray-400 rounded-full p-4">
-
-                </div>
+            <div className="flex flex-row pt-2 gap-6">
+                
+                <img src={icon} alt=""
+                    style={{
+                        width: 40, 
+                        height: 40, 
+                        borderRadius: 100,
+                        
+                    }}
+                />
                 <RSVP/>
             </div>
         </div>
     )
 }
 
-function Poll() {
+function Poll({icon}) {
     return (
         <div className="light-theme-color p-2 rounded-md flex flex-row items-center gap-2 drop-shadow-md">
-            <div className="bg-blue-400 rounded-full p-4"/>
+            <img src={icon} alt=""
+                style={{
+                    width: 40, 
+                    height: 40, 
+                    borderRadius: 100,                    
+                }}
+            />
             <div className="text-sm">What should I make for dinner??</div>
             <div className="text-xs text-gray-400 font-thin pt-5">3 votes</div>
         </div>
@@ -95,7 +107,7 @@ function UserProfile({picture, style}) {
     return (
         <img
             src={picture}
-            alt="reigen"
+            alt=""
             style={style}
         />
     )
@@ -184,8 +196,8 @@ export default function Page() {
                                                                         handleEmojiSelection(emoji);
                                                                         setShowEmojiDropdown(false);
                                                                     }}>
-                    {emoji}
-                  </span>
+                                                                    {emoji}
+                                                                </span>
                                                             ))}
                                                         </div>
                                                     )}
@@ -221,15 +233,15 @@ export default function Page() {
                     <div className="flex gap-4 flex-col px-2">
                         <p>Upcoming Events</p>
                         <div className="overflow-auto whitespace-nowrap flex flex-row gap-2">
-                            <Event/>
-                            <Event/>
-                            <Event/>
+                            <Event icon="https://i.imgur.com/bfMRBp2.png"/>
+                            <Event icon="https://i.imgur.com/pwQSdII.png"/>
+                            <Event icon="https://i.imgur.com/HTYMTkd.png"/>
                         </div>
                     </div>
                     <div className="flex gap-2 flex-col px-2">
                         <p>Recent Polls</p>
                         <div className="overflow-auto whitespace-nowrap flex flex-col gap-2">
-                            <Poll/>
+                            <Poll icon="https://acnhcdn.com/latest/NpcBromide/NpcNmlOcp01.png"/>
                         </div>
                     </div>
                 </div>

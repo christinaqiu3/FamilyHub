@@ -4,7 +4,7 @@ import Image from "next/image";
 
 import "./memories.css"
 
-function Post() {
+function Post({icon, color}) {
     return(
         <div className="post-content">
             <img
@@ -13,9 +13,10 @@ function Post() {
                 className="post-image"
             />
             <img
-                src="https://pbs.twimg.com/media/C4ORj7hUMAAK8sA.jpg"
-                alt="reigen"
+                src={icon}
+                alt=""
                 className="poster-pfp"
+                style={color}
             />
         <p className="caption">
             caption
@@ -42,15 +43,15 @@ export default function Page() {
                 </div>
             </div>
             <div id="posts">
-                <Post />
-                <Post />
-                <Post />
-                <Post />
-                <Post />
-                <Post />
-                <Post />
-                <Post />
-                <Post />
+                <Post icon="https://i.imgur.com/Bwqg0fu.png" color={{border: '3px solid #a8783e'}}/>
+                <Post icon="https://i.imgur.com/pwQSdII.png" color={{border: '3px solid #ad4eeb'}}/>
+                <Post icon="https://i.imgur.com/HTYMTkd.png" color={{border: '3px solid #e05f5d'}}/>
+                <Post icon="https://i.imgur.com/bfMRBp2.png" color={{border: '3px solid #c5e05d'}}/>
+                <Post icon="https://acnhcdn.com/latest/NpcBromide/NpcNmlOcp01.png" color={{border: '3px solid #ff9ccb'}}/>
+                <Post icon="https://i.imgur.com/Bwqg0fu.png" color={{border: '3px solid #a8783e'}}/>
+                <Post icon="https://i.imgur.com/pwQSdII.png" color={{border: '3px solid #ad4eeb'}}/>
+                <Post icon="https://i.imgur.com/HTYMTkd.png" color={{border: '3px solid #e05f5d'}}/>
+                <Post icon="https://i.imgur.com/bfMRBp2.png" color={{border: '3px solid #c5e05d'}}/>
             </div>
             <Navigation page = 'memories'/>
         </main>

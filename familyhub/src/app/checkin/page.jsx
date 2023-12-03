@@ -90,7 +90,15 @@ function Poll({question, option1, option2}) {
         
         <div className="flex flex-col gap-2 light-theme-color rounded-lg drop-shadow-lg p-4">
             <div className="flex flex-row items-center gap-2">
-                <div className="bg-blue-400 rounded-full p-5"/>
+                <img
+                    src="https://i.imgur.com/HHwg0nW.png"
+                    alt=""
+                    style={{
+                        width: 40, 
+                        height: 40, 
+                        borderRadius: 100, 
+                    }}
+                />
                 <div className="text-sm">{question}</div>
             </div>
             <Option1/>
@@ -166,7 +174,15 @@ export default function Page() {
                         <div class=""> 
                             <div className="flex flex-col gap-2 light-theme-color rounded-lg drop-shadow-lg p-4">
                                 <div className="flex flex-row items-center gap-2">
-                                    <div className="bg-blue-400 rounded-full p-5"/>
+                                    <img
+                                        src="https://i.imgur.com/HHwg0nW.png"
+                                        alt=""
+                                        style={{
+                                            width: 40, 
+                                            height: 40, 
+                                            borderRadius: 100, 
+                                        }}
+                                    />
                                     <svg width="26" height="26" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <mask id="path-1-outside-1_92_1245" maskUnits="userSpaceOnUse" x="-0.00292969" y="0.920166" width="24" height="24" fill="black">
                                         <rect fill="white" x="-0.00292969" y="0.920166" width="26" height="24"/>
