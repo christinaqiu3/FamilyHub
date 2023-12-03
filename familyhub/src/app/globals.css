@@ -10,6 +10,11 @@
   --app-theme-color-dark: #F59E0A;
   --app-theme-color-med: #FEE68A;
   --app-theme-color-light: #FEF3C7;
+  /** SECOND THEME FOR CHECK-IN **/
+  /*--profile-border-color: #54bab7;*/
+  /*--app-theme-color-dark: #2aa39f;*/
+  /*--app-theme-color-med: #a2f2ef;*/
+  /*--app-theme-color-light: #d8f2f1;*/
 }
 
 @media (prefers-color-scheme: dark) {
