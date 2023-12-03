@@ -9,7 +9,7 @@ main {
     right: 0
 }
 
-#home-content {
+#content {
     overflow: scroll;
     height: 100%;
     padding-top: 10px;

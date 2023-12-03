@@ -121,7 +121,7 @@ export default function Page() {
     
 
     return (
-        <main style = {{display: 'flex', flexDirection: 'column', height: 667, width: 376, left: 0, right: 0}}>
+        <main>
             <Header title = "Calendar"/>
             <div className="mx-4 py-4 flex gap-4 flex-col">
 

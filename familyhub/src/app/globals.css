@@ -52,3 +52,19 @@ body {
 .light-theme-color {
   background: var(--app-theme-color-light);
 }
+
+main {
+  display: flex;
+  flex-direction: column;
+  height: 667px;
+  width: 376px;
+  left: 0;
+  right: 0;
+  color: black;
+}
+
+#content {
+  overflow: scroll;
+  height: 100%;
+  padding-top: 10px;
+}

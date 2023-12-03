@@ -49,10 +49,7 @@ function Post() {
 
 export default function Page() {
     return (
-        <main style={{
-            color: 'black',
-            height: '100%',
-        }}>
+        <main>
             <Header title = "Memories"/>
             <div style={{
                 display: 'flex',

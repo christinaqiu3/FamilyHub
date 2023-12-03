@@ -125,7 +125,7 @@ export default function Page() {
     return (
         <main>
             <Header title="Home"/>
-            <div id="home-content">
+            <div id="content">
                 <div className="mx-4 py-3 flex gap-2 flex-col text-gray-800">
                     <div className="px-2">
                         <form>

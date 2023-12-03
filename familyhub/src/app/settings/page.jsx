@@ -229,13 +229,9 @@ function ColorPersonalization({color, type, setfunc}) {
 
 export default function SettingsPage() {
     return (
-        <main style = {{
-            color: 'black',
-            height: '100%',
-            display: 'flex', flexDirection: 'column', height: 667, width: 376, left: 0, right: 0
-        }}>
+        <main>
             <Header title = "Settings"/>
-            <div style = {{overflow: 'scroll', maxHeight: '80%', paddingTop: 10}}>
+            <div id="content">
                 <GroupSettings/>
                 <div style = {{paddingLeft: 20, paddingRight: 20}}>
                     <div>
