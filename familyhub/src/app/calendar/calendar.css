@@ -13,3 +13,9 @@
 .datePicker {
     margin: 5px
 }
+
+#family-members {
+    overflow: scroll;
+    padding-bottom: 2rem;
+    margin-left: 1rem;
+}
