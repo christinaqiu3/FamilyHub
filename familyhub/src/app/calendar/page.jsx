@@ -48,6 +48,21 @@ function Event({title, dateTime, location, description}) {
     )
 }
 
+function UserProfile({picture, color}) {
+    return (
+        <img
+            src={picture}
+            alt="reigen"
+            style={{
+            width: 75,
+            height: 75,
+            borderRadius: 100,
+            borderWidth: 5,
+            borderColor: {color}
+            }}
+        />
+    )
+}
 
 export default function Page() {
 
@@ -57,6 +72,15 @@ export default function Page() {
     const [dateTime, setDateTime] = useState("");
     const [location, setLocation] = useState("");
     const [description, setDescription] = useState("");
+
+    const userList = [
+        <UserProfile picture="https://i.imgur.com/Bwqg0fu.png" color='#ff0000'/>,
+        <UserProfile picture="https://i.imgur.com/pwQSdII.png" color='#ff0000'/>,
+        <UserProfile picture="https://acnhcdn.com/latest/NpcBromide/NpcNmlOcp01.png" color='#ff0000'/>,
+        <UserProfile picture="https://pbs.twimg.com/profile_images/1298543441589276672/J-7vMCTE_400x400.png" color='#ff0000'/>,
+        <UserProfile picture="https://i.imgur.com/HTYMTkd.png" color='#ff0000'/>,
+        <UserProfile picture="https://i.imgur.com/bfMRBp2.png" color='#ff0000'/>,
+    ]
 
     const Input = () => {
         return <Event
@@ -91,6 +115,8 @@ export default function Page() {
         setDescription("");
         setNewEvent(false);
     }
+
+    
 
     return (
         <main>
@@ -160,12 +186,7 @@ export default function Page() {
 
             </div>
             <div id="family-members" className="flex flex-row gap-2">
-                <Picture/>
-                <Picture/>
-                <Picture/>
-                <Picture/>
-                <Picture/>
-                <Picture/>
+                {userList}
             </div>
             <Navigation page='calendar'/>
         </main>
