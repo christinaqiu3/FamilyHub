@@ -7,11 +7,15 @@ import React, {useState} from 'react'
 
 import './checkin.css'
 
-function Status() {
+function UserProfile({picture, style, status}) {
     return(
-        <div className="flex flex-col gap-1">
-            <div className="p-8 rounded-full border-4 profile-border-color "/>
-            <div className="border-2 text-center border-slate-950 rounded-md w-full p-2">Status</div>
+        <div className="flex flex-col gap-1 items-center">
+            <img
+                src={picture}
+                alt="reigen"
+                style={style}
+            />
+            <div className="border-2 text-center border-slate-950 rounded-md w-full w-20">{status}</div>
         </div>
     )
 }
@@ -102,6 +106,15 @@ export default function Page() {
     const [option1,setOption1] = useState("");
     const [option2,setOption2] = useState("");
 
+    const userList = [
+        <UserProfile picture="https://i.imgur.com/Bwqg0fu.png" style={{width: 75, height: 75, borderRadius: 100, border: '4px solid #a8783e'}} status="hi"/>,
+        <UserProfile picture="https://i.imgur.com/pwQSdII.png" style={{width: 75, height: 75, borderRadius: 100, border: '4px solid #ad4eeb'}} status="hi"/>,
+        <UserProfile picture="https://acnhcdn.com/latest/NpcBromide/NpcNmlOcp01.png" style={{width: 75, height: 75, borderRadius: 100, border: '4px solid #ff9ccb'}} status="hi"/>,
+        <UserProfile picture="https://pbs.twimg.com/profile_images/1298543441589276672/J-7vMCTE_400x400.png" style={{width: 75, height: 75, borderRadius: 100, border: '4px solid #5d70e0'}} status="hi"/>,
+        <UserProfile picture="https://i.imgur.com/HTYMTkd.png" style={{width: 75, height: 75, borderRadius: 100, border: '4px solid #e05f5d'}} status="hi"/>,
+        <UserProfile picture="https://i.imgur.com/bfMRBp2.png" style={{width: 75, height: 75, borderRadius: 100, border: '4px solid #c5e05d'}} status="hi"/>,
+    ]
+
     const Input = () => {
         return <Poll 
                     question={question}
@@ -134,14 +147,9 @@ export default function Page() {
         <main>
             <Header title = "Check-in"/>
             <div id="content">
-                <div className="mx-4 py-4 flex gap-4 flex-col text-gray-800">
+                <div className="mx-4 pb-4 flex gap-4 flex-col text-gray-800">
                     <div className="overflow-auto whitespace-nowrap flex flex-row gap-2">
-                        <Status/>
-                        <Status/>
-                        <Status/>
-                        <Status/>
-                        <Status/>
-                        <Status/>
+                        {userList}
                     </div>
                     <div className="flex justify-between w-full grow">
                         <div class="">Polls</div>

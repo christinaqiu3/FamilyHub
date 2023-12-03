@@ -48,18 +48,12 @@ function Event({title, dateTime, location, description}) {
     )
 }
 
-function UserProfile({picture, color}) {
+function UserProfile({picture, style}) {
     return (
         <img
             src={picture}
             alt="reigen"
-            style={{
-            width: 75,
-            height: 75,
-            borderRadius: 100,
-            borderWidth: 5,
-            borderColor: {color}
-            }}
+            style={style}
         />
     )
 }
@@ -74,12 +68,12 @@ export default function Page() {
     const [description, setDescription] = useState("");
 
     const userList = [
-        <UserProfile picture="https://i.imgur.com/Bwqg0fu.png" color='#ff0000'/>,
-        <UserProfile picture="https://i.imgur.com/pwQSdII.png" color='#ff0000'/>,
-        <UserProfile picture="https://acnhcdn.com/latest/NpcBromide/NpcNmlOcp01.png" color='#ff0000'/>,
-        <UserProfile picture="https://pbs.twimg.com/profile_images/1298543441589276672/J-7vMCTE_400x400.png" color='#ff0000'/>,
-        <UserProfile picture="https://i.imgur.com/HTYMTkd.png" color='#ff0000'/>,
-        <UserProfile picture="https://i.imgur.com/bfMRBp2.png" color='#ff0000'/>,
+        <UserProfile picture="https://i.imgur.com/Bwqg0fu.png" style={{width: 75, height: 75, borderRadius: 100, border: '4px solid #a8783e'}}/>,
+        <UserProfile picture="https://i.imgur.com/pwQSdII.png" style={{width: 75, height: 75, borderRadius: 100, border: '4px solid #ad4eeb'}} />,
+        <UserProfile picture="https://acnhcdn.com/latest/NpcBromide/NpcNmlOcp01.png" style={{width: 75, height: 75, borderRadius: 100, border: '4px solid #ff9ccb'}}/>,
+        <UserProfile picture="https://pbs.twimg.com/profile_images/1298543441589276672/J-7vMCTE_400x400.png" style={{width: 75, height: 75, borderRadius: 100, border: '4px solid #5d70e0'}}/>,
+        <UserProfile picture="https://i.imgur.com/HTYMTkd.png" style={{width: 75, height: 75, borderRadius: 100, border: '4px solid #e05f5d'}}/>,
+        <UserProfile picture="https://i.imgur.com/bfMRBp2.png" style={{width: 75, height: 75, borderRadius: 100, border: '4px solid #c5e05d'}}/>,
     ]
 
     const Input = () => {
@@ -115,8 +109,6 @@ export default function Page() {
         setDescription("");
         setNewEvent(false);
     }
-
-    
 
     return (
         <main>
@@ -185,7 +177,7 @@ export default function Page() {
 
 
             </div>
-            <div id="family-members" className="flex flex-row gap-2">
+            <div id="family-members" className="flex flex-row gap-2 overflow-x-clip">
                 {userList}
             </div>
             <Navigation page='calendar'/>
