@@ -6,6 +6,10 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --profile-border-color: #FDD34D;
+  --app-theme-color-dark: #F59E0A;
+  --app-theme-color-med: #FEE68A;
+  --app-theme-color-light: #FEF3C7;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -31,4 +35,20 @@ body {
 }
 ::-webkit-scrollbar {
   display: none;
+}
+
+.profile-border-color {
+  border-color: var(--profile-border-color)
+}
+
+.dark-theme-color {
+  background: var(--app-theme-color-dark);
+}
+
+.med-theme-color {
+  background: var(--app-theme-color-med);
+}
+
+.light-theme-color {
+  background: var(--app-theme-color-light);
 }

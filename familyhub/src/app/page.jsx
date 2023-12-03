@@ -2,16 +2,13 @@
 
 import Navigation from './components/navigation'
 import Header from './components/header'
-import {DeviceFrameset} from 'react-device-frameset'
-import {isBrowser} from 'react-device-detect';
-import 'react-device-frameset/styles/marvel-devices.min.css'
 import './globals.css'
 import React, {useState} from 'react'
+import "./home.css"
 
 function Picture() {
     return (
-        <div className="p-8 rounded-full border-4 border-amber-300 ">
-        </div>
+        <div className="p-8 rounded-full border-4 profile-border-color"/>
     )
 }
 
@@ -28,7 +25,7 @@ function RSVP() {
             {isToggled ?
                 <div className="bg-gray-300 text-gray-400 px-2 py-1 rounded-full">RSVP</div>
                 :
-                <div className="bg-amber-500 px-2 py-1 rounded-full drop-shadow-sm">RSVP</div>
+                <div className="dark-theme-color px-2 py-1 rounded-full drop-shadow-sm">RSVP</div>
             }
         </button>
     )
@@ -36,7 +33,7 @@ function RSVP() {
 
 function Event() {
     return (
-        <div className="bg-amber-100 p-4 w-1/2 rounded-md flex flex-col flex-wrap drop-shadow-md">
+        <div className="light-theme-color p-4 w-1/2 rounded-md flex flex-col flex-wrap drop-shadow-md">
             <div>Date</div>
             <div className="text-sm">Description</div>
             <div className="flex flex-row pt-2 gap-4">
@@ -51,8 +48,8 @@ function Event() {
 
 function Poll() {
     return (
-        <div className="bg-amber-100 p-2 rounded-md flex flex-row items-center gap-2 drop-shadow-md">
-            <div className="bg-blue-400 rounded-full p-4"></div>
+        <div className="light-theme-color p-2 rounded-md flex flex-row items-center gap-2 drop-shadow-md">
+            <div className="bg-blue-400 rounded-full p-4"/>
             <div className="text-sm">What should I make for dinner??</div>
             <div className="text-xs text-gray-400 font-thin pt-5">3 votes</div>
         </div>
@@ -121,14 +118,14 @@ export default function Page() {
     const [emoj, setEmoj] =  useState('');
 
     const savePoll = (status) => {
-        setTitle( status);
+        setTitle(status);
         setNewPoll(false);
     };
 
     return (
-        <main style={{display: 'flex', flexDirection: 'column', height: 667, width: 376, left: 0, right: 0}}>
+        <main>
             <Header title="Home"/>
-            <div style={{overflow: 'scroll', maxHeight: '80%', paddingTop: 10}}>
+            <div id="home-content">
                 <div className="mx-4 py-3 flex gap-2 flex-col text-gray-800">
                     <div className="px-2">
                         <form>
@@ -141,7 +138,7 @@ export default function Page() {
                             </div>
                             {addPoll && (
                                 <div className="">
-                                    <div className="flex flex-col gap-2 bg-amber-100 rounded-lg drop-shadow-lg p-4">
+                                    <div className="flex flex-col gap-2 light-theme-color rounded-lg drop-shadow-lg p-4">
                                         <div className="flex flex-row items-center gap-2">
 
 
@@ -149,15 +146,14 @@ export default function Page() {
                                                 <div
                                                     className="w-full bg-white py-1 pl-4 rounded-md drop-shadow-md flex flex-row gap-2 text-black border-2 border-black">
                                                     <input className="w-4/5 outline-none" type="text"
-                                                           placeholder="Set your status . . ."
-                                                           value={statusInput}
-                                                           onChange={(e) => setStatusInput(e.target.value)}></input>
+                                                           placeholder="Set your status . . ." value={statusInput}
+                                                           onChange={(e) => setStatusInput(e.target.value)}/>
                                                     <EditIcon/>
                                                     <button type="button" onClick={handleEmojiClick}
                                                             className="focus:outline-none">
                                                         <SmileIcon/>
                                                     </button>
-                                                    <div className="p-.5"></div>
+                                                    <div className="p-.5"/>
 
                                                     {showEmojiDropdown && (
                                                         <div
@@ -182,7 +178,7 @@ export default function Page() {
                                                         className="bg-gray-300 px-6 py-2 rounded-lg text-gray-700 shadow-md"
                                                         onClick={() => setNewPoll(false)}>Cancel
                                                     </button>
-                                                    <button className="bg-amber-500 px-8 py-2 rounded-lg shadow-md"
+                                                    <button className="dark-theme-color px-8 py-2 rounded-lg shadow-md"
                                                             onClick={() => savePoll(statusInput)}>Save
                                                     </button>
                                                 </div>
@@ -226,9 +222,7 @@ export default function Page() {
                 </div>
             </div>
 
-            <div style={{marginTop: 'auto'}}>
-                <Navigation page='home'/>
-            </div>
+            <Navigation page='home'/>
         </main>
     )
 }

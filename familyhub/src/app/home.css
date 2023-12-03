@@ -1,0 +1,16 @@
+@import './globals.css';
+
+main {
+    display: flex;
+    flex-direction: column;
+    height: 667px;
+    width: 376px;
+    left: 0;
+    right: 0
+}
+
+#home-content {
+    overflow: scroll;
+    height: 100%;
+    padding-top: 10px;
+}

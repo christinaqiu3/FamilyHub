@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 const Header = ({title}) => {
     return (
-      <div className="flex w-full justify-center bg-amber-200 border-b py-4 pl-8">
+      <div className="flex w-full justify-center med-theme-color border-b py-4 pl-8">
         <p className = "text-2xl flex-1 text-black text-center">{title}</p>
         <div className = "hover:bg-gray-200 rounded-md ml-auto pr-4"><Link href = 'settings'>
         {(title === "Settings") ? 
