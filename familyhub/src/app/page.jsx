@@ -2,11 +2,12 @@
 
 import Navigation from './components/navigation'
 import Header from './components/header'
+import Link from 'next/link'
 import './globals.css'
 import React, {useState, useContext} from 'react'
 import "./home.css"
 
-import {GroupContext, GroupData} from './providers'
+import {GroupContext, GroupData, GroupSetterData} from './providers'
 
 function Picture() {
     return (
@@ -33,11 +34,11 @@ function RSVP() {
     )
 }
 
-function Event({icon}) {
+function Event({icon, title, date, owner, border}) {
     return (
         <div className="light-theme-color p-4 w-1/2 pr-14 rounded-md flex flex-col flex-wrap drop-shadow-md">
-            <div>Date</div>
-            <div className="text-sm">Description</div>
+            <div>{date}</div>
+            <div className="text-sm">{title}</div>
             <div className="flex flex-row pt-2 gap-6">
                 
                 <img src={icon} alt=""
@@ -45,7 +46,7 @@ function Event({icon}) {
                         width: 40, 
                         height: 40, 
                         borderRadius: 100,
-                        
+                        border: `3px solid ${border}`
                     }}
                 />
                 <RSVP/>
@@ -54,20 +55,21 @@ function Event({icon}) {
     )
 }
 
-function Poll({icon, title, owner, border}) {
+function Poll({icon, title, userData}) {
     return (
-        <div className="light-theme-color p-2 rounded-md flex flex-row items-center gap-2 drop-shadow-md">
-            <img src={icon} alt=""
+        <Link className="light-theme-color p-2 rounded-md flex flex-row items-center gap-2 drop-shadow-md"
+                href = '/checkin'>
+            <img src={userData.memberProfilePhotoURL} alt=""
                 style={{
                     width: 40, 
                     height: 40, 
                     borderRadius: 100,
-                    border: `2px solid ${border}`                  
+                    border: `3px solid ${userData.memberBorderColor}`                  
                 }}
             />
             <div className="text-sm">{title}</div>
             <div className="text-xs text-gray-400 font-thin pt-5">3 votes</div>
-        </div>
+        </Link>
     )
 }
 
@@ -119,11 +121,22 @@ function UserProfile({picture, style}) {
 export default function Page() {
     let {group} = useContext(GroupContext)
     let {groupData} = useContext(GroupData)
+    let {setGroupData} = useContext(GroupSetterData)
 
+    const [statusInput, setStatusInput] = useState('');
+    const [title, setTitle] =  useState(groupData.user.status.message);
+    const [emoj, setEmoj] =  useState('');
     const [showEmojiDropdown, setShowEmojiDropdown] = useState(false);
-    const [addPoll, setNewPoll] = useState(false);
+    const [isEditStatus, setEditStatus] = useState(false);
 
+    const handleStatusSave = (status) => {
+        setTitle(status);
+        setEditStatus(false);
+        let temp = groupData; 
+        temp.user.status.message = status;
+        setGroupData(temp)
 
+    }
     const handleEmojiClick = () => {
         console.log('Emoji Clicked');
 
@@ -148,17 +161,6 @@ export default function Page() {
         <UserProfile picture="https://i.imgur.com/bfMRBp2.png" style={{width: 75, height: 75, borderRadius: 100, border: '4px solid #c5e05d'}} status="hi"/>,
     ]
 
-    const [statusInput, setStatusInput] = useState('');
-
-    const [title, setTitle] =  useState('Set Your Status');
-
-    const [emoj, setEmoj] =  useState('');
-
-    const savePoll = (status) => {
-        setTitle(status);
-        setNewPoll(false);
-    };
-
     return (
         <main>
             <Header title="Home"/>
@@ -168,11 +170,11 @@ export default function Page() {
                         <form>
                             <div className="flex justify-between w-full grow">
                                 <div className="">{emoj}{title}</div>
-                                <button type="button" onClick={() => setNewPoll(true)}>
+                                <button type="button" onClick={() => setEditStatus(true)}>
                                     <EditIcon/>
                                 </button>
                             </div>
-                            {addPoll && (
+                            {isEditStatus && (
                                 <div className="">
                                     <div className="flex flex-col gap-2 light-theme-color rounded-lg drop-shadow-lg p-4">
                                         <div className="flex flex-row items-center gap-2">
@@ -212,10 +214,10 @@ export default function Page() {
                                                 <div className="flex flex-row justify-between pt-2">
                                                     <button
                                                         className="bg-gray-300 px-6 py-2 rounded-lg text-gray-700 shadow-md"
-                                                        onClick={() => setNewPoll(false)}>Cancel
+                                                        onClick={() => setEditStatus(false)}>Cancel
                                                     </button>
                                                     <button className="dark-theme-color px-8 py-2 rounded-lg shadow-md"
-                                                            onClick={() => savePoll(statusInput)}>Save
+                                                            onClick={() => handleStatusSave(statusInput)}>Save
                                                     </button>
                                                 </div>
 
@@ -237,16 +239,21 @@ export default function Page() {
                     <div className="flex gap-4 flex-col px-2">
                         <p>Upcoming Events</p>
                         <div className="overflow-auto whitespace-nowrap flex flex-row gap-2">
-                            <Event icon="https://i.imgur.com/bfMRBp2.png"/>
-                            <Event icon="https://i.imgur.com/pwQSdII.png"/>
-                            <Event icon="https://i.imgur.com/HTYMTkd.png"/>
+                            {groupData.calendar.events.map((row, index) => (
+                                <Event key = {index}
+                                date = {row.date}
+                                title = {row.title} 
+                                icon = {row.memberProfilePhotoURL}
+                                border = {row.memberBorderColor}/>
+                            ))}
                         </div>
                     </div>
                     <div className="flex gap-2 flex-col px-2">
                         <p>Recent Polls</p>
                         <div className="overflow-auto whitespace-nowrap flex flex-col gap-2">
                             {groupData.checkin.polls.map((row, index) => (
-                                <Poll key = {index} 
+                                <Poll key = {index}
+                                    userData= {row.userData}
                                     icon = {row.memberProfilePhotoURL}
                                     title = {row.title}
                                     border = {row.memberBorderColor}

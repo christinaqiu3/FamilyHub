@@ -7,7 +7,7 @@ function populateGroup1() {
             "calendar": {
               "events": [
                 {
-                  "date": 12092023,
+                  "date": '2023-12-09',
                   "time": [
                     1130,
                     1330
@@ -18,7 +18,9 @@ function populateGroup1() {
                   "attendees": [
                     "Mob"
                   ],
-                  "color": "#5d98d4"
+                  "owner": "Mob", 
+                  "memberProfilePhotoURL": "https://64.media.tumblr.com/d822e00f096b9e858e3db11a98c689e7/7f7f189de7b16d26-c6/s400x600/7b600d2c2b869810c89133272551041d615de9bc.png",
+                  "memberBorderColor": "#5d98d4"
                 }
               ]
             },
@@ -30,9 +32,11 @@ function populateGroup1() {
                     "Pasta w/ Vodka Sauce": 3,
                     "Rice w/ Canned Salmon": 1
                   },
-                  "owner": "Mob", 
-                  "memberProfilePhotoURL": "https://64.media.tumblr.com/d822e00f096b9e858e3db11a98c689e7/7f7f189de7b16d26-c6/s400x600/7b600d2c2b869810c89133272551041d615de9bc.png",
-                  "memberBorderColor": "#5d98d4"
+                  "userData": {
+                    "owner": "Mob", 
+                    "memberProfilePhotoURL": "https://64.media.tumblr.com/d822e00f096b9e858e3db11a98c689e7/7f7f189de7b16d26-c6/s400x600/7b600d2c2b869810c89133272551041d615de9bc.png",
+                    "memberBorderColor": "#5d98d4"
+                  }
                 },
                 {
                     "title": "Will Hanazawa get an A?",
@@ -40,9 +44,11 @@ function populateGroup1() {
                         "Yes": 2,
                         "Yes.": 1
                     },
-                    "owner": "Reigen",
-                    "memberProfilePhotoURL": "https://pbs.twimg.com/media/C4ORj7hUMAAK8sA.jpg",
-                    "memberBorderColor": "#c0aded"
+                    "userData": {
+                        "owner": "Reigen",
+                        "memberProfilePhotoURL": "https://pbs.twimg.com/media/C4ORj7hUMAAK8sA.jpg",
+                        "memberBorderColor": "#c0aded"
+                    }
                 }
               ]
             },
@@ -61,8 +67,8 @@ function populateGroup1() {
               "myBorderColor": "#c0aded",
               "myAppThemeBaseColor": "#db747f",
               "status": {
-                "message": "suffering",
-                "emoji": "😎"
+                "message": "Set your status . . .",
+                "emoji": ""
               }
             },
             "members": {
@@ -82,6 +88,7 @@ function populateGroup1() {
 export const GroupContext = createContext(1) ;
 export const GroupSetterContext = createContext(undefined) ;
 export const GroupData = createContext() ;
+export const GroupSwitcher = createContext() ;
 export const GroupSetterData = createContext() ;
 
 export function GroupProvider({children}) {
@@ -100,11 +107,13 @@ export function GroupProvider({children}) {
     return (
         <GroupSetterContext.Provider value = {{setGroup}}>
             <GroupContext.Provider value = {{group}}>
-                <GroupSetterData.Provider value = {{changeGroup}}>
-                    <GroupData.Provider value = {{groupData}}>
-                        {children}
-                    </GroupData.Provider>
-                </GroupSetterData.Provider>
+                <GroupSwitcher.Provider value = {{changeGroup}}>
+                    <GroupSetterData.Provider value = {{setGroupData}}>
+                        <GroupData.Provider value = {{groupData}}>
+                            {children}
+                        </GroupData.Provider>
+                    </GroupSetterData.Provider>
+                </GroupSwitcher.Provider>
             </GroupContext.Provider>
         </GroupSetterContext.Provider>
     )

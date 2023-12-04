@@ -3,7 +3,9 @@
 import Navigation from '../components/navigation'
 import Header from '../components/header'
 import '../globals.css'
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
+
+import {GroupData, GroupSetterData} from '../providers'
 
 import './checkin.css'
 
@@ -33,82 +35,58 @@ function EditIcon() {
     )
 }
 
-function Poll({question, option1, option2}) {     
-    const [option1Bool, setOption1Bool] = useState(true);
-    const [option2Bool, setOption2Bool] = useState(true);
+function Poll({question, options, userData}) {
+    const [optionTitles, setOptionTitles] = useState(Object.keys(options));
+    const [selectedOption, setSelectedOption] = useState("") ;
+    let voteSum = 0
+    for (let votes in options) {
+        voteSum = voteSum + votes
+    }
+    const [numVotes, setNumVotes] = useState(voteSum)
 
-    function toggleBool1() {
-        setOption1Bool(false);
-        setOption2Bool(true);
-    }
-    function toggleBool2() {
-        setOption2Bool(false);
-        setOption1Bool(true);
-    }
-    function Option1NotSelected() {
-        return (
-            <button className="w-full bg-white px-4 py-1 rounded-full drop-shadow-md text-gray-500 text-left" onClick={toggleBool1}>
-                {option1}
-            </button>
-        )
-    }
-    function Option1Selected() {
-        return (
-            <div className="w-full dark-theme-color px-4 py-1 rounded-full drop-shadow-md text-gray-900 text-left flex flex-row justify-between">
-                {option1}
-                <div className="">100%</div>
-            </div>
-        )
-    }
-    function Option1() {
-        return (
-            option1Bool ? <Option1NotSelected/> : <Option1Selected/>
-        )
-    }
-    function Option2NotSelected() {
-        return (
-            <button className="w-full bg-white px-4 py-1 rounded-full drop-shadow-md text-gray-500 text-left" onClick={toggleBool2}>
-                {option2}
-            </button>
-        )
-    }
-    function Option2Selected() {
-        return (
-            <div className="w-full dark-theme-color px-4 py-1 rounded-full drop-shadow-md text-gray-900 text-left flex flex-row justify-between">
-                {option2}
-                <div className="">100%</div>
-            </div>
-        )
-    }
-    function Option2() {
-        return (
-            option2Bool ? <Option2NotSelected/> : <Option2Selected/>
-        )
+    function Option({optionTitle}) {
+        if (selectedOption === optionTitle) {
+            return (
+                <button type='button' className="w-full dark-theme-color px-4 py-1 rounded-full drop-shadow-md text-gray-900 text-left flex flex-row justify-between"
+                onClick={() => setSelectedOption("")}>
+                    {optionTitle}
+                    <div className="">100%</div>
+                </button>
+            )
+        } else {
+            return (
+                <button className="w-full bg-white px-4 py-1 rounded-full drop-shadow-md text-gray-500 text-left" 
+                onClick= {() => setSelectedOption(optionTitle)}>
+                {optionTitle}
+                </button>
+            )
+        }
+        
     }
 
     return(
-        
         <div className="flex flex-col gap-2 light-theme-color rounded-lg drop-shadow-lg p-4">
             <div className="flex flex-row items-center gap-2">
                 <img
-                    src="https://i.imgur.com/HHwg0nW.png"
+                    src={userData.memberProfilePhotoURL}
                     alt=""
                     style={{
                         width: 40, 
                         height: 40, 
                         borderRadius: 100, 
-                        border: '3px solid var(--profile-border-color)'
+                        border: `3px solid ${userData.memberBorderColor}`
                     }}
                 />
                 <div className="text-sm">{question}</div>
             </div>
-            <Option1/>
-            <Option2/>
+            {optionTitles.map((elem, index) => <Option key = {index} optionTitle = {elem}/>)}
         </div>
     )
 }
 
 export default function Page() {
+    let {groupData} = useContext(GroupData)
+    let {setGroupData} = useContext(GroupSetterData)
     const [addPoll, setNewPoll] = useState(false);
     const [pollList, setPollList] = useState([]);
     const [question,setQuestion] = useState("");
@@ -124,11 +102,15 @@ export default function Page() {
         <UserProfile picture="https://i.imgur.com/bfMRBp2.png" style={{width: 75, height: 75, borderRadius: 100, border: '4px solid #c5e05d'}} status="hi"/>,
     ]
 
-    const Input = () => {
+    const InputPoll = () => {
+        let optionsJsonString = `{"${option1}" : 0, "${option2}" : 0}`
+        let userDataJsonString = `{"owner": "${groupData.user.myName}",
+                               "memberProfilePhotoURL": "${groupData.user.myProfilePhotoURL}",
+                               "memberBorderColor": "${groupData.user.myBorderColor}"}`
         return <Poll 
                     question={question}
-                    option1={option1}
-                    option2={option2}
+                    options = {JSON.parse(optionsJsonString)}
+                    userData = {JSON.parse(userDataJsonString)}
                 />
     }
 
@@ -145,7 +127,19 @@ export default function Page() {
     };
 
     function savePoll() {
-        setPollList(pollList.concat(<Input key={pollList.length} />));
+        let newPollJsonString = `{"title": "${question}",
+                                  "options": {"${option1}" : 0, "${option2}" : 0},
+                                  "userData": {"owner": "${groupData.user.myName}",
+                                               "memberProfilePhotoURL": "${groupData.user.myProfilePhotoURL}",
+                                               "memberBorderColor": "${groupData.user.myBorderColor}"
+                                              }
+                                  }`
+        // save to global JSON data
+        let temp = groupData
+        temp.checkin.polls.push(JSON.parse(newPollJsonString))
+
+        // append to polls
+        setPollList(pollList.concat(<InputPoll key={pollList.length} />));
         setQuestion("");
         setOption1("");
         setOption2("");
@@ -176,13 +170,12 @@ export default function Page() {
                             <div className="flex flex-col gap-2 light-theme-color rounded-lg drop-shadow-lg p-4">
                                 <div className="flex flex-row items-center gap-2">
                                     <img
-                                        src="https://i.imgur.com/HHwg0nW.png"
+                                        src={groupData.user.myProfilePhotoURL}
                                         alt=""
                                         style={{
                                             width: 40, 
                                             height: 40, 
                                             borderRadius: 100, 
-                                            border: '3px solid var(--profile-border-color)'
                                         }}
                                     />
                                     <svg width="26" height="26" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -212,8 +205,11 @@ export default function Page() {
                     )}
                     <div class="flex flex-col-reverse gap-4 grow">
                         {pollList}
+                        {groupData.checkin.polls.map((row, index) => <Poll key = {index} 
+                                                                            userData = {row.userData}
+                                                                            question = {row.title}
+                                                                            options = {row.options}/>)}
                     </div>
-                    
                 </div>
             </div>
 
