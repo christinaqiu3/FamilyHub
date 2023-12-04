@@ -51,7 +51,7 @@ body {
 }
 
 .med-theme-color {
-  background: var(--app-theme-color-med);
+  background: var(--profile-border-color);
 }
 
 .light-theme-color {

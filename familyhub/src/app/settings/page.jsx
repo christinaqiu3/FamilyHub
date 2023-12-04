@@ -6,6 +6,7 @@ import Switch from '@mui/material/Switch';
 import Image from 'next/image'
 import TextField from '@mui/material/TextField'
 import {createTheme} from '@mui/material/styles'
+import "./settings.css"
 
 
 function GroupSettings() {
@@ -191,7 +192,7 @@ function UserPersonalization({color, type, setfunc}) {
     )
 }
 
-function ColorPersonalization({color, type, setfunc}) {
+function ColorPersonalization({color, type}) {
     const Colorbox = ({}) => (
         <div style = {{display: 'flex',
                         flexDirection: 'column',
@@ -229,17 +230,72 @@ function ColorPersonalization({color, type, setfunc}) {
     )
 }
 
-export default function SettingsPage() {
-    function colorPicker() {
-        const [isActive, setActive] = React.useState(false) ;
+function setColor ({colorString}){
+    document.documentElement.style.setProperty('--profile-border-color', colorString);
+}
 
-        setActive(true);
-    }
+function ColorButton({colorStyle, colorString}) {
+    return (
+        <button className='color-button' style={colorStyle} onClick={() => setColor({colorString})}></button>
+    )
+}
+
+export default function SettingsPage() {
+    const [colorActive, setColorActive] = React.useState(false);
+    const [borderActive, setBorderActive] = React.useState(false);
 
     return (
         <main>
             <Header title = "Settings"/>
             <div id="content">
+                {colorActive && (
+                    <div className='bg-blue-400 absolute mt-44 z-20 p-4 ml-4 items-center flex flex-col gap-4'>
+                        <div className='flex flex-row justify-between w-full'>
+                            <div>Change theme</div>
+                            <button onClick={() => setColorActive(false)}>
+                                <svg fill="#000000" height="24" width="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460.775 460.775">
+                                    <path d="M285.08,230.397L456.218,59.27c6.076-6.077,6.076-15.911,0-21.986L423.511,4.565c-2.913-2.911-6.866-4.55-10.992-4.55
+                                        c-4.127,0-8.08,1.639-10.993,4.55l-171.138,171.14L59.25,4.565c-2.913-2.911-6.866-4.55-10.993-4.55
+                                        c-4.126,0-8.08,1.639-10.992,4.55L4.558,37.284c-6.077,6.075-6.077,15.909,0,21.986l171.138,171.128L4.575,401.505
+                                        c-6.074,6.077-6.074,15.911,0,21.986l32.709,32.719c2.911,2.911,6.865,4.55,10.992,4.55c4.127,0,8.08-1.639,10.994-4.55
+                                        l171.117-171.12l171.118,171.12c2.913,2.911,6.866,4.55,10.993,4.55c4.128,0,8.081-1.639,10.992-4.55l32.709-32.719
+                                        c6.074-6.075,6.074-15.909,0-21.986L285.08,230.397z"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div className='flex flex-row gap-4'>
+                            <ColorButton colorStyle={{backgroundColor: '#f00'}} colorString='#f00'/>
+                            <ColorButton colorStyle={{backgroundColor: '#0f0'}} colorString='#0f0'/>
+                            <ColorButton colorStyle={{backgroundColor: '#00f'}} colorString='#00f'/>
+                            <ColorButton colorStyle={{backgroundColor: '#ff0'}} colorString='#ff0'/>
+                            <ColorButton colorStyle={{backgroundColor: '#f0f'}} colorString='#f0f'/>
+                        </div>
+                    </div>
+                )}
+                {borderActive && (
+                    <div className='bg-blue-400 absolute mt-44 z-20 p-4 ml-4 items-center flex flex-col gap-4'>
+                        <div className='flex flex-row justify-between w-full'>
+                            <div>Change border color</div>
+                            <button onClick={() => setBorderActive(false)}>
+                                <svg fill="#000000" height="24" width="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460.775 460.775">
+                                    <path d="M285.08,230.397L456.218,59.27c6.076-6.077,6.076-15.911,0-21.986L423.511,4.565c-2.913-2.911-6.866-4.55-10.992-4.55
+                                        c-4.127,0-8.08,1.639-10.993,4.55l-171.138,171.14L59.25,4.565c-2.913-2.911-6.866-4.55-10.993-4.55
+                                        c-4.126,0-8.08,1.639-10.992,4.55L4.558,37.284c-6.077,6.075-6.077,15.909,0,21.986l171.138,171.128L4.575,401.505
+                                        c-6.074,6.077-6.074,15.911,0,21.986l32.709,32.719c2.911,2.911,6.865,4.55,10.992,4.55c4.127,0,8.08-1.639,10.994-4.55
+                                        l171.117-171.12l171.118,171.12c2.913,2.911,6.866,4.55,10.993,4.55c4.128,0,8.081-1.639,10.992-4.55l32.709-32.719
+                                        c6.074-6.075,6.074-15.909,0-21.986L285.08,230.397z"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div className='flex flex-row gap-4'>
+                            <ColorButton colorStyle={{backgroundColor: '#f00'}} colorString='#f00'/>
+                            <ColorButton colorStyle={{backgroundColor: '#0f0'}} colorString='#0f0'/>
+                            <ColorButton colorStyle={{backgroundColor: '#00f'}} colorString='#00f'/>
+                            <ColorButton colorStyle={{backgroundColor: '#ff0'}} colorString='#ff0'/>
+                            <ColorButton colorStyle={{backgroundColor: '#f0f'}} colorString='#f0f'/>
+                        </div>
+                    </div>
+                )}
                 <GroupSettings/>
                 <div style = {{paddingLeft: 20, paddingRight: 20}}>
                     <div>
@@ -264,12 +320,23 @@ export default function SettingsPage() {
                             height = {18}/>
                     <p className = 'px-2'>Personalization</p>
                 </div>
+                
                 <div className = 'overflow-auto whitespace-nowrwap flex flex-row gap-2'>
-                        <colorPicker/>
                         <div className="py-1 rounded-md flex flex-row items-center gap-2 drop-shadow-md">
                             <UserPersonalization color = "black" type = 'Avatar'/>
-                            <ColorPersonalization color = "pink" type = 'Border'/>
-                            <ColorPersonalization color = "rgb(253 230 138)" type = "Theme"/>
+                            <button onClick={()=> {
+                                    setBorderActive(true);
+                                    setColorActive(false);
+                                }}>
+                                <ColorPersonalization color = "pink" type = 'Border'/>
+                            </button>
+                            
+                            <button onClick={() => {
+                                    setColorActive(true);
+                                    setBorderActive(false);
+                                }}>
+                                <ColorPersonalization color = "rgb(253 230 138)" type = "Theme"/>    
+                            </button>
                         </div>
                     </div>
                 </div>

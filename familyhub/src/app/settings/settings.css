@@ -1,0 +1,11 @@
+*{
+    -ms-overflow-style: none;
+}
+::-webkit-scrollbar {
+    display: none;
+}
+
+.color-button {
+    padding: 1.5rem;
+    border-radius: 0.375rem;
+}
