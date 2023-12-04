@@ -196,19 +196,21 @@ function ColorPersonalization({color, type, setfunc}) {
         <div style = {{display: 'flex',
                         flexDirection: 'column',
                         justifyContent: 'center',
-                        textAlign: 'center'}}>
+                        textAlign: 'center'}}
+            >
             <p style = {{fontSize: 13}}>{type}</p>
-            <div style = {{width: 94, height: 94, 
+            <button style = {{width: 94, height: 94, 
                         backgroundColor: color, 
                         borderRadius: '10px',
                         borderColor: "black",
                         display: 'flex',
                         flexDirection: 'column',
-                        padding: 3}}>
-            <Image src = "/edit.svg"
-                width = {18}
-                height = {18}/>
-            </div>
+                        padding: 3}}
+                    >
+                <Image src = "/edit.svg"
+                    width = {18}
+                    height = {18}/>
+            </button>
         </div>
         
     );
@@ -228,6 +230,12 @@ function ColorPersonalization({color, type, setfunc}) {
 }
 
 export default function SettingsPage() {
+    function colorPicker() {
+        const [isActive, setActive] = React.useState(false) ;
+
+        setActive(true);
+    }
+
     return (
         <main>
             <Header title = "Settings"/>
@@ -257,6 +265,7 @@ export default function SettingsPage() {
                     <p className = 'px-2'>Personalization</p>
                 </div>
                 <div className = 'overflow-auto whitespace-nowrwap flex flex-row gap-2'>
+                        <colorPicker/>
                         <div className="py-1 rounded-md flex flex-row items-center gap-2 drop-shadow-md">
                             <UserPersonalization color = "black" type = 'Avatar'/>
                             <ColorPersonalization color = "pink" type = 'Border'/>
