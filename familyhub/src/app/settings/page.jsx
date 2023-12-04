@@ -162,6 +162,7 @@ function UserPersonalization({color, type, setfunc}) {
                         justifyContent: 'center',
                         textAlign: 'center'}}>
             <p style = {{fontSize: 13}}>{type}</p>
+
             <div style = {{width: 94, height: 94, 
                         backgroundColor: color, 
                         borderRadius: '10px',
@@ -253,6 +254,7 @@ function BorderButton({colorStyle, colorString}) {
 export default function SettingsPage() {
     const [colorActive, setColorActive] = React.useState(false);
     const [borderActive, setBorderActive] = React.useState(false);
+    const [avatarActive, setAvatarActive] = React.useState(false);
 
     return (
         <main>
@@ -306,6 +308,31 @@ export default function SettingsPage() {
                         </div>
                     </div>
                 )}
+                {avatarActive && (
+                    <div className='bg-blue-400 absolute mt-44 z-20 p-4 ml-4 items-center flex flex-col gap-4'>
+                        <div className='flex flex-row justify-between w-full'>
+                            <div>Change icon</div>
+                            <button onClick={() => setAvatarActive(false)}>
+                                <svg fill="#000000" height="24" width="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460.775 460.775">
+                                    <path d="M285.08,230.397L456.218,59.27c6.076-6.077,6.076-15.911,0-21.986L423.511,4.565c-2.913-2.911-6.866-4.55-10.992-4.55
+                                        c-4.127,0-8.08,1.639-10.993,4.55l-171.138,171.14L59.25,4.565c-2.913-2.911-6.866-4.55-10.993-4.55
+                                        c-4.126,0-8.08,1.639-10.992,4.55L4.558,37.284c-6.077,6.075-6.077,15.909,0,21.986l171.138,171.128L4.575,401.505
+                                        c-6.074,6.077-6.074,15.911,0,21.986l32.709,32.719c2.911,2.911,6.865,4.55,10.992,4.55c4.127,0,8.08-1.639,10.994-4.55
+                                        l171.117-171.12l171.118,171.12c2.913,2.911,6.866,4.55,10.993,4.55c4.128,0,8.081-1.639,10.992-4.55l32.709-32.719
+                                        c6.074-6.075,6.074-15.909,0-21.986L285.08,230.397z"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <input
+                            type="file"
+                            name="myImage"
+                            onChange={(event) => {
+                                console.log(event.target.files[0]);
+                                document.documentElement.style.setProperty('--profile-icon', event.target.files[0]);
+                            }}
+                        />
+                    </div>
+                )}
                 <GroupSettings/>
                 <div style = {{paddingLeft: 20, paddingRight: 20}}>
                     <div>
@@ -333,10 +360,17 @@ export default function SettingsPage() {
                 
                 <div className = 'overflow-auto whitespace-nowrwap flex flex-row gap-2'>
                         <div className="py-1 rounded-md flex flex-row items-center gap-2 drop-shadow-md">
-                            <UserPersonalization color = "black" type = 'Avatar'/>
+                            <button onClick={() => {
+                                    setBorderActive(false);
+                                    setColorActive(false);
+                                    setAvatarActive(true);
+                                }}>
+                                <UserPersonalization color = "black" type = 'Avatar'/>
+                            </button>
                             <button onClick={()=> {
                                     setBorderActive(true);
                                     setColorActive(false);
+                                    setAvatarActive(false);
                                 }}>
                                 <ColorPersonalization color = "var(--profile-border-color)" type = 'Border'/>
                             </button>
@@ -344,6 +378,7 @@ export default function SettingsPage() {
                             <button onClick={() => {
                                     setColorActive(true);
                                     setBorderActive(false);
+                                    setAvatarActive(false);
                                 }}>
                                 <ColorPersonalization color = "var(--app-theme-color-med)" type = "Theme"/>    
                             </button>

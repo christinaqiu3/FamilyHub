@@ -6,6 +6,7 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --profile-icon: null;
   --profile-border-color: #FDD34D;
   --app-theme-color-dark: #F59E0A;
   --app-theme-color-med: #FEE68A;
