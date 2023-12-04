@@ -171,7 +171,7 @@ export default function Page() {
                         </button>
                     </div>
                     {addPoll && (
-                        <div class=""> 
+                        <div> 
                             <div className="flex flex-col gap-2 light-theme-color rounded-lg drop-shadow-lg p-4">
                                 <div className="flex flex-row items-center gap-2">
                                     <img

@@ -6,7 +6,7 @@ import './globals.css'
 import React, {useState, useContext} from 'react'
 import "./home.css"
 
-import {GroupContext} from './providers'
+import {GroupContext, GroupData} from './providers'
 
 function Picture() {
     return (
@@ -54,17 +54,18 @@ function Event({icon}) {
     )
 }
 
-function Poll({icon}) {
+function Poll({icon, title, owner, border}) {
     return (
         <div className="light-theme-color p-2 rounded-md flex flex-row items-center gap-2 drop-shadow-md">
             <img src={icon} alt=""
                 style={{
                     width: 40, 
                     height: 40, 
-                    borderRadius: 100,                    
+                    borderRadius: 100,
+                    border: `2px solid ${border}`                  
                 }}
             />
-            <div className="text-sm">What should I make for dinner??</div>
+            <div className="text-sm">{title}</div>
             <div className="text-xs text-gray-400 font-thin pt-5">3 votes</div>
         </div>
     )
@@ -116,9 +117,12 @@ function UserProfile({picture, style}) {
 }
 
 export default function Page() {
+    let {group} = useContext(GroupContext)
+    let {groupData} = useContext(GroupData)
+
     const [showEmojiDropdown, setShowEmojiDropdown] = useState(false);
     const [addPoll, setNewPoll] = useState(false);
-    let {group} = useContext(GroupContext)
+
 
     const handleEmojiClick = () => {
         console.log('Emoji Clicked');
@@ -222,8 +226,6 @@ export default function Page() {
                                     </div>
                                 </div>
                             )}
-
-
                         </form>
                     </div>
                     <div className="flex gap-2 flex-col px-2">
@@ -243,7 +245,13 @@ export default function Page() {
                     <div className="flex gap-2 flex-col px-2">
                         <p>Recent Polls</p>
                         <div className="overflow-auto whitespace-nowrap flex flex-col gap-2">
-                            <Poll icon="https://acnhcdn.com/latest/NpcBromide/NpcNmlOcp01.png"/>
+                            {groupData.checkin.polls.map((row, index) => (
+                                <Poll key = {index} 
+                                    icon = {row.memberProfilePhotoURL}
+                                    title = {row.title}
+                                    border = {row.memberBorderColor}
+                                />
+                            ))}
                         </div>
                     </div>
                 </div>
