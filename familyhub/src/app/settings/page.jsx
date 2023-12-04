@@ -231,12 +231,22 @@ function ColorPersonalization({color, type}) {
 }
 
 function setColor ({colorString}){
+    document.documentElement.style.setProperty('--app-theme-color-med', colorString);
+}
+
+function setBorder ({colorString}){
     document.documentElement.style.setProperty('--profile-border-color', colorString);
 }
 
 function ColorButton({colorStyle, colorString}) {
     return (
         <button className='color-button' style={colorStyle} onClick={() => setColor({colorString})}></button>
+    )
+}
+
+function BorderButton({colorStyle, colorString}) {
+    return (
+        <button className='color-button' style={colorStyle} onClick={() => setBorder({colorString})}></button>
     )
 }
 
@@ -288,11 +298,11 @@ export default function SettingsPage() {
                             </button>
                         </div>
                         <div className='flex flex-row gap-4'>
-                            <ColorButton colorStyle={{backgroundColor: '#f00'}} colorString='#f00'/>
-                            <ColorButton colorStyle={{backgroundColor: '#0f0'}} colorString='#0f0'/>
-                            <ColorButton colorStyle={{backgroundColor: '#00f'}} colorString='#00f'/>
-                            <ColorButton colorStyle={{backgroundColor: '#ff0'}} colorString='#ff0'/>
-                            <ColorButton colorStyle={{backgroundColor: '#f0f'}} colorString='#f0f'/>
+                            <BorderButton colorStyle={{backgroundColor: '#f00'}} colorString='#f00'/>
+                            <BorderButton colorStyle={{backgroundColor: '#0f0'}} colorString='#0f0'/>
+                            <BorderButton colorStyle={{backgroundColor: '#00f'}} colorString='#00f'/>
+                            <BorderButton colorStyle={{backgroundColor: '#ff0'}} colorString='#ff0'/>
+                            <BorderButton colorStyle={{backgroundColor: '#f0f'}} colorString='#f0f'/>
                         </div>
                     </div>
                 )}
@@ -328,14 +338,14 @@ export default function SettingsPage() {
                                     setBorderActive(true);
                                     setColorActive(false);
                                 }}>
-                                <ColorPersonalization color = "pink" type = 'Border'/>
+                                <ColorPersonalization color = "var(--profile-border-color)" type = 'Border'/>
                             </button>
                             
                             <button onClick={() => {
                                     setColorActive(true);
                                     setBorderActive(false);
                                 }}>
-                                <ColorPersonalization color = "rgb(253 230 138)" type = "Theme"/>    
+                                <ColorPersonalization color = "var(--app-theme-color-med)" type = "Theme"/>    
                             </button>
                         </div>
                     </div>

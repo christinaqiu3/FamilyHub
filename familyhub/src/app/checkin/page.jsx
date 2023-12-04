@@ -97,6 +97,7 @@ function Poll({question, option1, option2}) {
                         width: 40, 
                         height: 40, 
                         borderRadius: 100, 
+                        border: '3px solid var(--profile-border-color)'
                     }}
                 />
                 <div className="text-sm">{question}</div>
@@ -181,6 +182,7 @@ export default function Page() {
                                             width: 40, 
                                             height: 40, 
                                             borderRadius: 100, 
+                                            border: '3px solid var(--profile-border-color)'
                                         }}
                                     />
                                     <svg width="26" height="26" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">

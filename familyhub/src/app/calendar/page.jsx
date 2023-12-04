@@ -44,7 +44,8 @@ function Event({title, dateTime, location, description}) {
                     style={{
                         width: 40, 
                         height: 40, 
-                        borderRadius: 100, 
+                        borderRadius: 100,
+                        border: '3px solid var(--profile-border-color)' 
                     }}
                 />
                 <div className="text-sm text-black">{title}</div>
@@ -139,7 +140,8 @@ export default function Page() {
                                 style={{
                                     width: 40, 
                                     height: 40, 
-                                    borderRadius: 100, 
+                                    borderRadius: 100,
+                                    border: '3px solid var(--profile-border-color)' 
                                 }}
                             />
                             <svg width="26" height="26" viewBox="0 0 13 13" fill="none"
