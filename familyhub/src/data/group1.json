@@ -2,6 +2,20 @@
   "calendar": {
     "events": [
       {
+        "date": 12052023,
+        "time": [
+          1345,
+          1515
+        ],
+        "title": "HCI Class",
+        "location": "That Wharton Building",
+        "description": "Funnest class ever please give me an A",
+        "attendees": [
+          "Mob"
+        ],
+        "color": "#5d98d4"
+      },
+      {
         "date": 12092023,
         "time": [
           1130,
