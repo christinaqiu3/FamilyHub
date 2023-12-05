@@ -4,7 +4,7 @@ import Header from '../components/header'
 import '../globals.css'
 import Image from "next/image";
 import './calendar.css'
-import React, {useContext, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "react-datepicker/dist/react-datepicker.css";
 import {GroupContext, GroupData, GroupSetterData} from '../providers'
@@ -29,13 +29,20 @@ function EditIcon() {
     )
 }
 
-function Event({title, dateTime, location, description, attendees}) {
+function Event({title, dateTime, location, description, attendees, selectedUsers}) {
     let {groupData} = useContext(GroupData);
 
     const user = groupData.user;
     const mems = groupData.members || [];
     const attendeesArray = Array.isArray(attendees) ? attendees : [];
 
+    // Check if at least one attendee is selected
+    const isAtLeastOneAttendeeSelected = attendees.some((attendee) => selectedUsers.includes(attendee));
+
+    // If no attendee is selected, don't render the event
+    if (!isAtLeastOneAttendeeSelected) {
+        return null;
+    }
     return (
         <div className="flex flex-col light-theme-color rounded-lg drop-shadow-lg p-4">
             <div className="flex flex-row items-center justify-between">
@@ -54,25 +61,22 @@ function Event({title, dateTime, location, description, attendees}) {
             <div className="text-sm text-black">{dateTime}</div>
             <div className="text-sm text-black">{location}</div>
             <div className="flex flex-row items-center justify-between">
-            <div className="text-sm text-lg mt-2 mb-2">Who's coming: </div>
-            <div className="flex gap-2">
-                {attendeesArray.map((attendee) => {
-                    const member = mems.members && mems.members.find((m) => m.userName === attendee);
-                    // Assuming attendee is the username and exists in mems
-                    return (
-                    <img
-                        key={attendee}
-                        src={member?.memberProfilePhotoURL || "defaultImageURL"}
-                        alt="Attendee"
-                        style={{
-                            width: 40,
-                            height: 40,
-                            borderRadius: 100,
-                            border: `3px solid ${member?.memberBorderColor || 'var(--profile-border-color)'}`,
-                        }}
-                    />);
-                })}
-            </div>
+                <div className="text-sm text-lg mt-2 mb-2">Who's coming: </div>
+                <div className="flex gap-2">
+                    {attendeesArray.map((attendee) => (
+                        <img
+                            key={attendee}
+                            src={mems[attendee]?.memberProfilePhotoURL || "defaultImageURL"}
+                            alt="Attendee"
+                            style={{
+                                width: 40,
+                                height: 40,
+                                borderRadius: 100,
+                                border: `3px solid ${mems[attendee]?.memberBorderColor || 'var(--profile-border-color)'}`,
+                            }}
+                        />
+                    ))}
+                </div>
             </div>
             <div className="text-sm text-black ">{description}</div>
         </div>
@@ -85,8 +89,8 @@ function UserProfile({picture, color}) {
             src={picture}
             alt=""
             style={{
-                width: 75, 
-                height: 75, 
+                width: 40,
+                height: 40,
                 borderRadius: 100, 
                 border: `4px solid ${color}`
             }}
@@ -98,6 +102,7 @@ export default function Page() {
 
     let {groupData} = useContext(GroupData);
     const user = groupData.user;
+    const mems = groupData.members || [];
 
     const [addEvent, setNewEvent] = useState(false);
     const [eventList, setEventList] = useState([]);
@@ -108,14 +113,34 @@ export default function Page() {
     const [description, setDescription] = useState("");
     const [attendees, setAttendees] = useState([]); //replace with our current user
 
-    const userList = [
-        <UserProfile picture="https://i.imgur.com/Bwqg0fu.png" style={{width: 75, height: 75, borderRadius: 100, border: '4px solid #a8783e'}}/>,
-        <UserProfile picture="https://i.imgur.com/pwQSdII.png" style={{width: 75, height: 75, borderRadius: 100, border: '4px solid #ad4eeb'}} />,
-        <UserProfile picture="https://acnhcdn.com/latest/NpcBromide/NpcNmlOcp01.png" style={{width: 75, height: 75, borderRadius: 100, border: '4px solid #ff9ccb'}}/>,
-        <UserProfile picture="https://pbs.twimg.com/profile_images/1298543441589276672/J-7vMCTE_400x400.png" style={{width: 75, height: 75, borderRadius: 100, border: '4px solid #5d70e0'}}/>,
-        <UserProfile picture="https://i.imgur.com/HTYMTkd.png" style={{width: 75, height: 75, borderRadius: 100, border: '4px solid #e05f5d'}}/>,
-        <UserProfile picture="https://i.imgur.com/bfMRBp2.png" style={{width: 75, height: 75, borderRadius: 100, border: '4px solid #c5e05d'}}/>,
-    ]
+    const [selectedUsers, setSelectedUsers] = useState([]);
+    useEffect(() => {
+        console.log("Setting initial state:", mems);
+        // Assuming mems is an object
+        const memsKeys = Object.keys(mems);
+
+        // Add each key to the selectedUsers list
+        memsKeys.forEach((key) => {
+            setSelectedUsers((prevSelectedUsers) => [...prevSelectedUsers, key]);
+        });
+    }, []);
+    console.log("Type of selectedUsers:", typeof selectedUsers);
+    console.log("selectedUsers:", selectedUsers);
+
+
+
+    const handleUserClick = (userName) => {
+        // Check if the user is already selected
+        if (selectedUsers.includes(userName)) {
+            // If selected, remove from the list
+            setSelectedUsers((prevSelectedUsers) =>
+                prevSelectedUsers.filter((user) => user !== userName)
+            );
+        } else {
+            // If not selected, add to the list
+            setSelectedUsers((prevSelectedUsers) => [...prevSelectedUsers, userName]);
+        }
+    };
 
     const Input = () => {
         return <Event
@@ -124,6 +149,7 @@ export default function Page() {
             location={"Location: "+location}
             description={description}
             attendees={attendees}
+            selectedUsers={selectedUsers}
         />
     }
 
@@ -168,27 +194,9 @@ export default function Page() {
             time,
             location,
             description,
-            attendees
+            attendees,
+            selectedUsers
         };
-        //
-        // // Find the correct position to insert the new event based on date and time
-        // const insertIndex = eventList.findIndex(existingEvent => {
-        //     // Assuming date and time are in the format MM/DD/YYYY and HH:MM AM/PM
-        //     const existingDateTime = new Date(`${existingEvent.date} ${existingEvent.time}`);
-        //     const newDateTime = new Date(`${date} ${time}`);
-        //     return existingDateTime > newDateTime;
-        // });
-        //
-        // // If no suitable position is found, insert at the end
-        // const updatedEventList = [...eventList];
-        // if (insertIndex === -1) {
-        //     updatedEventList.push(newEvent);
-        // } else {
-        //     updatedEventList.splice(insertIndex, 0, newEvent);
-        // }
-        //
-        // // Update the state with the sorted event list
-        // setEventList(updatedEventList);
 
         setEventList(eventList.concat(<Input key={eventList.length}/>));
         setTitle("");
@@ -199,6 +207,78 @@ export default function Page() {
         setAttendees([]);
         setNewEvent(false);
     }
+
+    const UserButton = ({ onClick, picture, isSelected, color}) => (
+        <button onClick={onClick}
+                style={{
+                    width: 100,
+                    height: 75,
+                    borderRadius: 100,
+                    border: isSelected ? `4px solid ${color}` : '4px solid #cccccc',
+                }}
+        >
+            <img src={picture} alt="" style={{ width: '100%', height: '100%', borderRadius: '100%' }} />
+        </button>
+    );
+
+    const UserList = Object.keys(mems).map((member) => (
+        <UserButton
+            key={member}
+            picture={mems[member].memberProfilePhotoURL}
+            color={mems[member].memberBorderColor}
+            onClick={() => handleUserClick(member)}
+            isSelected={selectedUsers.includes(member)}
+            //userPFP = {member}
+        />
+    ));
+
+    function EventList() {
+        let {groupData} = useContext(GroupData);
+        const mems = groupData.members || [];
+        const [selectedUsers, setSelectedUsers] = useState(mems);
+
+        const handleUserClick = (userName) => {
+            // Toggle the user's selection state
+            if (selectedUsers.includes(userName)) {
+                // If selected, remove from the list
+                setSelectedUsers((prevSelectedUsers) =>
+                    prevSelectedUsers.filter((user) => user !== userName)
+                );
+            } else {
+                // If not selected, add to the list
+                setSelectedUsers((prevSelectedUsers) => [...prevSelectedUsers, userName]);
+            }
+        };
+
+        //const filteredAttendees = Object.keys(members).filter((member) => selectedUsers.includes(member));
+
+        return (
+            <div>
+                <div className="flex gap-2">
+                    {UserList.map((member, index) => (
+                        // <UserButton
+                        //     key={index}
+                        //     onClick={() => handleUserClick(index)}
+                        //     picture={user.props.picture}
+                        //     isSelected={selectedUsers.includes(index)}
+                        // />
+                        <UserButton
+                            key={member}
+                            picture={members[member].memberProfilePhotoURL}
+                            onClick={() => handleUserClick(member)}
+                            isSelected={selectedUsers.includes(member)}
+                            userPFP={member}
+                        />
+                    ))}
+                </div>
+                {/* Render events with filtered attendees based on selected users */}
+                {EventList.map((event, index) => (
+                    <Event key={index} {...event.props} selectedUsers={selectedUsers} />
+                ))}
+            </div>
+        );
+    }
+
 
     return (
         <main>
@@ -285,7 +365,7 @@ export default function Page() {
                         </div>
                     </div>
                 )}
-                {eventList}
+                {EventList}
                 {groupData.calendar.events.map((row, index) => (
                     <Event
                         key={index}
@@ -296,15 +376,19 @@ export default function Page() {
                         border={row.memberBorderColor}
                         description={row.description}
                         attendees={row.attendees}
+                        selectedUsers={selectedUsers}
                     />
                 ))}
 
             </div>
             <div id="family-members" className="flex flex-row gap-2 overflow-x-clip">
                 {groupData.members.map((row, index) => (
-                    <UserProfile key={index}
-                                picture = {row.memberProfilePhotoURL}
-                                color = {row.memberBorderColor}
+                    <UserButton
+                        key={index}
+                        color={row.memberBorderColor}
+                        picture={row.memberProfilePhotoURL}
+                        onClick={() => handleUserClick(row.userName)} // Assuming you have a function to handle button click
+                        isSelected={selectedUsers.includes(row.userName)} // Assuming you have a function to check if the user is selected
                     />
                 ))}
             </div>
