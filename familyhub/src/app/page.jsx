@@ -36,7 +36,7 @@ function RSVP() {
 
 function Event({icon, title, date, owner, border}) {
     return (
-        <div className="light-theme-color p-4 w-1/2 pr-14 rounded-md flex flex-col flex-wrap drop-shadow-md">
+        <div className="light-theme-color p-4 w-1/2 rounded-md flex flex-col flex-wrap drop-shadow-md">
             <div>{date}</div>
             <div className="text-sm">{title}</div>
             <div className="flex flex-row pt-2 gap-6">
@@ -67,8 +67,10 @@ function Poll({icon, title, userData}) {
                     border: `3px solid ${userData.memberBorderColor}`                  
                 }}
             />
-            <div className="text-sm">{title}</div>
-            <div className="text-xs text-gray-400 font-thin pt-5">3 votes</div>
+            <div className="flex flex-row justify-between w-full">
+                <div className="text-sm">{title}</div>
+                <div className="text-xs text-gray-400 font-thin pt-5">3 votes</div>
+            </div>
         </Link>
     )
 }
@@ -232,9 +234,9 @@ export default function Page() {
                     </div>
                     <div className="flex gap-2 flex-col px-2">
                         <p>Family Members</p>
-                        <div className="overflow-auto whitespace-nowrap flex flex-row gap-2">
+                        <Link href="/profile" className="overflow-auto whitespace-nowrap flex flex-row gap-2">
                             {userList}
-                        </div>
+                        </Link>
                     </div>
                     <div className="flex gap-4 flex-col px-2">
                         <p>Upcoming Events</p>
@@ -261,6 +263,7 @@ export default function Page() {
                             ))}
                         </div>
                     </div>
+                    
                 </div>
             </div>
 

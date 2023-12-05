@@ -177,7 +177,9 @@ function UserPersonalization({color, type, setfunc}) {
                         display: 'flex',
                         flexDirection: 'column',
                         padding: 3,
-                        backgroundImage: 'url(/pfp1.svg)'}}>
+                        backgroundImage: 'url(https://i.imgur.com/fc2pBd0.png)',
+                        backgroundSize: 'cover' 
+                    }}>
             <Image src = "/edit.svg"
                 width = {18}
                 height = {18}/>
@@ -270,7 +272,7 @@ export default function SettingsPage() {
                 {colorActive && (
                     <div className='bg-gray-100 rounded-lg drop-shadow-xl absolute mt-44 z-20 p-4 ml-4 items-center flex flex-col gap-4'>
                         <div className='flex flex-row justify-between w-full'>
-                            <div>Change theme</div>
+                            <div>Select Theme Color</div>
                             <button onClick={() => setColorActive(false)}>
                                 <svg fill="#000000" height="24" width="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460.775 460.775">
                                     <path d="M285.08,230.397L456.218,59.27c6.076-6.077,6.076-15.911,0-21.986L423.511,4.565c-2.913-2.911-6.866-4.55-10.992-4.55
@@ -304,7 +306,7 @@ export default function SettingsPage() {
                 {borderActive && (
                     <div className='bg-gray-100 rounded-lg drop-shadow-xl absolute mt-44 z-20 p-4 ml-4 items-center flex flex-col gap-4'>
                         <div className='flex flex-row justify-between w-full'>
-                            <div>Change border color</div>
+                            <div>Select Border Color</div>
                             <button onClick={() => setBorderActive(false)}>
                                 <svg fill="#000000" height="24" width="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460.775 460.775">
                                     <path d="M285.08,230.397L456.218,59.27c6.076-6.077,6.076-15.911,0-21.986L423.511,4.565c-2.913-2.911-6.866-4.55-10.992-4.55

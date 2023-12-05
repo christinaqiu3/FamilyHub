@@ -14,7 +14,7 @@ function UserProfile({picture, style, status}) {
         <div className="flex flex-col gap-1 items-center">
             <img
                 src={picture}
-                alt="reigen"
+                alt=""
                 style={style}
             />
             <div style={{}} className="border-2 text-center border-slate-950 rounded-md w-20">{status}</div>
@@ -192,10 +192,12 @@ export default function Page() {
                                     <img
                                         src={groupData.user.myProfilePhotoURL}
                                         alt=""
+                                        className=""
                                         style={{
                                             width: 40, 
                                             height: 40, 
                                             borderRadius: 100, 
+                                            border: `3px solid ${userData.memberBorderColor}`
                                         }}
                                     />
                                     <svg width="26" height="26" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">

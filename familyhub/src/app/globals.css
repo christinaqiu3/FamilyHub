@@ -67,6 +67,10 @@ body {
   border-color: var(--profile-border-color)
 }
 
+.profile-color-background {
+  background: var(--profile-border-color);
+}
+
 .dark-theme-color {
   background: var(--app-theme-color-dark);
 }
