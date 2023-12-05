@@ -147,12 +147,11 @@ export default function Page() {
 
     function savePoll() {
         let newPollJsonString = `{"title": "${question}",
-                                  "options": {"${option1}" : 0, "${option2}" : 0},
+                                  "options": {"${option1}": 0, "${option2}": 0},
                                   "userData": {"owner": "${groupData.user.myName}",
                                                "memberProfilePhotoURL": "${groupData.user.myProfilePhotoURL}",
-                                               "memberBorderColor": "${groupData.user.myBorderColor}"
-                                              }
-                                  "voters": []
+                                               "memberBorderColor": "${groupData.user.myBorderColor}"},
+                                  "voters": [],
                                   "userVote": ""
                                   }`
         // save to global JSON data
