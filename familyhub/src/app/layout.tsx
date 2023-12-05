@@ -7,7 +7,7 @@ import { isBrowser } from 'react-device-detect';
 import {GroupProvider} from './providers' ;
 
 const inter = Inter({ subsets: ['latin'] })
-const satoshi = localFont({ src: '../../assets/fonts/Satoshi-Variable.woff'})
+//const satoshi = localFont({ src: '../../assets/fonts/Satoshi-Variable.woff'})
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -22,7 +22,7 @@ export default function RootLayout({
   if (isBrowser) {
     return (
       <html lang="en">
-        <body className={satoshi.className} style = {{display: 'flex', justifyContent: 'center'}}>
+        <body style = {{display: 'flex', justifyContent: 'center'}}>
           <div style = {{height: 667, width: 376, backgroundColor: '#FFFFFF',
                  display: 'flex', justifyContent: 'center'}}>
               <GroupProvider>{children}</GroupProvider>

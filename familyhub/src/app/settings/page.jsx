@@ -38,7 +38,7 @@ function GroupSettings() {
 
     if (isSet) {
         return (
-            <div className = 'px-2'>
+            <div className = 'px-2 pb-4'>
             <div className = 'bg-white drop-shadow-lg rounded-md'>
                 <div className = 'px-2 flex py-2 flex-column rounded-md ml-auto pr-4'
                     onClick = {() => handleExpand()}
@@ -132,7 +132,7 @@ function GroupSettings() {
         </div>)
     }
     return(
-        <div className = 'flex py-2 flex-column hover:bg-gray-200 rounded-md ml-auto pl-4'
+        <div className = 'flex py-2 flex-column hover:bg-gray-200 rounded-md ml-auto' style = {{paddingLeft: 20, paddingRight: 20}}
                 onClick = {() => handleExpand()}>
                         <Image src='/group.svg' 
                                 width = {25} 
@@ -148,7 +148,7 @@ function GroupSettings() {
 function LabelSwitch({label}) {
     return (
         <div style = {{display: 'relative'}}>
-            <div className = "flex flex-column gap-20 justify-center items-center">
+            <div className = "flex flex-column gap-10 justify-between items-center">
                 <p>{label}</p> <Switch color = 'warning'/>                  
             </div>
         </div>
@@ -342,7 +342,7 @@ export default function SettingsPage() {
                                     height = {18}/>
                             <p className = 'px-2'>Notifications</p>
                         </div>
-                        <div>
+                        <div className='pl-4'>
                             <LabelSwitch label = "Event Notifications"/>
                             <LabelSwitch label = "Poll Notifications"/>
                             <LabelSwitch label = "Chat Notifications" />
@@ -385,12 +385,12 @@ export default function SettingsPage() {
                         </div>
                     </div>
                 </div>
-                <div style = {{paddingLeft: 10}}>
+                <div style = {{paddingLeft: 20}}>
                     <div className = 'flex py-2 flex-column'>
                         <Image src='/sqcode.svg' 
                                 width = {24} 
                                 height = {28}/>
-                        <p className = 'px-2'>Invite a New Member</p>
+                        <p className = 'px-4'>Invite a New Member</p>
                     </div>
                     <div>
                         <Image src='/qrcode.png'
