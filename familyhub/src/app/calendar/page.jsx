@@ -4,9 +4,11 @@ import Header from '../components/header'
 import '../globals.css'
 import Image from "next/image";
 import './calendar.css'
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "react-datepicker/dist/react-datepicker.css";
+import {GroupContext, GroupData, GroupSetterData} from '../providers'
+
 
 function EditIcon() {
     return (
@@ -27,32 +29,50 @@ function EditIcon() {
     )
 }
 
-function Picture() {
-    return (
-        <div className="p-8 rounded-full border-4 profile-border-color">
-        </div>
-    )
-}
+function Event({title, dateTime, location, description, attendees}) {
+    let {groupData} = useContext(GroupData);
 
-function Event({title, dateTime, location, description}) {
+    const user = groupData.user;
+    const mems = groupData.members || [];
+    const attendeesArray = Array.isArray(attendees) ? attendees : [];
+
     return (
-        <div className="flex flex-col gap-2 light-theme-color rounded-lg drop-shadow-lg p-4">
-            <div className="flex flex-row items-center gap-2">
+        <div className="flex flex-col light-theme-color rounded-lg drop-shadow-lg p-4">
+            <div className="flex flex-row items-center justify-between">
+                <div className="text-xl text-black">{title}</div>
                 <img
-                    src="https://i.imgur.com/HHwg0nW.png"
+                    src={user.myProfilePhotoURL || "default-profile-photo-url"}
                     alt=""
                     style={{
-                        width: 40, 
-                        height: 40, 
+                        width: 40,
+                        height: 40,
                         borderRadius: 100,
-                        border: '3px solid var(--profile-border-color)' 
+                        border: `3px solid ${user.myBorderColor || 'var(--profile-border-color)'}`,
                     }}
                 />
-                <div className="text-sm text-black">{title}</div>
             </div>
             <div className="text-sm text-black">{dateTime}</div>
             <div className="text-sm text-black">{location}</div>
-            <div className="text-sm text-black">{description}</div>
+            <div className="flex flex-row items-center justify-between">
+            <div className="text-sm text-lg mt-2 mb-2">Who's coming: </div>
+            <div className="flex gap-2">
+                {attendeesArray.map((attendee) => (
+                    // Assuming attendee is the username and exists in mems
+                    <img
+                        key={attendee}
+                        src={mems[attendee]?.memberProfilePhotoURL || "defaultImageURL"}
+                        alt="Attendee"
+                        style={{
+                            width: 40,
+                            height: 40,
+                            borderRadius: 100,
+                            border: `3px solid ${mems[attendee]?.memberBorderColor || 'var(--profile-border-color)'}`,
+                        }}
+                    />
+                ))}
+            </div>
+            </div>
+            <div className="text-sm text-black ">{description}</div>
         </div>
     )
 }
@@ -69,12 +89,17 @@ function UserProfile({picture, style}) {
 
 export default function Page() {
 
+    let {groupData} = useContext(GroupData);
+    const user = groupData.user;
+
     const [addEvent, setNewEvent] = useState(false);
     const [eventList, setEventList] = useState([]);
     const [title, setTitle] = useState("");
-    const [dateTime, setDateTime] = useState("");
+    const [date, setDate] = useState("");
+    const [time, setTime] = useState("");
     const [location, setLocation] = useState("");
     const [description, setDescription] = useState("");
+    const [attendees, setAttendees] = useState([]); //replace with our current user
 
     const userList = [
         <UserProfile picture="https://i.imgur.com/Bwqg0fu.png" style={{width: 75, height: 75, borderRadius: 100, border: '4px solid #a8783e'}}/>,
@@ -87,10 +112,11 @@ export default function Page() {
 
     const Input = () => {
         return <Event
-            title={"Title: "+title}
-            dateTime={"Date/Time: "+dateTime}
+            title={title}
+            dateTime={date + " - " + time}
             location={"Location: "+location}
-            description={"Description: "+description}
+            description={description}
+            attendees={attendees}
         />
     }
 
@@ -98,8 +124,12 @@ export default function Page() {
         setTitle(e.target.value)
     };
 
-    const dateTimeChangeHandler = (e) => {
-        setDateTime(e.target.value)
+    const dateChangeHandler = (e) => {
+        setDate(e.target.value)
+    };
+
+    const timeChangeHandler = (e) => {
+        setTime(e.target.value)
     };
 
     const locationChangeHandler = (e) => {
@@ -111,37 +141,88 @@ export default function Page() {
     };
 
     function saveEvent() {
+        // Validate date format (MM/DD/YYYY)
+        const dateRegex = /^\d{2}\/\d{2}\/\d{4}$/;
+        if (!dateRegex.test(date)) {
+            alert('Please enter a valid date in MM/DD/YYYY format.');
+            return;
+        }
+
+        // Validate time format (HH:MM AM/PM)
+        const timeRegex = /^(0?[1-9]|1[0-2]):[0-5][0-9] (AM|PM)$/;
+        if (!timeRegex.test(time)) {
+            alert('Please enter a valid time in HH:MM AM/PM format.');
+            return;
+        }
+
+        const newEvent = {
+            title,
+            date,
+            time,
+            location,
+            description,
+            attendees
+        };
+        //
+        // // Find the correct position to insert the new event based on date and time
+        // const insertIndex = eventList.findIndex(existingEvent => {
+        //     // Assuming date and time are in the format MM/DD/YYYY and HH:MM AM/PM
+        //     const existingDateTime = new Date(`${existingEvent.date} ${existingEvent.time}`);
+        //     const newDateTime = new Date(`${date} ${time}`);
+        //     return existingDateTime > newDateTime;
+        // });
+        //
+        // // If no suitable position is found, insert at the end
+        // const updatedEventList = [...eventList];
+        // if (insertIndex === -1) {
+        //     updatedEventList.push(newEvent);
+        // } else {
+        //     updatedEventList.splice(insertIndex, 0, newEvent);
+        // }
+        //
+        // // Update the state with the sorted event list
+        // setEventList(updatedEventList);
+
         setEventList(eventList.concat(<Input key={eventList.length}/>));
         setTitle("");
-        setDateTime("");
+        setDate("");
+        setTime("");
         setLocation("");
         setDescription("");
+        setAttendees([]);
         setNewEvent(false);
     }
 
     return (
         <main>
-            <Header title="Events"/>
+            <Header title="Calendar"/>
             <div id="content" className="mx-4 py-4 flex gap-4 flex-col">
-
-                <div className="flex justify-center">
-                    <button onClick={() => setNewEvent(true)}
-                            className="border-2 text-center border-slate-950 rounded-md w-full p-1 text-black flex flex-row items-center center text-center">
-                        <Image src='/plus.png' alt='search' width={27} height={27}/>
-                        <text style={{marginLeft: '20px', marginRight: '20px'}}>Add New</text>
+                <div className="flex justify-between w-full">
+                    <div className="">Events</div>
+                    <button onClick={() => setNewEvent(true)}>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M23 11.5C23 17.2593 18.1157 22 12 22C5.88433 22 1 17.2593 1 11.5C1 5.74069 5.88433 1 12 1C18.1157 1 23 5.74069 23 11.5Z"
+                                fill="white" stroke="black" stroke-width="2"/>
+                            <path
+                                d="M23 11.5C23 17.2593 18.1157 22 12 22C5.88433 22 1 17.2593 1 11.5C1 5.74069 5.88433 1 12 1C18.1157 1 23 5.74069 23 11.5Z"
+                                fill="white" stroke="black" stroke-width="2"/>
+                            <rect x="11.2002" y="5.3667" width="1.6" height="12.2667" fill="black"/>
+                            <rect x="5.6001" y="10.7334" width="12.8" height="1.53333" fill="black"/>
+                        </svg>
                     </button>
                 </div>
                 {addEvent && (
                     <div className="flex flex-col gap-2 light-theme-color rounded-lg drop-shadow-lg p-4">
                         <div className="flex flex-row items-center gap-2">
                             <img
-                                src="https://i.imgur.com/HHwg0nW.png"
+                                src={user.myProfilePhotoURL || "default-profile-photo-url"}
                                 alt=""
                                 style={{
                                     width: 40, 
                                     height: 40, 
                                     borderRadius: 100,
-                                    border: '3px solid var(--profile-border-color)' 
+                                    border: `3px solid ${user.myBorderColor || 'var(--profile-border-color)'}`,
                                 }}
                             />
                             <svg width="26" height="26" viewBox="0 0 13 13" fill="none"
@@ -166,8 +247,14 @@ export default function Page() {
                         <div
                             className="w-full bg-white py-1 pl-4 rounded-full drop-shadow-md flex flex-row gap-2 text-black border-2 border-black">
                             <EditIcon/>
-                            <input className="w-4/5" type="text" placeholder="Date and Time"
-                                   onChange={dateTimeChangeHandler} value={dateTime} />
+                            <input className="w-4/5" type="text" placeholder="Date MM/DD/YYYY"
+                                   onChange={dateChangeHandler} value={date} />
+                        </div>
+                        <div
+                            className="w-full bg-white py-1 pl-4 rounded-full drop-shadow-md flex flex-row gap-2 text-black border-2 border-black">
+                            <EditIcon/>
+                            <input className="w-4/5" type="text" placeholder="Time HH:MM AM/PM"
+                                   onChange={timeChangeHandler} value={time} />
                         </div>
                         <div
                             className="w-full bg-white py-1 pl-4 rounded-full drop-shadow-md flex flex-row gap-2 text-black border-2 border-black">
@@ -192,7 +279,18 @@ export default function Page() {
                     </div>
                 )}
                 {eventList}
-
+                {groupData.calendar.events.map((row, index) => (
+                    <Event
+                        key={index}
+                        dateTime={row.date + " - " + row.time}
+                        title={row.title}
+                        location={row.location}
+                        icon={row.memberProfilePhotoURL}
+                        border={row.memberBorderColor}
+                        description={row.description}
+                        attendees={row.attendees}
+                    />
+                ))}
 
             </div>
             <div id="family-members" className="flex flex-row gap-2 overflow-x-clip">
