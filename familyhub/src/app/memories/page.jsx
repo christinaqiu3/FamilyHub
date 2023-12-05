@@ -2,7 +2,8 @@
 import Header from "../components/header";
 import Navigation from "../components/navigation";
 import Image from "next/image";
-
+import React, {useState, useContext} from 'react'
+import {GroupContext, GroupData, GroupSetterData} from '../providers'
 import "./memories.css"
 
 function Post({icon, color}) {
@@ -27,33 +28,35 @@ function Post({icon, color}) {
 }
 
 export default function Page() {
+    let {groupData} = useContext(GroupData)
+    let {setGroupData} = useContext(GroupSetterData)
+
     return (
         <main>
-            <Header title = "Memories"/>
-            <div id="options-bar">
-                <div id="upload-btn">
-                    <Image src='/upload.svg' alt='upload' width={20} height={20} priority/>
-                </div>
-                <div id="search-bar">
-                    <div style={{
-                        margin: '0px 7px'
-                    }}>
-                        <Image src='/search.svg' alt='search' width={27} height={27} priority/>
+            <Header title = "Check-in"/>
+            <div id="content" className="pt-4">
+                <div id="options-bar">
+                    <div id="upload-btn">
+                        <Image src='/upload.svg' alt='upload' width={20} height={20} priority/>
                     </div>
-                    Search
+                    <div id="search-bar">
+                        <div style={{
+                            margin: '0px 7px'
+                        }}>
+                            <Image src='/search.svg' alt='search' width={27} height={27} priority/>
+                        </div>
+                        Search
+                    </div>
+                </div>
+                <div id="posts" className="drop-shadow-lg">
+                    {groupData.memories.posts.map((row, index) => (
+                        <Post key={index}
+                            icon = {row.photoURL}
+                        />
+                    ))}
                 </div>
             </div>
-            <div id="posts">
-                <Post icon="https://i.imgur.com/Bwqg0fu.png" color={{border: '3px solid #a8783e'}}/>
-                <Post icon="https://i.imgur.com/pwQSdII.png" color={{border: '3px solid #ad4eeb'}}/>
-                <Post icon="https://i.imgur.com/HTYMTkd.png" color={{border: '3px solid #e05f5d'}}/>
-                <Post icon="https://i.imgur.com/bfMRBp2.png" color={{border: '3px solid #c5e05d'}}/>
-                <Post icon="https://acnhcdn.com/latest/NpcBromide/NpcNmlOcp01.png" color={{border: '3px solid #ff9ccb'}}/>
-                <Post icon="https://i.imgur.com/Bwqg0fu.png" color={{border: '3px solid #a8783e'}}/>
-                <Post icon="https://i.imgur.com/pwQSdII.png" color={{border: '3px solid #ad4eeb'}}/>
-                <Post icon="https://i.imgur.com/HTYMTkd.png" color={{border: '3px solid #e05f5d'}}/>
-                <Post icon="https://i.imgur.com/bfMRBp2.png" color={{border: '3px solid #c5e05d'}}/>
-            </div>
+
             <Navigation page = 'memories'/>
         </main>
     )

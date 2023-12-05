@@ -43,6 +43,7 @@ function EditIcon() {
 function Poll({question, options, userData, userVote}) {
     let {groupData} = useContext(GroupData)
     let {setGroupData} = useContext(GroupSetterData)
+    
     const [optionTitles, setOptionTitles] = useState(Object.keys(options));
     let initialSelectedOption = ""
     if (optionTitles.find((x) => x === userVote) !== undefined) {
