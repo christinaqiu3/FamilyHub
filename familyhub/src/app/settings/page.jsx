@@ -240,17 +240,19 @@ function ColorPersonalization({color, type}) {
     )
 }
 
-function setColor ({colorString}){
-    document.documentElement.style.setProperty('--app-theme-color-med', colorString);
+function setColor ({colorLightString, colorMedString, colorDarkString}){
+    document.documentElement.style.setProperty('--app-theme-color-light', colorLightString);
+    document.documentElement.style.setProperty('--app-theme-color-med', colorMedString);
+    document.documentElement.style.setProperty('--app-theme-color-dark', colorDarkString);
 }
 
 function setBorder ({colorString}){
     document.documentElement.style.setProperty('--profile-border-color', colorString);
 }
 
-function ColorButton({colorStyle, colorString}) {
+function ColorButton({colorStyle, colorLightString, colorMedString, colorDarkString}) {
     return (
-        <button className='color-button drop-shadow-md' style={colorStyle} onClick={() => setColor({colorString})}></button>
+        <button className='color-button drop-shadow-md' style={colorStyle} onClick={() => setColor({colorLightString, colorMedString, colorDarkString})}></button>
     )
 }
 
@@ -286,18 +288,58 @@ export default function SettingsPage() {
                         </div>
                         <div className='flex flex-col gap-3'>
                             <div className='flex flex-row gap-4'>
-                                <ColorButton colorStyle={{backgroundColor: '#FEE68A'}} colorString='#FEE68A'/>
-                                <ColorButton colorStyle={{backgroundColor: '#f8ac6e'}} colorString='#f8ac6e'/>
-                                <ColorButton colorStyle={{backgroundColor: '#f26582'}} colorString='#f26582'/>
-                                <ColorButton colorStyle={{backgroundColor: '#e75ca9'}} colorString='#e75ca9'/>
-                                <ColorButton colorStyle={{backgroundColor: '#c966e7'}} colorString='#c966e7'/>
+                                <ColorButton colorStyle={{backgroundColor: '#FEE68A'}} 
+                                    colorLightString='#fef3c7' 
+                                    colorMedString='#FEE68A' 
+                                    colorDarkString='#f59e0c'
+                                />
+                                <ColorButton colorStyle={{backgroundColor: '#f8ac6e'}} 
+                                    colorLightString='#ffd4b1' 
+                                    colorMedString='#f8ac6e' 
+                                    colorDarkString='#fd6c18'
+                                />
+                                <ColorButton colorStyle={{backgroundColor: '#f26582'}} 
+                                    colorLightString='#ffa7b9' 
+                                    colorMedString='#f26582' 
+                                    colorDarkString='#ff1848'
+                                />
+                                <ColorButton colorStyle={{backgroundColor: '#e75ca9'}} 
+                                    colorLightString='#ffa4d7' 
+                                    colorMedString='#e75ca9' 
+                                    colorDarkString='#f51691'
+                                />
+                                <ColorButton colorStyle={{backgroundColor: '#c966e7'}} 
+                                    colorLightString='#e99fff' 
+                                    colorMedString='#c966e7' 
+                                    colorDarkString='#c317f7'
+                                />
                             </div>
                             <div className='flex flex-row gap-4'>
-                                <ColorButton colorStyle={{backgroundColor: '#a271f0'}} colorString='#a271f0'/>
-                                <ColorButton colorStyle={{backgroundColor: '#71abf0'}} colorString='#71abf0'/>
-                                <ColorButton colorStyle={{backgroundColor: '#71d2f0'}} colorString='#71d2f0'/>
-                                <ColorButton colorStyle={{backgroundColor: '#63dab2'}} colorString='#63dab2'/>
-                                <ColorButton colorStyle={{backgroundColor: '#bdea75'}} colorString='#bdea75'/>
+                                <ColorButton colorStyle={{backgroundColor: '#a271f0'}} 
+                                    colorLightString='#FEE68A' 
+                                    colorMedString='#FEE68A' 
+                                    colorDarkString='#FEE68A'
+                                />
+                                <ColorButton colorStyle={{backgroundColor: '#71abf0'}} 
+                                    colorLightString='#c8a6ff' 
+                                    colorMedString='#71abf0' 
+                                    colorDarkString='#8135fb'
+                                />
+                                <ColorButton colorStyle={{backgroundColor: '#71d2f0'}} 
+                                    colorLightString='#96ddff' 
+                                    colorMedString='#71d2f0' 
+                                    colorDarkString='#03adfe'
+                                />
+                                <ColorButton colorStyle={{backgroundColor: '#63dab2'}} 
+                                    colorLightString='#99f7d7' 
+                                    colorMedString='#63dab2' 
+                                    colorDarkString='#0fcf8e'
+                                />
+                                <ColorButton colorStyle={{backgroundColor: '#bdea75'}} 
+                                    colorLightString='#d0f792' 
+                                    colorMedString='#bdea75' 
+                                    colorDarkString='#8ae000'
+                                />
                             </div>
                         </div>
                         
