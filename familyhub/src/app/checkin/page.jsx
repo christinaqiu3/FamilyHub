@@ -169,7 +169,7 @@ export default function Page() {
     return (
         <main>
             <Header title = "Check-in"/>
-            <div id="content">
+            <div id="content" className="pt-4">
                 <div className="mx-4 pb-4 flex gap-4 flex-col text-gray-800">
                     <div className="overflow-auto whitespace-nowrap flex flex-row gap-2">
                         {userList}

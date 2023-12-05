@@ -58,7 +58,7 @@ function GroupSettings() {
 
     if (isSet) {
         return (
-            <div className = 'px-2 pb-4'>
+            <div className = 'mt-2 px-2 pb-4'>
             <div className = 'bg-white drop-shadow-lg rounded-md'>
                 <div className = 'px-2 flex py-2 flex-column rounded-md ml-auto pr-4'
                     onClick = {() => handleExpand()}
@@ -76,7 +76,7 @@ function GroupSettings() {
                     {addedGroup}
                 <div style = {{display: 'flex',
                                 padding: 8}}>
-                    <div onClick={() => handleNew()}
+                    <button onClick={() => handleNew()}
                             style = {{height: 33, width: 176, 
                                     backgroundColor: 'rgb(253 230 138)',
                                     borderRadius: 15,
@@ -89,7 +89,7 @@ function GroupSettings() {
                         <Image src ='/group-add.svg'
                                 width = {25}
                                 height = {25}/>
-                    </div>
+                    </button>
                 </div>
                 </div>
             </div>
@@ -139,7 +139,7 @@ function GroupSettings() {
         </div>)
     }
     return(
-        <div className = 'flex py-2 flex-column hover:bg-gray-200 rounded-md ml-auto' style = {{paddingLeft: 20, paddingRight: 20}}
+        <div className = 'flex py-2 flex-column hover:bg-gray-200 rounded-md ml-auto my-2' style = {{paddingLeft: 20, paddingRight: 20}}
                 onClick = {() => handleExpand()}>
                         <Image src='/group.svg' 
                                 width = {25} 
@@ -248,7 +248,7 @@ function setBorder ({colorString}){
 
 function ColorButton({colorStyle, colorString}) {
     return (
-        <button className='color-button' style={colorStyle} onClick={() => setColor({colorString})}></button>
+        <button className='color-button drop-shadow-md' style={colorStyle} onClick={() => setColor({colorString})}></button>
     )
 }
 
@@ -266,9 +266,9 @@ export default function SettingsPage() {
     return (
         <main>
             <Header title = "Settings"/>
-            <div id="content">
+            <div id="content" className="pb-8">
                 {colorActive && (
-                    <div className='bg-blue-400 absolute mt-44 z-20 p-4 ml-4 items-center flex flex-col gap-4'>
+                    <div className='bg-gray-100 rounded-lg drop-shadow-xl absolute mt-44 z-20 p-4 ml-4 items-center flex flex-col gap-4'>
                         <div className='flex flex-row justify-between w-full'>
                             <div>Change theme</div>
                             <button onClick={() => setColorActive(false)}>
@@ -282,17 +282,27 @@ export default function SettingsPage() {
                                 </svg>
                             </button>
                         </div>
-                        <div className='flex flex-row gap-4'>
-                            <ColorButton colorStyle={{backgroundColor: '#f00'}} colorString='#f00'/>
-                            <ColorButton colorStyle={{backgroundColor: '#0f0'}} colorString='#0f0'/>
-                            <ColorButton colorStyle={{backgroundColor: '#00f'}} colorString='#00f'/>
-                            <ColorButton colorStyle={{backgroundColor: '#ff0'}} colorString='#ff0'/>
-                            <ColorButton colorStyle={{backgroundColor: '#f0f'}} colorString='#f0f'/>
+                        <div className='flex flex-col gap-3'>
+                            <div className='flex flex-row gap-4'>
+                                <ColorButton colorStyle={{backgroundColor: '#FEE68A'}} colorString='#FEE68A'/>
+                                <ColorButton colorStyle={{backgroundColor: '#f8ac6e'}} colorString='#f8ac6e'/>
+                                <ColorButton colorStyle={{backgroundColor: '#f26582'}} colorString='#f26582'/>
+                                <ColorButton colorStyle={{backgroundColor: '#e75ca9'}} colorString='#e75ca9'/>
+                                <ColorButton colorStyle={{backgroundColor: '#c966e7'}} colorString='#c966e7'/>
+                            </div>
+                            <div className='flex flex-row gap-4'>
+                                <ColorButton colorStyle={{backgroundColor: '#a271f0'}} colorString='#a271f0'/>
+                                <ColorButton colorStyle={{backgroundColor: '#71abf0'}} colorString='#71abf0'/>
+                                <ColorButton colorStyle={{backgroundColor: '#71d2f0'}} colorString='#71d2f0'/>
+                                <ColorButton colorStyle={{backgroundColor: '#63dab2'}} colorString='#63dab2'/>
+                                <ColorButton colorStyle={{backgroundColor: '#bdea75'}} colorString='#bdea75'/>
+                            </div>
                         </div>
+                        
                     </div>
                 )}
                 {borderActive && (
-                    <div className='bg-blue-400 absolute mt-44 z-20 p-4 ml-4 items-center flex flex-col gap-4'>
+                    <div className='bg-gray-100 rounded-lg drop-shadow-xl absolute mt-44 z-20 p-4 ml-4 items-center flex flex-col gap-4'>
                         <div className='flex flex-row justify-between w-full'>
                             <div>Change border color</div>
                             <button onClick={() => setBorderActive(false)}>
@@ -306,13 +316,23 @@ export default function SettingsPage() {
                                 </svg>
                             </button>
                         </div>
-                        <div className='flex flex-row gap-4'>
-                            <BorderButton colorStyle={{backgroundColor: '#f00'}} colorString='#f00'/>
-                            <BorderButton colorStyle={{backgroundColor: '#0f0'}} colorString='#0f0'/>
-                            <BorderButton colorStyle={{backgroundColor: '#00f'}} colorString='#00f'/>
-                            <BorderButton colorStyle={{backgroundColor: '#ff0'}} colorString='#ff0'/>
-                            <BorderButton colorStyle={{backgroundColor: '#f0f'}} colorString='#f0f'/>
+                        <div className='flex flex-col gap-3'>
+                            <div className='flex flex-row gap-4'>
+                                <BorderButton colorStyle={{backgroundColor: '#FEE68A'}} colorString='#FEE68A'/>
+                                <BorderButton colorStyle={{backgroundColor: '#f8ac6e'}} colorString='#f8ac6e'/>
+                                <BorderButton colorStyle={{backgroundColor: '#f26582'}} colorString='#f26582'/>
+                                <BorderButton colorStyle={{backgroundColor: '#e75ca9'}} colorString='#e75ca9'/>
+                                <BorderButton colorStyle={{backgroundColor: '#c966e7'}} colorString='#c966e7'/>
+                            </div>
+                            <div className='flex flex-row gap-4'>
+                                <BorderButton colorStyle={{backgroundColor: '#a271f0'}} colorString='#a271f0'/>
+                                <BorderButton colorStyle={{backgroundColor: '#71abf0'}} colorString='#71abf0'/>
+                                <BorderButton colorStyle={{backgroundColor: '#71d2f0'}} colorString='#71d2f0'/>
+                                <BorderButton colorStyle={{backgroundColor: '#63dab2'}} colorString='#63dab2'/>
+                                <BorderButton colorStyle={{backgroundColor: '#bdea75'}} colorString='#bdea75'/>
+                            </div>
                         </div>
+                        
                     </div>
                 )}
                 {avatarActive && (
@@ -340,6 +360,16 @@ export default function SettingsPage() {
                         />
                     </div>
                 )}
+                {(avatarActive || colorActive || borderActive) && (
+                    <div className="absolute w-full bg-gray-900" style={{
+                        height: 602,
+                        width: 376,
+                        zIndex: 15,
+                        opacity: .2
+                    }}>
+                        
+                    </div>
+                )}
                 <GroupSettings/>
                 <div style = {{paddingLeft: 20, paddingRight: 20}}>
                     <div>
@@ -357,7 +387,7 @@ export default function SettingsPage() {
                         </div>
                     </div>
                 </div>
-                <div style = {{overflow: 'scroll', paddingLeft: 20}}>
+                <div style = {{overflow: 'scroll', paddingLeft: 20, paddingRight: 20}}>
                 <div className = 'flex py-2 flex-column'>
                     <Image src='/edit.svg' 
                             width = {18} 
@@ -399,16 +429,32 @@ export default function SettingsPage() {
                                 height = {28}/>
                         <p className = 'px-4'>Invite a New Member</p>
                     </div>
-                    <div>
-                        <Image src='/qrcode.png'
-                            width = {271}
-                            height = {271}
-                            style = {{borderColor: "black",
-                                        borderWidth: 1.5,
-                                        borderRadius: 15,
-                                        width: '80%',
-                                        height: 'auto',
-                                        margin: 5}}/>
+                    <div className="">
+                        <div className="flex flex-row gap-3">
+                            <Image src='https://i.imgur.com/y8oh87T.png'
+                                width = {271}
+                                height = {271}
+                                style = {{borderColor: "black",
+                                            borderWidth: 1.5,
+                                            borderRadius: 15,
+                                            width: '75%',
+                                            height: 'auto',
+                                            padding: 20,
+                                            margin: 2}}/>
+                            <div className="flex flex-col gap-2">
+                                <button className="p-3 border border-black rounded-full hover:bg-gray-200">
+                                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12.004 7.4736C12.3999 7.08857 12.4087 6.45546 12.0237 6.05953C11.6387 5.66359 11.0056 5.65476 10.6096 6.03979L12.004 7.4736ZM5.99602 10.5264C5.60009 10.9114 5.59125 11.5445 5.97629 11.9405C6.36133 12.3364 6.99443 12.3452 7.39036 11.9602L5.99602 10.5264ZM15.7603 8.03401L15.0632 7.31711V7.31711L15.7603 8.03401ZM12.9164 9.40475C12.5205 9.78978 12.5117 10.4229 12.8967 10.8188C13.2817 11.2148 13.9148 11.2236 14.3108 10.8386L12.9164 9.40475ZM7.14943 3.79649C6.75349 4.18153 6.74466 4.81463 7.12969 5.21057C7.51473 5.6065 8.14783 5.61534 8.54377 5.2303L7.14943 3.79649ZM10.3135 2.11443L9.61631 1.39752V1.39752L10.3135 2.11443ZM2.23965 9.96599L1.54248 9.24908L2.23965 9.96599ZM5.08356 8.59525C5.4795 8.21022 5.48833 7.57711 5.10329 7.18118C4.71826 6.78524 4.08516 6.77641 3.68922 7.16144L5.08356 8.59525ZM10.8506 14.2035C11.2465 13.8185 11.2553 13.1854 10.8703 12.7894C10.4853 12.3935 9.85217 12.3847 9.45623 12.7697L10.8506 14.2035ZM7.68653 15.8856L6.98936 15.1687H6.98936L7.68653 15.8856ZM2.23966 15.8856L1.54249 16.6025H1.54249L2.23966 15.8856ZM15.7603 2.11443L15.0632 2.83133V2.83133L15.7603 2.11443ZM10.6096 6.03979L5.99602 10.5264L7.39036 11.9602L12.004 7.4736L10.6096 6.03979ZM15.0632 7.31711L12.9164 9.40475L14.3108 10.8386L16.4575 8.75092L15.0632 7.31711ZM8.54377 5.2303L11.0106 2.83133L9.61631 1.39752L7.14943 3.79649L8.54377 5.2303ZM2.93682 10.6829L5.08356 8.59525L3.68922 7.16144L1.54248 9.24908L2.93682 10.6829ZM9.45623 12.7697L6.98936 15.1687L8.3837 16.6025L10.8506 14.2035L9.45623 12.7697ZM2.93683 15.1687C1.68773 13.954 1.68772 11.8976 2.93682 10.6829L1.54248 9.24908C-0.514162 11.2491 -0.514161 14.6024 1.54249 16.6025L2.93683 15.1687ZM1.54249 16.6025C3.4586 18.4658 6.46759 18.4658 8.3837 16.6025L6.98936 15.1687C5.84953 16.2771 4.07665 16.2771 2.93683 15.1687L1.54249 16.6025ZM15.0632 2.83133C16.3123 4.04605 16.3123 6.10239 15.0632 7.31711L16.4575 8.75092C18.5142 6.75089 18.5142 3.39755 16.4575 1.39752L15.0632 2.83133ZM16.4575 1.39752C14.5414 -0.46584 11.5324 -0.465841 9.61631 1.39752L11.0106 2.83133C12.1505 1.72289 13.9234 1.72289 15.0632 2.83133L16.4575 1.39752Z" fill="#33363F"/>
+                                    </svg>
+                                </button>
+                                <button className="p-3 border border-black rounded-full hover:bg-gray-200">
+                                    <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M6.25174 9.07828L3.883 8.2887C1.40258 7.46189 0.162354 7.04848 0.162354 6.28876C0.162354 5.52903 1.40257 5.11562 3.88301 4.28881L12.8564 1.29768C14.6017 0.715908 15.4744 0.425024 15.935 0.885666C16.3957 1.34631 16.1048 2.21896 15.523 3.96427L12.5319 12.9377C11.7051 15.4181 11.2916 16.6583 10.5319 16.6583C9.7722 16.6583 9.35879 15.4181 8.53198 12.9377L7.7424 10.5689L12.3313 5.98003C12.743 5.56839 12.743 4.901 12.3313 4.48936C11.9197 4.07772 11.2523 4.07772 10.8407 4.48936L6.25174 9.07828Z" fill="#222222"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        
                     </div>
                 </div>
             </div>         

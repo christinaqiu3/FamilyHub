@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 const Navigation = ({page}) => {
     return (
-      <div className="bottom-0 relative flex py-1 items-center justify-center bg-gray-100 rounded-full mb-4 shadow-lg">
+      <div className="bottom-0 relative flex py-1 items-center justify-center bg-gray-100 rounded-full mb-4 shadow-lg z-30">
         <ul className="flex flex-row gap-10">
           <li className="hover:bg-gray-200 rounded-md px-2 py-2"><Link href="/">
             {(page === "home") ? 
