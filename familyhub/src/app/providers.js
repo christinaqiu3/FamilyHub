@@ -4,6 +4,8 @@ import {createContext, useState} from 'react'
 function populateGroup1() {
     return(
         {
+            "groupName": "Mob's Family",
+            "groups": ["Mob's Family", "Body Improvement Club!"],
             "calendar": {
               "events": [
                 {
@@ -13,6 +15,96 @@ function populateGroup1() {
                     1330
                   ],
                   "title": "HCI Class",
+                  "location": "That Wharton Building",
+                  "description": "Funnest class ever please give me an A",
+                  "attendees": [
+                    "Mob"
+                  ],
+                  "owner": "Mob", 
+                  "memberProfilePhotoURL": "https://64.media.tumblr.com/d822e00f096b9e858e3db11a98c689e7/7f7f189de7b16d26-c6/s400x600/7b600d2c2b869810c89133272551041d615de9bc.png",
+                  "memberBorderColor": "#5d98d4"
+                }
+              ]
+            },
+            "checkin": {
+              "polls": [
+                {
+                  "title": "What should I eat for dinner?",
+                  "options": {
+                    "Pasta w/ Vodka Sauce": 1,
+                    "Rice w/ Canned Salmon": 1
+                  },
+                  "userData": {
+                    "owner": "Mob", 
+                    "memberProfilePhotoURL": "https://64.media.tumblr.com/d822e00f096b9e858e3db11a98c689e7/7f7f189de7b16d26-c6/s400x600/7b600d2c2b869810c89133272551041d615de9bc.png",
+                    "memberBorderColor": "#5d98d4"
+                  },
+                  "voters": ["Mob", "Hanazawa"],
+                  "userVote": ""
+                },
+                {
+                    "title": "Will Hanazawa get an A?",
+                    "options": {
+                        "Yes": 0,
+                        "Yes.": 1
+                    },
+                    "userData": {
+                        "owner": "Reigen",
+                        "memberProfilePhotoURL": "https://pbs.twimg.com/media/C4ORj7hUMAAK8sA.jpg",
+                        "memberBorderColor": "#c0aded"
+                    },
+                    "voters": ["Reigen"],
+                    "userVote": "Yes."
+                }
+              ]
+            },
+            "memories": {
+              "posts": [
+                {
+                  "photoURL": "https://preview.redd.it/es7pw6g5jm771.jpg?width=450&format=pjpg&auto=webp&s=db9158b48c02cad8f11aea1f0311f5b93eed4cb3",
+                  "caption": "this was soooooooo fun",
+                  "postedBy": "Reigen"
+                }
+              ]
+            },
+            "user": {
+              "myName": "Reigen",
+              "myProfilePhotoURL": "https://pbs.twimg.com/media/C4ORj7hUMAAK8sA.jpg",
+              "myBorderColor": "#c0aded",
+              "myAppThemeBaseColor": "#db747f",
+              "status": {
+                "message": "Set your status . . .",
+                "emoji": ""
+              }
+            },
+            "members": {
+              "Mob": {
+                "memberProfilePhotoURL": "https://64.media.tumblr.com/d822e00f096b9e858e3db11a98c689e7/7f7f189de7b16d26-c6/s400x600/7b600d2c2b869810c89133272551041d615de9bc.png",
+                "memberBorderColor": "#5d98d4",
+                "memberStatus": {
+                  "message": "bawling",
+                  "emoji": "😍"
+                }
+              }
+            }
+          }
+    )
+}
+
+function populateGroup2() {
+    return(
+        {
+            "groupName": "Body Improvement Club!",
+            "groups": ["Mob's Family", "Body Improvement Club!"],
+            "calendar": {
+              "events": [
+                {
+                  "date": '2023-12-15',
+                  "time": [
+                    1130,
+                    1330
+                  ],
+                  "title": "Special Fri Practice!",
                   "location": "That Wharton Building",
                   "description": "Funnest class ever please give me an A",
                   "attendees": [
@@ -99,10 +191,10 @@ export function GroupProvider({children}) {
     const [group, setGroup] = useState(1)
     const [groupData, setGroupData] = useState(populateGroup1())
 
-    function changeGroup(num) {
-        if (num === 1) {
+    function changeGroup(name) {
+        if (name === "Mob's Family") {
             setGroupData(populateGroup1()) ;
-        } else if (num === 2) {
+        } else if (name === "Body Improvement Club!") {
             setGroupData(populateGroup2()) ;
         }
     }

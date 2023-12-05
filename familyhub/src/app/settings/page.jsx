@@ -1,5 +1,6 @@
 'use client';
 import * as React from 'react'
+import {useContext} from 'react'
 import Header from '../components/header'
 import Navigation from '../components/navigation'
 import Switch from '@mui/material/Switch';
@@ -8,11 +9,16 @@ import TextField from '@mui/material/TextField'
 import {createTheme} from '@mui/material/styles'
 import "./settings.css"
 
+import {GroupData, GroupSwitcher} from '../providers' 
+
 
 function GroupSettings() {
+    let {groupData} = useContext(GroupData)
+    let {changeGroup} = useContext(GroupSwitcher)
     const [isSet, setSet] = React.useState(false) ;
     const [isCreate, setCreate] = React.useState(false)
     const [inputName, setName] = React.useState('')
+    const [groups, setGroups] = React.useState()
     
     const theme = createTheme({
     })
@@ -26,7 +32,21 @@ function GroupSettings() {
         setCreate(!isCreate)
     }
 
-    var addedGroup = null;
+    function Group({name}) {
+        return (
+            <div className = 'flex py-2 flex-column rounded-md ml-auto pl-8'>
+                <button type = 'button' 
+                        className = 'flex flex-column'
+                        onClick = {() => changeGroup(name)}>
+                    <Image src='/group.svg' 
+                                    width = {20} 
+                                    height = {20}/>
+                        <p className = 'px-2' style = {{fontSize: 14}}>{name}</p>
+                </button>
+            </div>  
+        )
+    }
+    var addedGroup = null
     if (!(inputName === '')) {
         addedGroup = (<div className = 'flex py-2 flex-column rounded-md ml-auto pl-8'>
                             <Image src='/group.svg' 
@@ -46,27 +66,14 @@ function GroupSettings() {
                         <Image src='/group.svg' 
                                     width = {25} 
                                     height = {25}/>
-                        <p className = 'px-2'>Current: Mob's Family</p>
+                        <p className = 'px-2'>Current: {groupData.groupName}</p>
                         <Image src='/deflate.svg'
                                     width = {15}
                                     height = {15}
                                 style = {{marginLeft: 'auto'}}/>    
                 </div>
-                <div>
-                    <div className = 'flex py-2 flex-column rounded-md ml-auto pl-8'>
-                            <Image src='/group.svg' 
-                                        width = {20} 
-                                        height = {20}/>
-                            <p className = 'px-2' style = {{fontSize: 14}}>Body Improvement Club!</p>
-                    </div>
-                    <div className = 'flex py-2 flex-column rounded-md ml-auto pl-8'>
-                            <Image src='/group.svg' 
-                                        width = {20} 
-                                        height = {20}/>
-                            <p className = 'px-2' style = {{fontSize: 14}}>Sus Soccer Students</p>
-                    </div>
+                    {groupData.groups.map((row, index) => row === groupData.groupName ? null : <Group name = {row}/>)}
                     {addedGroup}
-                </div>
                 <div style = {{display: 'flex',
                                 padding: 8}}>
                     <div onClick={() => handleNew()}
@@ -84,8 +91,8 @@ function GroupSettings() {
                                 height = {25}/>
                     </div>
                 </div>
+                </div>
             </div>
-            </div> 
         )
     } else if (isCreate) {
         return(
