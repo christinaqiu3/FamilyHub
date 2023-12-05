@@ -34,7 +34,8 @@ function Event({title, dateTime, location, description, attendees, selectedUsers
 
     const user = groupData.user;
     const mems = groupData.members || [];
-    const own = mems.find((m) => m.userName === owner);
+    const ownP = mems.find((m) => m.userName === owner)? mems.find((m) => m.userName === owner).memberProfilePhotoURL : groupData.user.myProfilePhotoURL;
+    const ownB = mems.find((m) => m.userName === owner)? mems.find((m) => m.userName === owner).memberBorderColor : groupData.user.myBorderColor;
 
     // Check if at least one attendee is selected
     const isAtLeastOneAttendeeSelected = Array.isArray(attendees) && Array.isArray(selectedUsers)
@@ -50,13 +51,13 @@ function Event({title, dateTime, location, description, attendees, selectedUsers
             <div className="flex flex-row items-center justify-between">
                 <div className="text-xl text-black">{title}</div>
                 <img
-                    src={own.memberProfilePhotoURL || "default-profile-photo-url"}
+                    src={ownP || "default-profile-photo-url"}
                     alt=""
                     style={{
                         width: 40,
                         height: 40,
                         borderRadius: 100,
-                        border: `3px solid ${own.memberBorderColor || 'var(--profile-border-color)'}`,
+                        border: `3px solid ${ownB || 'var(--profile-border-color)'}`,
                     }}
                 />
             </div>
@@ -66,13 +67,14 @@ function Event({title, dateTime, location, description, attendees, selectedUsers
                 <div className="text-sm text-lg mt-2 mb-2">Who's coming: </div>
                 <div className="flex gap-2 p-2">
                     {attendees.map((attendee) => {
-                        const member = mems.find((m) => m.userName === attendee);
+                        const currP = mems.find((m) => m.userName === attendee)? mems.find((m) => m.userName === attendee).memberProfilePhotoURL : groupData.user.myProfilePhotoURL;
+                        const currB = mems.find((m) => m.userName === attendee)? mems.find((m) => m.userName === attendee).memberBorderColor : groupData.user.myBorderColor;
 
                         return(
                         <UserProfile
                             key={attendee}
-                            picture={member?.memberProfilePhotoURL || "defaultImageURL"}
-                            color={member?.memberBorderColor || 'var(--profile-border-color)'}
+                            picture={currP || "defaultImageURL"}
+                            color={currB || 'var(--profile-border-color)'}
                         />
                         );
                     })}
@@ -114,7 +116,7 @@ export default function Page() {
     const [attendees, setAttendees] = useState([]); //replace with our current user
     const [owner, setOwner] = useState("");
 
-    const [selectedUsers, setSelectedUsers] = useState([]);
+    const [selectedUsers, setSelectedUsers] = useState([user.myName]);
     useEffect(() => {
         console.log("Setting initial state:", mems);
         // Assuming mems is an object
@@ -122,7 +124,7 @@ export default function Page() {
 
         setSelectedUsers((prevSelectedUsers) => [...prevSelectedUsers, ...memsUserNames]);
 
-    }, [mems]);
+    }, [mems, user.myName]);
 
 
 
@@ -236,7 +238,7 @@ export default function Page() {
     function EventList() {
         let {groupData} = useContext(GroupData);
         const mems = groupData.members || [];
-        const [selectedUsers, setSelectedUsers] = useState([]);
+        const [selectedUsers, setSelectedUsers] = useState([user.myName]);
 
 
         const handleUserClick = (userName) => {

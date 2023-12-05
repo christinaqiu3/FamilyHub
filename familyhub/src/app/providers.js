@@ -33,6 +33,19 @@ function populateGroup1() {
                         "owner": "IDK",
                         "memberProfilePhotoURL": "https://i.imgur.com/Bwqg0fu.png",
                         "memberBorderColor": "#a8783e"
+                    },
+                    {
+                        "date": '12/07/2003',
+                        "time": "12:30 PM",
+                        "title": "Test",
+                        "location": "Ice Rink",
+                        "description": "Wear warm clothes",
+                        "attendees": [
+                            "IDK2", "Hanazawa"
+                        ],
+                        "owner": "Hanazawa",
+                        "memberProfilePhotoURL": "https://i.imgur.com/Bwqg0fu.png",
+                        "memberBorderColor": "#a8783e"
                     }
                 ]
             },
