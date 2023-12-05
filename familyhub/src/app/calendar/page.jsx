@@ -4,7 +4,7 @@ import Header from '../components/header'
 import '../globals.css'
 import Image from "next/image";
 import './calendar.css'
-import React, {useContext, useEffect, useState} from "react";
+import React, {useContext, useState} from "react";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "react-datepicker/dist/react-datepicker.css";
 import {GroupContext, GroupData, GroupSetterData} from '../providers'
@@ -29,19 +29,12 @@ function EditIcon() {
     )
 }
 
-function Event({ title, dateTime, location, description, attendees, selectedUsers }) {
-    let { groupData } = useContext(GroupData);
+function Event({title, dateTime, location, description, attendees}) {
+    let {groupData} = useContext(GroupData);
 
     const user = groupData.user;
     const mems = groupData.members || [];
-
-    // Check if at least one attendee is selected
-    const isAtLeastOneAttendeeSelected = attendees.some((attendee) => selectedUsers.includes(attendee));
-
-    // If no attendee is selected, don't render the event
-    if (!isAtLeastOneAttendeeSelected) {
-        return null;
-    }
+    const attendeesArray = Array.isArray(attendees) ? attendees : [];
 
     return (
         <div className="flex flex-col light-theme-color rounded-lg drop-shadow-lg p-4">
@@ -61,25 +54,27 @@ function Event({ title, dateTime, location, description, attendees, selectedUser
             <div className="text-sm text-black">{dateTime}</div>
             <div className="text-sm text-black">{location}</div>
             <div className="flex flex-row items-center justify-between">
-                <div className="text-sm text-lg mt-2 mb-2">Who's coming: </div>
-                <div className="flex gap-2">
-                    {attendees.map((attendee) => (
-                        <UserProfile
-                            key={attendee.username}
-                            picture={mems[attendee]?.memberProfilePhotoURL || "defaultImageURL"}
-                            style={{
-                                width: 40,
-                                height: 40,
-                                borderRadius: 100,
-                                border: `3px solid ${mems[attendee]?.memberBorderColor || 'var(--profile-border-color)'}`,
-                            }}
-                        />
-                    ))}
-                </div>
+            <div className="text-sm text-lg mt-2 mb-2">Who's coming: </div>
+            <div className="flex gap-2">
+                {attendeesArray.map((attendee) => (
+                    // Assuming attendee is the username and exists in mems
+                    <img
+                        key={attendee}
+                        src={mems[attendee]?.memberProfilePhotoURL || "defaultImageURL"}
+                        alt="Attendee"
+                        style={{
+                            width: 40,
+                            height: 40,
+                            borderRadius: 100,
+                            border: `3px solid ${mems[attendee]?.memberBorderColor || 'var(--profile-border-color)'}`,
+                        }}
+                    />
+                ))}
+            </div>
             </div>
             <div className="text-sm text-black ">{description}</div>
         </div>
-    );
+    )
 }
 
 function UserProfile({picture, color}) {
@@ -101,7 +96,6 @@ export default function Page() {
 
     let {groupData} = useContext(GroupData);
     const user = groupData.user;
-    const mems = groupData.members || [];
 
     const [addEvent, setNewEvent] = useState(false);
     const [eventList, setEventList] = useState([]);
@@ -111,43 +105,15 @@ export default function Page() {
     const [location, setLocation] = useState("");
     const [description, setDescription] = useState("");
     const [attendees, setAttendees] = useState([]); //replace with our current user
-    const [selectedUsers, setSelectedUsers] = useState([]);
-    useEffect(() => {
-        console.log("Setting initial state:", mems);
-        // Assuming mems is an object
-        const memsKeys = Object.keys(mems);
 
-        // Add each key to the selectedUsers list
-        memsKeys.forEach((key) => {
-            setSelectedUsers((prevSelectedUsers) => [...prevSelectedUsers, key]);
-        });
-    }, []);
-    console.log("Type of selectedUsers:", typeof selectedUsers);
-    console.log("selectedUsers:", selectedUsers);
-
-
-
-    const handleUserClick = (userName) => {
-        // Check if the user is already selected
-        if (selectedUsers.includes(userName)) {
-            // If selected, remove from the list
-            setSelectedUsers((prevSelectedUsers) =>
-                prevSelectedUsers.filter((user) => user !== userName)
-            );
-        } else {
-            // If not selected, add to the list
-            setSelectedUsers((prevSelectedUsers) => [...prevSelectedUsers, userName]);
-        }
-    };
-
-    // const userList = [
-    //     <UserProfile picture="https://i.imgur.com/Bwqg0fu.png" style={{width: 75, height: 75, borderRadius: 100, border: '4px solid #a8783e'}}/>,
-    //     <UserProfile picture="https://i.imgur.com/pwQSdII.png" style={{width: 75, height: 75, borderRadius: 100, border: '4px solid #ad4eeb'}} />,
-    //     <UserProfile picture="https://acnhcdn.com/latest/NpcBromide/NpcNmlOcp01.png" style={{width: 75, height: 75, borderRadius: 100, border: '4px solid #ff9ccb'}}/>,
-    //     <UserProfile picture="https://pbs.twimg.com/profile_images/1298543441589276672/J-7vMCTE_400x400.png" style={{width: 75, height: 75, borderRadius: 100, border: '4px solid #5d70e0'}}/>,
-    //     <UserProfile picture="https://i.imgur.com/HTYMTkd.png" style={{width: 75, height: 75, borderRadius: 100, border: '4px solid #e05f5d'}}/>,
-    //     <UserProfile picture="https://i.imgur.com/bfMRBp2.png" style={{width: 75, height: 75, borderRadius: 100, border: '4px solid #c5e05d'}}/>,
-    // ]
+    const userList = [
+        <UserProfile picture="https://i.imgur.com/Bwqg0fu.png" style={{width: 75, height: 75, borderRadius: 100, border: '4px solid #a8783e'}}/>,
+        <UserProfile picture="https://i.imgur.com/pwQSdII.png" style={{width: 75, height: 75, borderRadius: 100, border: '4px solid #ad4eeb'}} />,
+        <UserProfile picture="https://acnhcdn.com/latest/NpcBromide/NpcNmlOcp01.png" style={{width: 75, height: 75, borderRadius: 100, border: '4px solid #ff9ccb'}}/>,
+        <UserProfile picture="https://pbs.twimg.com/profile_images/1298543441589276672/J-7vMCTE_400x400.png" style={{width: 75, height: 75, borderRadius: 100, border: '4px solid #5d70e0'}}/>,
+        <UserProfile picture="https://i.imgur.com/HTYMTkd.png" style={{width: 75, height: 75, borderRadius: 100, border: '4px solid #e05f5d'}}/>,
+        <UserProfile picture="https://i.imgur.com/bfMRBp2.png" style={{width: 75, height: 75, borderRadius: 100, border: '4px solid #c5e05d'}}/>,
+    ]
 
     const Input = () => {
         return <Event
@@ -156,7 +122,6 @@ export default function Page() {
             location={"Location: "+location}
             description={description}
             attendees={attendees}
-            selectedUsers={selectedUsers}
         />
     }
 
@@ -231,77 +196,6 @@ export default function Page() {
         setDescription("");
         setAttendees([]);
         setNewEvent(false);
-    }
-
-    const UserButton = ({ onClick, picture, isSelected , userPFP}) => (
-        <button onClick={onClick}
-                style={{
-                    width: 100,
-                    height: 75,
-                    borderRadius: 100,
-                    border: isSelected ? `4px solid #000000` : '4px solid #cccccc',
-                }}
-            >
-            <img src={picture} alt="" style={{ width: '100%', height: '100%', borderRadius: '100%' }} />
-        </button>
-    );
-
-    const UserList = Object.keys(mems).map((member) => (
-        <UserButton
-            key={member}
-            picture={mems[member].memberProfilePhotoURL}
-
-            onClick={() => handleUserClick(member)}
-            isSelected={selectedUsers.includes(member)}
-            userPFP = {member}
-        />
-    ));
-
-    function EventList() {
-        let {groupData} = useContext(GroupData);
-        const mems = groupData.members || [];
-        const [selectedUsers, setSelectedUsers] = useState(mems);
-
-        const handleUserClick = (userName) => {
-            // Toggle the user's selection state
-            if (selectedUsers.includes(userName)) {
-                // If selected, remove from the list
-                setSelectedUsers((prevSelectedUsers) =>
-                    prevSelectedUsers.filter((user) => user !== userName)
-                );
-            } else {
-                // If not selected, add to the list
-                setSelectedUsers((prevSelectedUsers) => [...prevSelectedUsers, userName]);
-            }
-        };
-
-        //const filteredAttendees = Object.keys(members).filter((member) => selectedUsers.includes(member));
-
-        return (
-            <div>
-                <div className="flex gap-2">
-                    {UserList.map((member, index) => (
-                        // <UserButton
-                        //     key={index}
-                        //     onClick={() => handleUserClick(index)}
-                        //     picture={user.props.picture}
-                        //     isSelected={selectedUsers.includes(index)}
-                        // />
-                        <UserButton
-                            key={member}
-                            picture={members[member].memberProfilePhotoURL}
-                            onClick={() => handleUserClick(member)}
-                            isSelected={selectedUsers.includes(member)}
-                            userPFP={member}
-                        />
-                    ))}
-                </div>
-                {/* Render events with filtered attendees based on selected users */}
-                {eventList.map((event, index) => (
-                    <Event key={index} {...event.props} selectedUsers={selectedUsers} />
-                ))}
-            </div>
-        );
     }
 
     return (
@@ -389,7 +283,7 @@ export default function Page() {
                         </div>
                     </div>
                 )}
-                {EventList}
+                {eventList}
                 {groupData.calendar.events.map((row, index) => (
                     <Event
                         key={index}
@@ -400,23 +294,17 @@ export default function Page() {
                         border={row.memberBorderColor}
                         description={row.description}
                         attendees={row.attendees}
-                        selectedUsers={selectedUsers}
                     />
                 ))}
 
             </div>
-            <div className="mx-4 pb-4 flex gap-4 flex-col text-gray-800">
-            <div id="family-members" className="overflow-scroll whitespace-nowrap flex flex-row gap-2 overflow-x-clip">
-                    {UserList.map((userButton) => (
-                        <UserButton
-                            key={userButton.key}
-                            picture={userButton.props.picture}
-                            onClick={userButton.props.onClick}
-                            isSelected={userButton.props.isSelected}
-                            userPFP = {userButton.props.user}
-                        />
-                    ))}
-            </div>
+            <div id="family-members" className="flex flex-row gap-2 overflow-x-clip">
+                {groupData.members.map((row, index) => (
+                    <UserProfile key={index}
+                                picture = {row.memberProfilePhotoURL}
+                                color = {row.memberBorderColor}
+                    />
+                ))}
             </div>
             <Navigation page='calendar'/>
         </main>
