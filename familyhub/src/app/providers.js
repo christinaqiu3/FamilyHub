@@ -93,14 +93,14 @@ function populateGroup1() {
                     "memberProfilePhotoURL": "https://i.imgur.com/Bwqg0fu.png",
                     "memberBorderColor": "#a8783e",
                     "memberStatus": {
-                        "message": "test",
+                        "message": "Ahhh!",
                         "emoji": "😍"
                     }},
                 {"userName": "IDK2",
                     "memberProfilePhotoURL": "https://i.imgur.com/pwQSdII.png",
                     "memberBorderColor": "#ad4eeb",
                     "memberStatus": {
-                        "message": "test2",
+                        "message": "XD",
                         "emoji": "😍"
                     }},
 
@@ -108,7 +108,7 @@ function populateGroup1() {
                     "memberProfilePhotoURL": "https://acnhcdn.com/latest/NpcBromide/NpcNmlOcp01.png",
                     "memberBorderColor": "#ff9ccb",
                     "memberStatus": {
-                        "message": "test3",
+                        "message": ":3",
                         "emoji": "😍"
                     }},
 
@@ -116,7 +116,7 @@ function populateGroup1() {
                     "memberProfilePhotoURL": "https://pbs.twimg.com/profile_images/1298543441589276672/J-7vMCTE_400x400.png",
                     "memberBorderColor": "#5d70e0",
                     "memberStatus": {
-                        "message": "test4",
+                        "message": "Hello",
                         "emoji": "😍"
 
                     }},
@@ -124,14 +124,14 @@ function populateGroup1() {
                     "memberProfilePhotoURL": "https://i.imgur.com/HTYMTkd.png",
                     "memberBorderColor": "#e05f5d",
                     "memberStatus": {
-                        "message": "test5",
+                        "message": "Hiii",
                         "emoji": "😍"
                     }},
                 {"userName": "IDK6",
                     "memberProfilePhotoURL": "https://i.imgur.com/bfMRBp2.png",
                     "memberBorderColor": "#c5e05d",
                     "memberStatus": {
-                        "message": "test6",
+                        "message": ":3c",
                         "emoji": "😍"
                     }
                 }
