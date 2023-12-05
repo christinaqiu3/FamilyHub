@@ -71,7 +71,7 @@ function populateGroup1() {
                 "myName": "Reigen",
                 "myProfilePhotoURL": "https://pbs.twimg.com/media/C4ORj7hUMAAK8sA.jpg",
                 "myBorderColor": "#c0aded",
-                "myAppThemeBaseColor": "#db747f",
+                "myAppThemeBaseColor": "#fee68a",
                 "status": {
                     "message": "Set your status . . .",
                     "emoji": ""
@@ -105,8 +105,8 @@ function populateGroup2() {
                             1330
                         ],
                         "title": "Special Fri Practice!",
-                        "location": "That Wharton Building",
-                        "description": "Funnest class ever please give me an A",
+                        "location": "Club Room",
+                        "description": "Extra Leg Day",
                         "attendees": [
                             "Mob"
                         ],
@@ -119,10 +119,10 @@ function populateGroup2() {
             "checkin": {
                 "polls": [
                     {
-                        "title": "What should I eat for dinner?",
+                        "title": "Should I skip practice on Wednesday?",
                         "options": {
-                            "Pasta w/ Vodka Sauce": 1,
-                            "Rice w/ Canned Salmon": 1
+                            "Yes": 1,
+                            "No": 1
                         },
                         "userData": {
                             "owner": "Mob",
@@ -133,7 +133,7 @@ function populateGroup2() {
                         "userVote": ""
                     },
                     {
-                        "title": "Will Hanazawa get an A?",
+                        "title": "Can Yuzu bench 225?",
                         "options": {
                             "Yes": 0,
                             "Yes.": 1
@@ -144,7 +144,7 @@ function populateGroup2() {
                             "memberBorderColor": "#c0aded"
                         },
                         "voters": ["Reigen"],
-                        "userVote": "Yes."
+                        "userVote": ""
                     }
                 ]
             },

@@ -241,6 +241,12 @@ function ColorPersonalization({color, type}) {
 }
 
 function setColor ({colorString}){
+    let {groupData} = useContext(GroupData)
+    let {setGroupData} = useContext(GroupSetterData)
+
+    let temp = groupData
+    temp.user.myAppThemeBaseColor = colorString
+    setGroupData(temp)
     document.documentElement.style.setProperty('--app-theme-color-med', colorString);
 }
 
