@@ -36,7 +36,7 @@ function RSVP() {
 
 function Event({icon, title, date, owner, border}) {
     return (
-        <div className="light-theme-color p-4 w-1/2 rounded-md flex flex-col flex-wrap drop-shadow-md">
+        <div className="light-theme-color p-4 w-1/2 rounded-md flex flex-col flex-wrap drop-shadow-md text-regular">
             <div>{date}</div>
             <div className="text-sm">{title}</div>
             <div className="flex flex-row pt-2 gap-6">
@@ -57,7 +57,7 @@ function Event({icon, title, date, owner, border}) {
 
 function Poll({icon, title, userData}) {
     return (
-        <Link className="light-theme-color p-2 rounded-md flex flex-row items-center gap-2 drop-shadow-md"
+        <Link className="light-theme-color p-2 rounded-md flex flex-row items-center gap-2 drop-shadow-md text-regular"
                 href = '/checkin'>
             <img src={userData.memberProfilePhotoURL} alt=""
                 style={{
@@ -187,7 +187,7 @@ export default function Page() {
                                         <div className="flex flex-row items-center gap-2">
 
 
-                                            <label className="mb-1">How are you feeling?
+                                            <label className="mb-1 text-regular">How are you feeling?
                                                 <div
                                                     className="w-full bg-white py-1 pl-4 rounded-md drop-shadow-md flex flex-row gap-2 text-black border-2 border-black">
                                                     <input className="w-4/5 outline-none" type="text"
@@ -238,7 +238,7 @@ export default function Page() {
                         </form>
                     </div>
                     <div className="flex gap-2 flex-col px-2">
-                        <p>Family Members</p>
+                        <p className='text-bold'>Family Members</p>
                         <div className="overflow-auto whitespace-nowrap flex flex-row gap-2">
                             {groupData.members.map((row, index) => (
                                 <UserProfile key={index}
@@ -249,7 +249,7 @@ export default function Page() {
                         </div>
                     </div>
                     <div className="flex gap-4 flex-col px-2">
-                        <p>Upcoming Events</p>
+                        <p className='text-bold'>Upcoming Events</p>
                         <div className="overflow-auto whitespace-nowrap flex flex-row gap-2">
                             {groupData.calendar.events.map((row, index) => (
                                 <Event key = {index}
@@ -261,7 +261,7 @@ export default function Page() {
                         </div>
                     </div>
                     <div className="flex gap-2 flex-col px-2">
-                        <p>Recent Polls</p>
+                        <p className="text-bold">Recent Polls</p>
                         <div className="overflow-auto whitespace-nowrap flex flex-col gap-2">
                             {groupData.checkin.polls.map((row, index) => (
                                 <Poll key = {index}
