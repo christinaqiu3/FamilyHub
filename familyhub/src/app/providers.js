@@ -20,6 +20,19 @@ function populateGroup1() {
                         "owner": "Mob",
                         "memberProfilePhotoURL": "https://64.media.tumblr.com/d822e00f096b9e858e3db11a98c689e7/7f7f189de7b16d26-c6/s400x600/7b600d2c2b869810c89133272551041d615de9bc.png",
                         "memberBorderColor": "#5d98d4"
+                    },
+                    {
+                        "date": '12/06/2003',
+                        "time": "12:30 PM",
+                        "title": "Skating",
+                        "location": "Ice Rink",
+                        "description": "Wear warm clothes",
+                        "attendees": [
+                            "Mob", "IDK"
+                        ],
+                        "owner": "IDK",
+                        "memberProfilePhotoURL": "https://i.imgur.com/Bwqg0fu.png",
+                        "memberBorderColor": "#a8783e"
                     }
                 ]
             },
@@ -86,7 +99,7 @@ function populateGroup1() {
                     }
                 },
                 {
-                    "userName": "Idk",
+                    "userName": "IDK",
                     "memberProfilePhotoURL": "https://i.imgur.com/Bwqg0fu.png",
                     "memberBorderColor": "#a8783e",
                     "memberStatus": {
@@ -145,11 +158,8 @@ function populateGroup1() {
                 "calendar": {
                     "events": [
                         {
-                            "date": '2023-12-15',
-                            "time": [
-                                1130,
-                                1330
-                            ],
+                            "date": '12/05/2023',
+                            "time": "11:30 AM",
                             "title": "Special Fri Practice!",
                             "location": "Club Room",
                             "description": "Extra Leg Day",

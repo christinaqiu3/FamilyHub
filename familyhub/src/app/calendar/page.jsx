@@ -29,15 +29,17 @@ function EditIcon() {
     )
 }
 
-function Event({title, dateTime, location, description, attendees, selectedUsers}) {
+function Event({title, dateTime, location, description, attendees, selectedUsers, owner}) {
     let {groupData} = useContext(GroupData);
 
     const user = groupData.user;
     const mems = groupData.members || [];
-    const attendeesArray = Array.isArray(attendees) ? attendees : [];
+    const own = mems.find((m) => m.userName === owner);
 
     // Check if at least one attendee is selected
-    const isAtLeastOneAttendeeSelected = attendees.some((attendee) => selectedUsers.includes(attendee));
+    const isAtLeastOneAttendeeSelected = Array.isArray(attendees) && Array.isArray(selectedUsers)
+        ? attendees.some((attendee) => selectedUsers.includes(attendee)) || attendees.includes(user)
+        : false;
 
     // If no attendee is selected, don't render the event
     if (!isAtLeastOneAttendeeSelected) {
@@ -48,34 +50,32 @@ function Event({title, dateTime, location, description, attendees, selectedUsers
             <div className="flex flex-row items-center justify-between">
                 <div className="text-xl text-black">{title}</div>
                 <img
-                    src={user.myProfilePhotoURL || "default-profile-photo-url"}
+                    src={own.memberProfilePhotoURL || "default-profile-photo-url"}
                     alt=""
                     style={{
                         width: 40,
                         height: 40,
                         borderRadius: 100,
-                        border: `3px solid ${user.myBorderColor || 'var(--profile-border-color)'}`,
+                        border: `3px solid ${own.memberBorderColor || 'var(--profile-border-color)'}`,
                     }}
                 />
             </div>
             <div className="text-sm text-black">{dateTime}</div>
             <div className="text-sm text-black">{location}</div>
-            <div className="flex flex-row items-center justify-between">
+            <div className="flex flex-row items-center left">
                 <div className="text-sm text-lg mt-2 mb-2">Who's coming: </div>
-                <div className="flex gap-2">
-                    {attendeesArray.map((attendee) => (
-                        <img
+                <div className="flex gap-2 p-2">
+                    {attendees.map((attendee) => {
+                        const member = mems.find((m) => m.userName === attendee);
+
+                        return(
+                        <UserProfile
                             key={attendee}
-                            src={mems[attendee]?.memberProfilePhotoURL || "defaultImageURL"}
-                            alt="Attendee"
-                            style={{
-                                width: 40,
-                                height: 40,
-                                borderRadius: 100,
-                                border: `3px solid ${mems[attendee]?.memberBorderColor || 'var(--profile-border-color)'}`,
-                            }}
+                            picture={member?.memberProfilePhotoURL || "defaultImageURL"}
+                            color={member?.memberBorderColor || 'var(--profile-border-color)'}
                         />
-                    ))}
+                        );
+                    })}
                 </div>
             </div>
             <div className="text-sm text-black ">{description}</div>
@@ -112,6 +112,7 @@ export default function Page() {
     const [location, setLocation] = useState("");
     const [description, setDescription] = useState("");
     const [attendees, setAttendees] = useState([]); //replace with our current user
+    const [owner, setOwner] = useState("");
 
     const [selectedUsers, setSelectedUsers] = useState([]);
     useEffect(() => {
@@ -150,6 +151,7 @@ export default function Page() {
             description={description}
             attendees={attendees}
             selectedUsers={selectedUsers}
+            owner={owner}
         />
     }
 
@@ -189,22 +191,25 @@ export default function Page() {
         }
 
         const newEvent = {
-            title,
-            date,
-            time,
-            location,
-            description,
-            attendees,
-            selectedUsers
+            "date": date,
+            "time": time,
+            "title": title,
+            "location": location,
+            "description": description,
+            "attendees": attendees,
+            "owner": user.myName,
+            "memberProfilePhotoURL": user.myProfilePhotoURL,
+            "memberBorderColor": user.myBorderColor
         };
 
-        setEventList(eventList.concat(<Input key={eventList.length}/>));
+        setEventList([...eventList, newEvent]);
         setTitle("");
         setDate("");
         setTime("");
         setLocation("");
         setDescription("");
         setAttendees([]);
+        setOwner("");
         setNewEvent(false);
     }
 
@@ -278,6 +283,20 @@ export default function Page() {
             </div>
         );
     }
+
+    useEffect(() => {
+        // Retrieve the existing data from localStorage
+        const existingProvidersData = localStorage.getItem('providersData');
+
+        // Parse the existing content as JavaScript
+        let providersData = existingProvidersData ? JSON.parse(existingProvidersData) : {};
+
+        // Extract events from providersData or provide a default empty array
+        const newEvents = providersData.calendar?.events || [];
+
+        // Update the state with the new events
+        setEventList(newEvents);
+    }, []); // Run this effect only once when the component mounts
 
 
     return (
@@ -376,9 +395,24 @@ export default function Page() {
                         border={row.memberBorderColor}
                         description={row.description}
                         attendees={row.attendees}
+                        owner={row.owner}
                         selectedUsers={selectedUsers}
                     />
                 ))}
+                {/*{eventList.map((row, index) => (*/}
+                {/*    <Event*/}
+                {/*        key={index}*/}
+                {/*        dateTime={row.date + ' - ' + row.time}*/}
+                {/*        title={row.title}*/}
+                {/*        location={row.location}*/}
+                {/*        icon={row.memberProfilePhotoURL}*/}
+                {/*        border={row.memberBorderColor}*/}
+                {/*        description={row.description}*/}
+                {/*        attendees={row.attendees}*/}
+                {/*        owner={row.owner}*/}
+                {/*        selectedUsers={selectedUsers} // Assuming selectedUsers is defined in your component*/}
+                {/*    />*/}
+                {/*))}*/}
 
             </div>
             <div id="family-members" className="flex flex-row gap-2 overflow-x-clip">
