@@ -118,15 +118,11 @@ export default function Page() {
     useEffect(() => {
         console.log("Setting initial state:", mems);
         // Assuming mems is an object
-        const memsKeys = Object.keys(mems);
+        const memsUserNames = mems.map((member) => member.userName);
 
-        // Add each key to the selectedUsers list
-        memsKeys.forEach((key) => {
-            setSelectedUsers((prevSelectedUsers) => [...prevSelectedUsers, key]);
-        });
-    }, []);
-    console.log("Type of selectedUsers:", typeof selectedUsers);
-    console.log("selectedUsers:", selectedUsers);
+        setSelectedUsers((prevSelectedUsers) => [...prevSelectedUsers, ...memsUserNames]);
+
+    }, [mems]);
 
 
 
@@ -240,7 +236,8 @@ export default function Page() {
     function EventList() {
         let {groupData} = useContext(GroupData);
         const mems = groupData.members || [];
-        const [selectedUsers, setSelectedUsers] = useState(mems);
+        const [selectedUsers, setSelectedUsers] = useState([]);
+
 
         const handleUserClick = (userName) => {
             // Toggle the user's selection state
