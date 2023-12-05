@@ -59,9 +59,52 @@ function populateGroup1() {
                 "posts": [
                     {
                         "photoURL": "https://preview.redd.it/es7pw6g5jm771.jpg?width=450&format=pjpg&auto=webp&s=db9158b48c02cad8f11aea1f0311f5b93eed4cb3",
+                        "caption": "this was soooooooo fun asmdf sdfd jkh fkjhs jk",
+                        "postedBy": "Reigen",
+                        "memberBorderColor": "#c0aded"
+                    },
+                    {
+                        "photoURL": "https://preview.redd.it/es7pw6g5jm771.jpg?width=450&format=pjpg&auto=webp&s=db9158b48c02cad8f11aea1f0311f5b93eed4cb3",
                         "caption": "this was soooooooo fun",
-                        "postedBy": "Reigen"
-                    }
+                        "postedBy": "Reigen",
+                        "memberBorderColor": "#c0aded"
+                    },
+                    {
+                        "photoURL": "https://preview.redd.it/es7pw6g5jm771.jpg?width=450&format=pjpg&auto=webp&s=db9158b48c02cad8f11aea1f0311f5b93eed4cb3",
+                        "caption": "this was soooooooo fun",
+                        "postedBy": "Reigen",
+                        "memberBorderColor": "#c0aded"
+                    },
+                    {
+                        "photoURL": "https://preview.redd.it/es7pw6g5jm771.jpg?width=450&format=pjpg&auto=webp&s=db9158b48c02cad8f11aea1f0311f5b93eed4cb3",
+                        "caption": "this was soooooooo fun",
+                        "postedBy": "Reigen",
+                        "memberBorderColor": "#c0aded"
+                    },
+                    {
+                        "photoURL": "https://preview.redd.it/es7pw6g5jm771.jpg?width=450&format=pjpg&auto=webp&s=db9158b48c02cad8f11aea1f0311f5b93eed4cb3",
+                        "caption": "this was soooooooo fun",
+                        "postedBy": "Reigen",
+                        "memberBorderColor": "#c0aded"
+                    },
+                    {
+                        "photoURL": "https://preview.redd.it/es7pw6g5jm771.jpg?width=450&format=pjpg&auto=webp&s=db9158b48c02cad8f11aea1f0311f5b93eed4cb3",
+                        "caption": "this was soooooooo fun",
+                        "postedBy": "Reigen",
+                        "memberBorderColor": "#c0aded"
+                    },
+                    {
+                        "photoURL": "https://preview.redd.it/es7pw6g5jm771.jpg?width=450&format=pjpg&auto=webp&s=db9158b48c02cad8f11aea1f0311f5b93eed4cb3",
+                        "caption": "this was soooooooo fun",
+                        "postedBy": "Reigen",
+                        "memberBorderColor": "#c0aded"
+                    },
+                    {
+                        "photoURL": "https://preview.redd.it/es7pw6g5jm771.jpg?width=450&format=pjpg&auto=webp&s=db9158b48c02cad8f11aea1f0311f5b93eed4cb3",
+                        "caption": "this was soooooooo fun",
+                        "postedBy": "Reigen",
+                        "memberBorderColor": "#c0aded"
+                    },
                 ]
             },
             "user": {
@@ -199,7 +242,8 @@ function populateGroup1() {
                         {
                             "photoURL": "https://preview.redd.it/es7pw6g5jm771.jpg?width=450&format=pjpg&auto=webp&s=db9158b48c02cad8f11aea1f0311f5b93eed4cb3",
                             "caption": "this was soooooooo fun",
-                            "postedBy": "Reigen"
+                            "postedBy": "Reigen",
+                            "memberBorderColor": "#c0aded"
                         }
                     ]
                 },
