@@ -56,20 +56,22 @@ function Event({title, dateTime, location, description, attendees}) {
             <div className="flex flex-row items-center justify-between">
             <div className="text-sm text-lg mt-2 mb-2">Who's coming: </div>
             <div className="flex gap-2">
-                {attendeesArray.map((attendee) => (
+                {attendeesArray.map((attendee) => {
+                    const member = mems.members && mems.members.find((m) => m.userName === attendee);
                     // Assuming attendee is the username and exists in mems
+                    return (
                     <img
                         key={attendee}
-                        src={mems[attendee]?.memberProfilePhotoURL || "defaultImageURL"}
+                        src={member?.memberProfilePhotoURL || "defaultImageURL"}
                         alt="Attendee"
                         style={{
                             width: 40,
                             height: 40,
                             borderRadius: 100,
-                            border: `3px solid ${mems[attendee]?.memberBorderColor || 'var(--profile-border-color)'}`,
+                            border: `3px solid ${member?.memberBorderColor || 'var(--profile-border-color)'}`,
                         }}
-                    />
-                ))}
+                    />);
+                })}
             </div>
             </div>
             <div className="text-sm text-black ">{description}</div>

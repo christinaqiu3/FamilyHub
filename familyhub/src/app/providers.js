@@ -9,11 +9,8 @@ function populateGroup1() {
             "calendar": {
                 "events": [
                     {
-                        "date": '2023-12-09',
-                        "time": [
-                            1130,
-                            1330
-                        ],
+                        "date": '12/05/2003',
+                        "time": "11:30 AM",
                         "title": "Visit to Peppercorn",
                         "location": "Peppercorn HS",
                         "description": "Exorcism time",
@@ -216,8 +213,9 @@ function populateGroup1() {
                         "emoji": ""
                     }
                 },
-                "members": {
-                    "Mob": {
+                "members": [
+                    {
+                        "userName": "Mob",
                         "memberProfilePhotoURL": "https://64.media.tumblr.com/d822e00f096b9e858e3db11a98c689e7/7f7f189de7b16d26-c6/s400x600/7b600d2c2b869810c89133272551041d615de9bc.png",
                         "memberBorderColor": "#5d98d4",
                         "memberStatus": {
@@ -225,56 +223,54 @@ function populateGroup1() {
                             "emoji": "😍"
                         }
                     },
-                    "IDK": {
+                    {
+                        "userName": "Idk",
                         "memberProfilePhotoURL": "https://i.imgur.com/Bwqg0fu.png",
                         "memberBorderColor": "#a8783e",
                         "memberStatus": {
                             "message": "test",
                             "emoji": "😍"
-                        }
-                    },
-                    "IDK2": {
+                        }},
+                    {"userName": "IDK2",
                         "memberProfilePhotoURL": "https://i.imgur.com/pwQSdII.png",
                         "memberBorderColor": "#ad4eeb",
                         "memberStatus": {
                             "message": "test2",
                             "emoji": "😍"
-                        }
-                    },
-                    "IDK3": {
+                        }},
+
+                    {"userName": "IDK3",
                         "memberProfilePhotoURL": "https://acnhcdn.com/latest/NpcBromide/NpcNmlOcp01.png",
                         "memberBorderColor": "#ff9ccb",
                         "memberStatus": {
                             "message": "test3",
                             "emoji": "😍"
-                        }
-                    },
-                    "IDK4": {
+                        }},
+
+                    {"userName": "IDK4",
                         "memberProfilePhotoURL": "https://pbs.twimg.com/profile_images/1298543441589276672/J-7vMCTE_400x400.png",
                         "memberBorderColor": "#5d70e0",
                         "memberStatus": {
                             "message": "test4",
                             "emoji": "😍"
-                        }
-                    },
-                    "IDK5": {
+
+                        }},
+                    {"userName": "IDK5",
                         "memberProfilePhotoURL": "https://i.imgur.com/HTYMTkd.png",
                         "memberBorderColor": "#e05f5d",
                         "memberStatus": {
                             "message": "test5",
                             "emoji": "😍"
-                        }
-                    },
-                    "IDK6": {
+                        }},
+                    {"userName": "IDK6",
                         "memberProfilePhotoURL": "https://i.imgur.com/bfMRBp2.png",
                         "memberBorderColor": "#c5e05d",
                         "memberStatus": {
                             "message": "test6",
                             "emoji": "😍"
                         }
-                    },
-
-                }
+                    }
+                ]
             }
         )
     }
