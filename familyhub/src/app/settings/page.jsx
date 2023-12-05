@@ -164,6 +164,7 @@ function LabelSwitch({label}) {
 }
 
 function UserPersonalization({color, type, setfunc}) {
+    let {groupData} = useContext(GroupData)
     const Userbox = ({}) => (
         <div style = {{display: 'flex',
                         flexDirection: 'column',
@@ -178,7 +179,7 @@ function UserPersonalization({color, type, setfunc}) {
                         display: 'flex',
                         flexDirection: 'column',
                         padding: 3,
-                        backgroundImage: 'url(https://i.imgur.com/fc2pBd0.png)',
+                        backgroundImage: `url(${groupData.user.myProfilePhotoURL})`,
                         backgroundSize: 'cover' 
                     }}>
             <Image src = "/edit.svg"

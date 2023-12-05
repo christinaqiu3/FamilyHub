@@ -14,9 +14,9 @@ function populateGroup1() {
                             1130,
                             1330
                         ],
-                        "title": "HCI Class",
-                        "location": "That Wharton Building",
-                        "description": "Funnest class ever please give me an A",
+                        "title": "Visit to Peppercorn",
+                        "location": "Peppercorn HS",
+                        "description": "Exorcism time",
                         "attendees": [
                             "Mob"
                         ],
@@ -68,8 +68,8 @@ function populateGroup1() {
                 ]
             },
             "user": {
-                "myName": "Reigen",
-                "myProfilePhotoURL": "https://pbs.twimg.com/media/C4ORj7hUMAAK8sA.jpg",
+                "myName": "Hanazawa",
+                "myProfilePhotoURL": "https://i.pinimg.com/736x/16/62/e4/1662e41dd13fb2d31d66e05893359ec3.jpg",
                 "myBorderColor": "#c0aded",
                 "myAppThemeBaseColor": "#fee68a",
                 "status": {
