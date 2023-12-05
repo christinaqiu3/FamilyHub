@@ -2,10 +2,9 @@
 
 import Header from "../components/header";
 import Navigation from "../components/navigation";
-import Image from "next/image";
 import Link from 'next/link'
 import {GroupContext, GroupData, GroupSetterData} from '../providers'
-import React, {useState, useContext} from 'react'
+import React, {useContext} from 'react'
 
 function Event({icon, title, date, owner, border}) {
   return (

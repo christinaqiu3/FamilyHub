@@ -9,13 +9,18 @@ import {GroupData, GroupSetterData} from '../providers'
 
 import './checkin.css'
 
-function UserProfile({picture, style, status}) {
-    return(
+function UserProfile({picture, color, status}) {
+    return (
         <div className="flex flex-col gap-1 items-center">
             <img
                 src={picture}
                 alt=""
-                style={style}
+                style={{
+                    width: 75, 
+                    height: 75, 
+                    borderRadius: 100, 
+                    border: `4px solid ${color}`
+                }}
             />
             <div style={{}} className="border-2 text-center border-slate-950 rounded-md w-20">{status}</div>
         </div>
@@ -172,7 +177,13 @@ export default function Page() {
             <div id="content" className="pt-4">
                 <div className="mx-4 pb-4 flex gap-4 flex-col text-gray-800">
                     <div className="overflow-auto whitespace-nowrap flex flex-row gap-2">
-                        {userList}
+                        {groupData.members.map((row, index) => (
+                            <UserProfile key={index}
+                                picture = {row.memberProfilePhotoURL}
+                                color = {row.memberBorderColor}
+                                status = {row.memberStatus.message}
+                            />
+                        ))}
                     </div>
                     <div className="flex justify-between w-full grow">
                         <div class="">Polls</div>

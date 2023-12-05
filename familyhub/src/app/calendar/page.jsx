@@ -77,12 +77,17 @@ function Event({title, dateTime, location, description, attendees}) {
     )
 }
 
-function UserProfile({picture, style}) {
+function UserProfile({picture, color}) {
     return (
         <img
             src={picture}
             alt=""
-            style={style}
+            style={{
+                width: 75, 
+                height: 75, 
+                borderRadius: 100, 
+                border: `4px solid ${color}`
+            }}
         />
     )
 }
@@ -294,7 +299,12 @@ export default function Page() {
 
             </div>
             <div id="family-members" className="flex flex-row gap-2 overflow-x-clip">
-                {userList}
+                {groupData.members.map((row, index) => (
+                    <UserProfile key={index}
+                                picture = {row.memberProfilePhotoURL}
+                                color = {row.memberBorderColor}
+                    />
+                ))}
             </div>
             <Navigation page='calendar'/>
         </main>

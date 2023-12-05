@@ -110,12 +110,17 @@ function SmileIcon() {
     )
 }
 
-function UserProfile({picture, style}) {
+function UserProfile({picture, color}) {
     return (
         <img
             src={picture}
             alt=""
-            style={style}
+            style={{
+                width: 75, 
+                height: 75, 
+                borderRadius: 100, 
+                border: `4px solid ${color}`
+            }}
         />
     )
 }
@@ -155,12 +160,12 @@ export default function Page() {
     const emojiList = ['😊', '😂', '😍', '🥺', '😎', '🤔', '🚀']; // Add more emojis as needed
 
     const userList = [
-        <UserProfile picture="https://i.imgur.com/Bwqg0fu.png" style={{width: 75, height: 75, borderRadius: 100, border: '4px solid #a8783e'}} status="hi"/>,
-        <UserProfile picture="https://i.imgur.com/pwQSdII.png" style={{width: 75, height: 75, borderRadius: 100, border: '4px solid #ad4eeb'}} status="hi"/>,
-        <UserProfile picture="https://acnhcdn.com/latest/NpcBromide/NpcNmlOcp01.png" style={{width: 75, height: 75, borderRadius: 100, border: '4px solid #ff9ccb'}} status="hi"/>,
-        <UserProfile picture="https://pbs.twimg.com/profile_images/1298543441589276672/J-7vMCTE_400x400.png" style={{width: 75, height: 75, borderRadius: 100, border: '4px solid #5d70e0'}} status="hi"/>,
-        <UserProfile picture="https://i.imgur.com/HTYMTkd.png" style={{width: 75, height: 75, borderRadius: 100, border: '4px solid #e05f5d'}} status="hi"/>,
-        <UserProfile picture="https://i.imgur.com/bfMRBp2.png" style={{width: 75, height: 75, borderRadius: 100, border: '4px solid #c5e05d'}} status="hi"/>,
+        <UserProfile picture="https://i.imgur.com/Bwqg0fu.png" color="#a8783e" status="hi"/>,
+        <UserProfile picture="https://i.imgur.com/pwQSdII.png" color="#ad4eeb" status="hi"/>,
+        <UserProfile picture="https://acnhcdn.com/latest/NpcBromide/NpcNmlOcp01.png" color='#ff9ccb' status="hi"/>,
+        <UserProfile picture="https://pbs.twimg.com/profile_images/1298543441589276672/J-7vMCTE_400x400.png" color='#5d70e0' status="hi"/>,
+        <UserProfile picture="https://i.imgur.com/HTYMTkd.png" color='#e05f5d' status="hi"/>,
+        <UserProfile picture="https://i.imgur.com/bfMRBp2.png" color='#c5e05d' status="hi"/>,
     ]
 
     return (
@@ -234,9 +239,14 @@ export default function Page() {
                     </div>
                     <div className="flex gap-2 flex-col px-2">
                         <p>Family Members</p>
-                        <Link href="/profile" className="overflow-auto whitespace-nowrap flex flex-row gap-2">
-                            {userList}
-                        </Link>
+                        <div className="overflow-auto whitespace-nowrap flex flex-row gap-2">
+                            {groupData.members.map((row, index) => (
+                                <UserProfile key={index}
+                                picture = {row.memberProfilePhotoURL}
+                                color = {row.memberBorderColor}
+                                />
+                            ))}
+                        </div>
                     </div>
                     <div className="flex gap-4 flex-col px-2">
                         <p>Upcoming Events</p>
