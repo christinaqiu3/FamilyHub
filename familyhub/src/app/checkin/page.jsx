@@ -35,20 +35,38 @@ function EditIcon() {
     )
 }
 
-function Poll({question, options, userData}) {
+function Poll({question, options, userData, userVote}) {
+    let {groupData} = useContext(GroupData)
+    let {setGroupData} = useContext(GroupSetterData)
     const [optionTitles, setOptionTitles] = useState(Object.keys(options));
-    const [selectedOption, setSelectedOption] = useState("") ;
+    let initialSelectedOption = ""
+    if (optionTitles.find((x) => x === userVote) !== undefined) {
+        initialSelectedOption = userVote
+    }
+    const [selectedOption, setSelectedOption] = useState(initialSelectedOption) ;
     let voteSum = 0
     for (let votes in options) {
         voteSum = voteSum + votes
     }
     const [numVotes, setNumVotes] = useState(voteSum)
 
-    function Option({optionTitle}) {
+    const handleSelection = (option, title) => {
+        let temp = groupData
+        for (let poll in temp.checkin.polls) {
+            if (temp.checkin.polls[poll].title === title) {
+                temp.checkin.polls[poll].userVote = option
+                break
+            }
+        }
+        setGroupData(temp)
+        setSelectedOption(option)
+    }
+
+    function Option({optionTitle, parentQuestion}) {
         if (selectedOption === optionTitle) {
             return (
                 <button type='button' className="w-full dark-theme-color px-4 py-1 rounded-full drop-shadow-md text-gray-900 text-left flex flex-row justify-between"
-                onClick={() => setSelectedOption("")}>
+                onClick={() => handleSelection("", parentQuestion)}>
                     {optionTitle}
                     <div className="">100%</div>
                 </button>
@@ -56,14 +74,13 @@ function Poll({question, options, userData}) {
         } else {
             return (
                 <button className="w-full bg-white px-4 py-1 rounded-full drop-shadow-md text-gray-500 text-left" 
-                onClick= {() => setSelectedOption(optionTitle)}>
+                onClick= {() => handleSelection(optionTitle, parentQuestion)}>
                 {optionTitle}
                 </button>
             )
         }
         
     }
-
     return(
         <div className="flex flex-col gap-2 light-theme-color rounded-lg drop-shadow-lg p-4">
             <div className="flex flex-row items-center gap-2">
@@ -79,7 +96,9 @@ function Poll({question, options, userData}) {
                 />
                 <div className="text-sm">{question}</div>
             </div>
-            {optionTitles.map((elem, index) => <Option key = {index} optionTitle = {elem}/>)}
+            {optionTitles.map((elem, index) => <Option key = {index} 
+                                                        optionTitle = {elem}
+                                                        parentQuestion={question}/>)}
         </div>
     )
 }
@@ -133,6 +152,8 @@ export default function Page() {
                                                "memberProfilePhotoURL": "${groupData.user.myProfilePhotoURL}",
                                                "memberBorderColor": "${groupData.user.myBorderColor}"
                                               }
+                                  "voters": []
+                                  "userVote": ""
                                   }`
         // save to global JSON data
         let temp = groupData
@@ -208,7 +229,9 @@ export default function Page() {
                         {groupData.checkin.polls.map((row, index) => <Poll key = {index} 
                                                                             userData = {row.userData}
                                                                             question = {row.title}
-                                                                            options = {row.options}/>)}
+                                                                            options = {row.options}
+                                                                            voters = {row.voters}
+                                                                            userVote = {row.userVote}/>)}
                     </div>
                 </div>
             </div>

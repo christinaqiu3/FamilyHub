@@ -29,26 +29,30 @@ function populateGroup1() {
                 {
                   "title": "What should I eat for dinner?",
                   "options": {
-                    "Pasta w/ Vodka Sauce": 3,
+                    "Pasta w/ Vodka Sauce": 1,
                     "Rice w/ Canned Salmon": 1
                   },
                   "userData": {
                     "owner": "Mob", 
                     "memberProfilePhotoURL": "https://64.media.tumblr.com/d822e00f096b9e858e3db11a98c689e7/7f7f189de7b16d26-c6/s400x600/7b600d2c2b869810c89133272551041d615de9bc.png",
                     "memberBorderColor": "#5d98d4"
-                  }
+                  },
+                  "voters": ["Mob", "Hanazawa"],
+                  "userVote": ""
                 },
                 {
                     "title": "Will Hanazawa get an A?",
                     "options": {
-                        "Yes": 2,
+                        "Yes": 0,
                         "Yes.": 1
                     },
                     "userData": {
                         "owner": "Reigen",
                         "memberProfilePhotoURL": "https://pbs.twimg.com/media/C4ORj7hUMAAK8sA.jpg",
                         "memberBorderColor": "#c0aded"
-                    }
+                    },
+                    "voters": ["Reigen"],
+                    "userVote": "Yes."
                 }
               ]
             },
