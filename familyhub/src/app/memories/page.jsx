@@ -4,6 +4,7 @@ import Navigation from "../components/navigation";
 import Image from "next/image";
 import React, {useState, useEffect, useContext} from 'react'
 import {GroupContext, GroupData, GroupSetterData} from '../providers'
+import Link from 'next/link'
 import "./memories.css"
 
 function Post({icon, photo, color, caption}) {
@@ -70,19 +71,24 @@ export default function Page() {
         <main>
             <Header title = "Check-in"/>
             
-            <div id="options-bar" className="py-2">
-                    <div id="upload-btn">
-                        <Image src='/upload.svg' alt='upload' width={20} height={20} priority/>
+            <div id="options-bar" className="py-1">
+                <Link href="/newpost">
+                    <button id="" className="hover:bg-gray-200 border border-black rounded-full p-1">
+                            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="11.2002" y="5.3667" width="1.6" height="12.2667" fill="black"/>
+                                <rect x="5.6001" y="10.7334" width="12.8" height="1.53333" fill="black"/>
+                            </svg>
+                    </button>
+                </Link>
+                <div id="search-bar" className="text-regular">
+                    <div style={{
+                        margin: '0px 7px'
+                    }}>
+                        <Image src='/search.svg' alt='search' width={27} height={27} priority/>
                     </div>
-                    <div id="search-bar" className="text-regular">
-                        <div style={{
-                            margin: '0px 7px'
-                        }}>
-                            <Image src='/search.svg' alt='search' width={27} height={27} priority/>
-                        </div>
-                        Search
-                    </div>
+                    Search
                 </div>
+            </div>
             <div id="content" className="pb-4">
                 {isZoomed && (
                     <div className='bg-gray-100 rounded-lg drop-shadow-xl absolute mt-6 z-20 ml-4 items-center flex flex-col gap-3'
