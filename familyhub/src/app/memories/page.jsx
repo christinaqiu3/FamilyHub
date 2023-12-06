@@ -31,6 +31,12 @@ function Post({icon, photo, color, caption}) {
     )
 }
 
+function Tag({text}) {
+    return (
+        <div>{text}</div>
+    )
+} 
+
 export const DateTime = () => {
     const [dateTime, setDateTime] = useState(new Date());
 
@@ -44,7 +50,6 @@ export const DateTime = () => {
     return (
         <p>{`${dateTime.toLocaleDateString()} ${dateTime.toLocaleTimeString()}`}</p>
     );
-
 }
 
 export default function Page() {
@@ -59,6 +64,7 @@ export default function Page() {
     const [currIconColor, setCurrIconColor] = React.useState("");
     const [currCaption, setCurrCaption] = React.useState("");
     const [currTimeLabel, setCurrTimeLabel] = React.useState("");
+    const [currTags, setCurrTags] = React.useState([]);
 
     return (
         <main>
@@ -79,7 +85,7 @@ export default function Page() {
                 </div>
             <div id="content" className="pb-4">
                 {isZoomed && (
-                    <div className='bg-gray-100 rounded-lg drop-shadow-xl absolute mt-4 z-20 ml-4 items-center flex flex-col gap-3'
+                    <div className='bg-gray-100 rounded-lg drop-shadow-xl absolute mt-6 z-20 ml-4 items-center flex flex-col gap-3'
                         style={{
                             width: 343,
                             height: 400
@@ -97,6 +103,13 @@ export default function Page() {
                             </div>
                         </button>
                         <img src={currImage} className="object-cover w-full h-2/3 drop-shadow-md rounded-t-lg "/>
+                        <div className="text-white absolute right-0 bottom-32 w-full">
+                            <div className="w-full justify-end flex flex-row gap-1 text-sm text-regular pb-2 pr-1">
+                                {currTags.map((row, index) => ( 
+                                    <div>#{row}</div>
+                                ))}
+                            </div>
+                        </div>
                         <div className="w-full flex flex-row px-3 gap-3">
                             <img src={currIcon} className="rounded-full h-16 w-16" 
                                 style={{
@@ -106,7 +119,6 @@ export default function Page() {
                                 <div className="text-bold text-lg">{currTitle}</div>
                                 <div className="leading-tight text-regular overflow-scroll h-16">{currCaption}</div>
                             </div>
-                            
                         </div>
                         <div className="absolute right-2 bottom-1 text-gray-400 text-regular text-sm">
                             {currTimeLabel}
@@ -133,6 +145,7 @@ export default function Page() {
                             setCurrIconColor(row.memberBorderColor);
                             setCurrCaption(row.caption);
                             setCurrTimeLabel(row.timeStamp);
+                            setCurrTags(row.tags);
                         }}>
                             <Post key={index}
                                 photo = {row.photoURL}

@@ -64,52 +64,8 @@ function populateGroup1() {
                         "memberIcon": "https://i.pinimg.com/736x/16/62/e4/1662e41dd13fb2d31d66e05893359ec3.jpg",
                         "memberBorderColor": "#c0aded",
                         "title": "Help me",
-                        "timeStamp": "2/5/2023 7:12:25 PM"
-                    },
-                    {
-                        "photoURL": "https://preview.redd.it/es7pw6g5jm771.jpg?width=450&format=pjpg&auto=webp&s=db9158b48c02cad8f11aea1f0311f5b93eed4cb3",
-                        "caption": "this was soooooooo fun",
-                        "postedBy": "Reigen",
-                        "memberIcon": "https://i.pinimg.com/736x/16/62/e4/1662e41dd13fb2d31d66e05893359ec3.jpg",
-                        "memberBorderColor": "#c0aded",
-                        "title": "Help me",
-                        "timeStamp": "2/5/2023 7:12:25 PM"
-                    },
-                    {
-                        "photoURL": "https://preview.redd.it/es7pw6g5jm771.jpg?width=450&format=pjpg&auto=webp&s=db9158b48c02cad8f11aea1f0311f5b93eed4cb3",
-                        "caption": "this was soooooooo fun",
-                        "postedBy": "Reigen",
-                        "memberIcon": "https://i.pinimg.com/736x/16/62/e4/1662e41dd13fb2d31d66e05893359ec3.jpg",
-                        "memberBorderColor": "#c0aded",
-                        "title": "Help me",
-                        "timeStamp": "2/5/2023 7:12:25 PM"
-                    },
-                    {
-                        "photoURL": "https://preview.redd.it/es7pw6g5jm771.jpg?width=450&format=pjpg&auto=webp&s=db9158b48c02cad8f11aea1f0311f5b93eed4cb3",
-                        "caption": "this was soooooooo fun",
-                        "postedBy": "Reigen",
-                        "memberIcon": "https://i.pinimg.com/736x/16/62/e4/1662e41dd13fb2d31d66e05893359ec3.jpg",
-                        "memberBorderColor": "#c0aded",
-                        "title": "Help me",
-                        "timeStamp": "2/5/2023 7:12:25 PM"
-                    },
-                    {
-                        "photoURL": "https://preview.redd.it/es7pw6g5jm771.jpg?width=450&format=pjpg&auto=webp&s=db9158b48c02cad8f11aea1f0311f5b93eed4cb3",
-                        "caption": "this was soooooooo fun",
-                        "postedBy": "Reigen",
-                        "memberIcon": "https://i.pinimg.com/736x/16/62/e4/1662e41dd13fb2d31d66e05893359ec3.jpg",
-                        "memberBorderColor": "#c0aded",
-                        "title": "Help me",
-                        "timeStamp": "2/5/2023 7:12:25 PM"
-                    },
-                    {
-                        "photoURL": "https://preview.redd.it/es7pw6g5jm771.jpg?width=450&format=pjpg&auto=webp&s=db9158b48c02cad8f11aea1f0311f5b93eed4cb3",
-                        "caption": "this was soooooooo fun",
-                        "postedBy": "Reigen",
-                        "memberIcon": "https://i.pinimg.com/736x/16/62/e4/1662e41dd13fb2d31d66e05893359ec3.jpg",
-                        "memberBorderColor": "#c0aded",
-                        "title": "Help me",
-                        "timeStamp": "2/5/2023 7:12:25 PM"
+                        "timeStamp": "2/5/2023 7:12:25 PM",
+                        "tags": ["text", "text2", "text3"]
                     },
                     {
                         "photoURL": "https://preview.redd.it/es7pw6g5jm771.jpg?width=450&format=pjpg&auto=webp&s=db9158b48c02cad8f11aea1f0311f5b93eed4cb3",
@@ -119,6 +75,7 @@ function populateGroup1() {
                         "memberBorderColor": "#c0aded",
                         "title": "Help me",
                         "timeStamp": "2/5/2023 7:12:25 PM",
+                        "tags": ["text", "text2"]
                     },
                     {
                         "photoURL": "https://preview.redd.it/es7pw6g5jm771.jpg?width=450&format=pjpg&auto=webp&s=db9158b48c02cad8f11aea1f0311f5b93eed4cb3",
@@ -128,6 +85,57 @@ function populateGroup1() {
                         "memberBorderColor": "#c0aded",
                         "title": "Help me",
                         "timeStamp": "2/5/2023 7:12:25 PM",
+                        "tags": ["text", "text2", "text4"]
+                    },
+                    {
+                        "photoURL": "https://preview.redd.it/es7pw6g5jm771.jpg?width=450&format=pjpg&auto=webp&s=db9158b48c02cad8f11aea1f0311f5b93eed4cb3",
+                        "caption": "this was soooooooo fun",
+                        "postedBy": "Reigen",
+                        "memberIcon": "https://i.pinimg.com/736x/16/62/e4/1662e41dd13fb2d31d66e05893359ec3.jpg",
+                        "memberBorderColor": "#c0aded",
+                        "title": "Help me",
+                        "timeStamp": "2/5/2023 7:12:25 PM",
+                        "tags": ["text", "text2", "text4"]
+                    },
+                    {
+                        "photoURL": "https://preview.redd.it/es7pw6g5jm771.jpg?width=450&format=pjpg&auto=webp&s=db9158b48c02cad8f11aea1f0311f5b93eed4cb3",
+                        "caption": "this was soooooooo fun",
+                        "postedBy": "Reigen",
+                        "memberIcon": "https://i.pinimg.com/736x/16/62/e4/1662e41dd13fb2d31d66e05893359ec3.jpg",
+                        "memberBorderColor": "#c0aded",
+                        "title": "Help me",
+                        "timeStamp": "2/5/2023 7:12:25 PM",
+                        "tags": ["text", "text2", "text4"]
+                    },
+                    {
+                        "photoURL": "https://preview.redd.it/es7pw6g5jm771.jpg?width=450&format=pjpg&auto=webp&s=db9158b48c02cad8f11aea1f0311f5b93eed4cb3",
+                        "caption": "this was soooooooo fun",
+                        "postedBy": "Reigen",
+                        "memberIcon": "https://i.pinimg.com/736x/16/62/e4/1662e41dd13fb2d31d66e05893359ec3.jpg",
+                        "memberBorderColor": "#c0aded",
+                        "title": "Help me",
+                        "timeStamp": "2/5/2023 7:12:25 PM",
+                        "tags": ["text", "text2", "text3"]
+                    },
+                    {
+                        "photoURL": "https://preview.redd.it/es7pw6g5jm771.jpg?width=450&format=pjpg&auto=webp&s=db9158b48c02cad8f11aea1f0311f5b93eed4cb3",
+                        "caption": "this was soooooooo fun",
+                        "postedBy": "Reigen",
+                        "memberIcon": "https://i.pinimg.com/736x/16/62/e4/1662e41dd13fb2d31d66e05893359ec3.jpg",
+                        "memberBorderColor": "#c0aded",
+                        "title": "Help me",
+                        "timeStamp": "2/5/2023 7:12:25 PM",
+                        "tags": ["text", "text2", "text3"]
+                    },
+                    {
+                        "photoURL": "https://preview.redd.it/es7pw6g5jm771.jpg?width=450&format=pjpg&auto=webp&s=db9158b48c02cad8f11aea1f0311f5b93eed4cb3",
+                        "caption": "this was soooooooo fun",
+                        "postedBy": "Reigen",
+                        "memberIcon": "https://i.pinimg.com/736x/16/62/e4/1662e41dd13fb2d31d66e05893359ec3.jpg",
+                        "memberBorderColor": "#c0aded",
+                        "title": "Help me",
+                        "timeStamp": "2/5/2023 7:12:25 PM",
+                        "tags": ["text", "text2", "text3"]
                     },
                 ]
             },
