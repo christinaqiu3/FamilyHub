@@ -132,18 +132,23 @@ export default function Page() {
 
     const [statusInput, setStatusInput] = useState('');
     const [title, setTitle] =  useState(groupData.user.status.message);
-    const [emoj, setEmoj] =  useState('');
+    const [emoji, setEmoji] =  useState(groupData.user.status.emoji);
     const [showEmojiDropdown, setShowEmojiDropdown] = useState(false);
     const [isEditStatus, setEditStatus] = useState(false);
+    const [isEditEmoji, setEditEmoji] = useState(false);
 
-    const handleStatusSave = (status) => {
+
+    const handleStatusSave = (status, emoji) => {
         setTitle(status);
+        setEmoji(emoji);
         setEditStatus(false);
-        let temp = groupData; 
+        setEditEmoji(false);
+        let temp = groupData;
         temp.user.status.message = status;
-        setGroupData(temp)
-
+        temp.user.status.emoji = emoji;
+        setGroupData(temp);
     }
+
     const handleEmojiClick = () => {
         console.log('Emoji Clicked');
 
@@ -154,7 +159,7 @@ export default function Page() {
         // Handle the selected emoji (e.g., update state, form input, etc.)
         console.log('Selected Emoji:', selectedEmoji);
         setShowEmojiDropdown(false);
-        setEmoj(selectedEmoji + " ");
+        setEmoji(selectedEmoji + " ");
     };
 
     const emojiList = ['😊', '😂', '😍', '🥺', '😎', '🤔', '🚀']; // Add more emojis as needed
@@ -176,7 +181,7 @@ export default function Page() {
                     <div className="px-2">
                         <form>
                             <div className="flex justify-between w-full grow">
-                                <div className="">{emoj}{title}</div>
+                                <div className="">{emoji}{title}</div>
                                 <button type="button" onClick={() => setEditStatus(true)}>
                                     <EditIcon/>
                                 </button>
@@ -201,8 +206,7 @@ export default function Page() {
                                                     <div className="p-.5"/>
 
                                                     {showEmojiDropdown && (
-                                                        <div
-                                                            className="absolute top-8 right-0 bg-white p-2 rounded-md border border-black">
+                                                        <div className="absolute top-8 right-0 bg-white p-2 rounded-md border border-black">
                                                             {emojiList.map((emoji, index) => (
                                                                 <span
                                                                     key={index}
@@ -224,7 +228,7 @@ export default function Page() {
                                                         onClick={() => setEditStatus(false)}>Cancel
                                                     </button>
                                                     <button className="dark-theme-color px-8 py-2 rounded-lg shadow-md"
-                                                            onClick={() => handleStatusSave(statusInput)}>Save
+                                                            onClick={() => handleStatusSave(statusInput, emoji)}>Save
                                                     </button>
                                                 </div>
 
