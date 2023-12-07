@@ -12,13 +12,13 @@ const Header = ({title}) => {
         <Link href = 'profile' className="hover:bg-gray-200 rounded-lg">
             {(title === "Profile") ?
                 (<Image
-                    src="/profile-icon2.png"
+                    src="/profile-iconG.png"
                     alt="home"
                     width={31}
                     height={31}
                     priority
                 />) : (<Image
-                    src="/profile-icon1.png"
+                    src="/profile-iconW.png"
                     alt="home"
                     width={31}
                     height={31}

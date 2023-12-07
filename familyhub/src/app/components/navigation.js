@@ -8,7 +8,7 @@ const Navigation = ({page}) => {
           <li className="hover:bg-gray-200 rounded-md px-2 py-2"><Link href="/">
             {(page === "home") ? 
             (<Image
-              src="/h-home.svg"
+              src="/h-home11.svg"
               alt="home"
               width={28}
               height={28}
