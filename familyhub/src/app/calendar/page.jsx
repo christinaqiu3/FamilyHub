@@ -5,8 +5,6 @@ import '../globals.css'
 import Image from "next/image";
 import './calendar.css'
 import React, {useContext, useEffect, useState} from "react";
-import "react-big-calendar/lib/css/react-big-calendar.css";
-import "react-datepicker/dist/react-datepicker.css";
 import {GroupContext, GroupData, GroupSetterData} from '../providers'
 
 
@@ -214,13 +212,16 @@ export default function Page() {
     const UserButton = ({ onClick, picture, isSelected, color}) => (
         <button onClick={onClick}
                 style={{
-                    width: 100,
+                    width: 75,
                     height: 75,
                     borderRadius: 100,
                     border: isSelected ? `4px solid ${color}` : '4px solid #cccccc',
                 }}
         >
-            <img src={picture} alt="" style={{ width: '100%', height: '100%', borderRadius: '100%' }} />
+            <img src={picture} alt="" style={{
+                width: 67,
+                maxWidth: 67,
+                borderRadius: '100%' }} />
         </button>
     );
 
@@ -414,7 +415,7 @@ export default function Page() {
                 {/*))}*/}
 
             </div>
-            <div id="family-members" className="flex flex-row gap-2 overflow-x-clip">
+            <div id="family-members" className="overflow-auto whitespace-nowrap flex flex-row gap-2">
                 {groupData.members.map((row, index) => (
                     <UserButton
                         key={index}
