@@ -10,7 +10,7 @@ import TextField from '@mui/material/TextField'
 import {createTheme} from '@mui/material/styles'
 import "./settings.css"
 
-import {GroupData, GroupSwitcher} from '../providers' 
+import {GroupData, GroupSetterData, GroupSwitcher} from '../providers'
 
 
 function GroupSettings() {
@@ -266,7 +266,7 @@ function ColorButton({colorStyle, colorLightString, colorMedString, colorDarkStr
 
 function BorderButton({colorStyle, colorString}) {
     return (
-        <button className='color-button' style={colorStyle} onClick={() => setBorder({colorString})}></button>
+        <button className='color-button' style={colorStyle} onClick={() => {setBorder({colorString})}}></button>
     )
 }
 
@@ -274,6 +274,15 @@ export default function SettingsPage() {
     const [colorActive, setColorActive] = React.useState(false);
     const [borderActive, setBorderActive] = React.useState(false);
     const [avatarActive, setAvatarActive] = React.useState(false);
+
+    const SetBorder = (colorString) => {
+        let {groupData} = useContext(GroupData);
+        let {setGroupData} = useContext(GroupSetterData);
+
+        let temp = groupData;
+        temp.user.myBorderColor = colorString;
+        setGroupData(temp);
+    }
 
     return (
         <main>

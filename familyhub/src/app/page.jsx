@@ -181,7 +181,7 @@ export default function Page() {
                     <div className="px-2">
                         <form>
                             <div className="flex justify-between w-full grow">
-                                <div className="">{emoji}{title}</div>
+                                <div className="text-bold">{emoji}{title}</div>
                                 <button type="button" onClick={() => setEditStatus(true)}>
                                     <EditIcon/>
                                 </button>
