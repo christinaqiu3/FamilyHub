@@ -154,10 +154,11 @@ function GroupSettings() {
 }
 
 function LabelSwitch({label}) {
+    let {groupData} = useContext(GroupData)
     return (
         <div style = {{display: 'relative'}}>
             <div className = "flex flex-column gap-10 justify-between items-center">
-                <p>{label}</p> <Switch color = 'warning'/>                  
+                <p>{label}</p> <Switch color = {groupData.myAppThemeDarkColor}/>                  
             </div>
         </div>
     )
