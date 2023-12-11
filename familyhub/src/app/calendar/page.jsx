@@ -5,8 +5,6 @@ import '../globals.css'
 import Image from "next/image";
 import './calendar.css'
 import React, {useContext, useEffect, useState} from "react";
-import "react-big-calendar/lib/css/react-big-calendar.css";
-import "react-datepicker/dist/react-datepicker.css";
 import {GroupContext, GroupData, GroupSetterData} from '../providers'
 
 
@@ -214,13 +212,16 @@ export default function Page() {
     const UserButton = ({ onClick, picture, isSelected, color}) => (
         <button onClick={onClick}
                 style={{
-                    width: 100,
+                    width: 75,
                     height: 75,
                     borderRadius: 100,
                     border: isSelected ? `4px solid ${color}` : '4px solid #cccccc',
                 }}
         >
-            <img src={picture} alt="" style={{ width: '100%', height: '100%', borderRadius: '100%' }} />
+            <img src={picture} alt="" style={{
+                width: 67,
+                maxWidth: 67,
+                borderRadius: '100%' }} />
         </button>
     );
 
@@ -301,22 +302,22 @@ export default function Page() {
     return (
         <main>
             <Header title="Calendar"/>
+            <div className="mx-4 py-4 flex justify-between" style={{ paddingBottom: 0 }}>
+                <div className="">Events</div>
+                <button onClick={() => setNewEvent(true)}>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M23 11.5C23 17.2593 18.1157 22 12 22C5.88433 22 1 17.2593 1 11.5C1 5.74069 5.88433 1 12 1C18.1157 1 23 5.74069 23 11.5Z"
+                            fill="white" stroke="black" stroke-width="2"/>
+                        <path
+                            d="M23 11.5C23 17.2593 18.1157 22 12 22C5.88433 22 1 17.2593 1 11.5C1 5.74069 5.88433 1 12 1C18.1157 1 23 5.74069 23 11.5Z"
+                            fill="white" stroke="black" stroke-width="2"/>
+                        <rect x="11.2002" y="5.3667" width="1.6" height="12.2667" fill="black"/>
+                        <rect x="5.6001" y="10.7334" width="12.8" height="1.53333" fill="black"/>
+                    </svg>
+                </button>
+            </div>
             <div id="content" className="mx-4 py-4 flex gap-4 flex-col">
-                <div className="flex justify-between w-full">
-                    <div className="">Events</div>
-                    <button onClick={() => setNewEvent(true)}>
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M23 11.5C23 17.2593 18.1157 22 12 22C5.88433 22 1 17.2593 1 11.5C1 5.74069 5.88433 1 12 1C18.1157 1 23 5.74069 23 11.5Z"
-                                fill="white" stroke="black" stroke-width="2"/>
-                            <path
-                                d="M23 11.5C23 17.2593 18.1157 22 12 22C5.88433 22 1 17.2593 1 11.5C1 5.74069 5.88433 1 12 1C18.1157 1 23 5.74069 23 11.5Z"
-                                fill="white" stroke="black" stroke-width="2"/>
-                            <rect x="11.2002" y="5.3667" width="1.6" height="12.2667" fill="black"/>
-                            <rect x="5.6001" y="10.7334" width="12.8" height="1.53333" fill="black"/>
-                        </svg>
-                    </button>
-                </div>
                 {addEvent && (
                     <div className="flex flex-col gap-2 light-theme-color rounded-lg drop-shadow-lg p-4">
                         <div className="flex flex-row items-center gap-2">
@@ -414,7 +415,7 @@ export default function Page() {
                 {/*))}*/}
 
             </div>
-            <div id="family-members" className="flex flex-row gap-2 overflow-x-clip">
+            <div id="family-members" className="overflow-auto whitespace-nowrap flex flex-row gap-2">
                 {groupData.members.map((row, index) => (
                     <UserButton
                         key={index}

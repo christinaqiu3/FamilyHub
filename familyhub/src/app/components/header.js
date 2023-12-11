@@ -6,8 +6,11 @@ import {GroupData} from '../providers'
 
 const Header = ({title}) => {
     let {groupData} = useContext(GroupData)
+    console.log(getComputedStyle(document.documentElement)
+    .getPropertyValue('--app-theme-color-med'))
+    document.documentElement.style.setProperty('--app-theme-color-med', groupData.user.myAppThemeMedColor);
     return (
-      <div /*style = {{backgroundColor: groupData.user.myAppThemeBaseColor}} */
+      <div
           className="flex w-full justify-center med-theme-color border-b py-4 px-6">
         <Link href = 'profile' className="hover:bg-gray-200 rounded-lg">
             {(title === "Profile") ?
