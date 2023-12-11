@@ -169,7 +169,9 @@ function populateGroup1() {
                 "myName": "Hanazawa",
                 "myProfilePhotoURL": "https://i.pinimg.com/736x/16/62/e4/1662e41dd13fb2d31d66e05893359ec3.jpg",
                 "myBorderColor": "#c0aded",
-                "myAppThemeBaseColor": "#fee68a",
+                "myAppThemeLightColor": '#fef3c7',
+                "myAppThemeMedColor": "#fee68a",
+                "myAppThemeDarkColor":'#f59e0c',
                 "status": {
                     "message": "Set your status . . .",
                     "emoji": ""
@@ -306,7 +308,9 @@ function populateGroup1() {
                     "myName": "Reigen",
                     "myProfilePhotoURL": "https://pbs.twimg.com/media/C4ORj7hUMAAK8sA.jpg",
                     "myBorderColor": "#c0aded",
-                    "myAppThemeBaseColor": "#db747f",
+                    "myAppThemeLightColor": '#99f7d7',
+                    "myAppThemeMedColor": '#63dab2',
+                    "myAppThemeDarkColor":'#0fcf8e',
                     "status": {
                         "message": "Set your status . . .",
                         "emoji": ""
@@ -382,13 +386,17 @@ function populateGroup1() {
 
     export function GroupProvider({children}) {
         const [group, setGroup] = useState(1)
+        const [group1Saved, setGroup1Saved] = useState(populateGroup1())
+        const [group2Saved, setGroup2Saved] = useState(populateGroup2())
         const [groupData, setGroupData] = useState(populateGroup1())
 
         function changeGroup(name) {
             if (name === "Mob's Family") {
-                setGroupData(populateGroup1()) ;
+                setGroup2Saved(groupData)
+                setGroupData(group1Saved) ;
             } else if (name === "Body Improvement Club!") {
-                setGroupData(populateGroup2()) ;
+                setGroup1Saved(groupData)
+                setGroupData(group2Saved) ;
             }
         }
 

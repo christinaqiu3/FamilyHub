@@ -36,7 +36,8 @@ function RSVP() {
 
 function Event({icon, title, date, owner, border}) {
     return (
-        <div className="light-theme-color p-4 w-1/2 rounded-md flex flex-col flex-wrap drop-shadow-md text-regular">
+        <div style = {{minWidth: 'fit-content'}}
+        className="light-theme-color p-4 rounded-md flex flex-col flex-wrap drop-shadow-md text-regular">
             <div>{date}</div>
             <div className="text-sm">{title}</div>
             <div className="flex flex-row pt-2 gap-6">
@@ -178,7 +179,7 @@ export default function Page() {
             <Header title="Home"/>
             <div id="content">
                 <div className="mx-4 py-3 flex gap-2 flex-col text-gray-800">
-                    <div className="px-2">
+                    <div className="px-2 py-2">
                         <form>
                             <div className="flex justify-between w-full grow">
                                 <div className="">{emoji}{title}</div>
@@ -187,12 +188,11 @@ export default function Page() {
                                 </button>
                             </div>
                             {isEditStatus && (
-                                <div className="">
+                                <div style = {{paddingTop: 8}}>
                                     <div className="flex flex-col gap-2 light-theme-color rounded-lg drop-shadow-lg p-4">
-                                        <div className="flex flex-row items-center gap-2">
-
-
-                                            <label className="mb-1 text-regular">How are you feeling?
+                                        <div className="flex flex-row items-center gap-2" >
+                                            <label className="mb-1 text-regular"
+                                             style = {{width: '100%'}}>How are you feeling?
                                                 <div
                                                     className="w-full bg-white py-1 pl-4 rounded-md drop-shadow-md flex flex-row gap-2 text-black border-2 border-black">
                                                     <input className="w-4/5 outline-none" type="text"

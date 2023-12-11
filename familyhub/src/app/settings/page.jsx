@@ -10,7 +10,7 @@ import TextField from '@mui/material/TextField'
 import {createTheme} from '@mui/material/styles'
 import "./settings.css"
 
-import {GroupData, GroupSwitcher} from '../providers' 
+import {GroupData, GroupSetterData, GroupSwitcher} from '../providers' 
 
 
 function GroupSettings() {
@@ -78,8 +78,8 @@ function GroupSettings() {
                 <div style = {{display: 'flex',
                                 padding: 8}}>
                     <button onClick={() => handleNew()}
+                            className = "med-theme-color"
                             style = {{height: 33, width: 176, 
-                                    backgroundColor: 'rgb(253 230 138)',
                                     borderRadius: 15,
                                     display: 'flex',
                                     flexDirection: 'row',
@@ -125,8 +125,8 @@ function GroupSettings() {
             <div style = {{display: 'flex',
                                 padding: 8}}>
                     <div onClick={() => handleNew()}
+                            className = "med-theme-color"
                             style = {{height: 33, width: 100, 
-                                    backgroundColor: 'rgb(253 230 138)',
                                     borderRadius: 15,
                                     display: 'flex',
                                     flexDirection: 'row',
@@ -145,7 +145,7 @@ function GroupSettings() {
                         <Image src='/group.svg' 
                                 width = {25} 
                                 height = {25}/>
-                        <p className = 'px-2'>Current: Mob's Family</p>
+                        <p className = 'px-2'>Current: {groupData.groupName}</p>
                         <Image src='/expand-down.svg'
                                 width = {20}
                                 height = {20}/>
@@ -242,27 +242,11 @@ function ColorPersonalization({color, type}) {
     )
 }
 
-function setColor ({colorLightString, colorMedString, colorDarkString}){
-    // let {groupData} = useContext(GroupData)
-    // let {setGroupData} = useContext(GroupSetterData)
-
-    // let temp = groupData
-    // temp.user.myAppThemeBaseColor = colorMedString
-    // setGroupData(temp)
-    document.documentElement.style.setProperty('--app-theme-color-light', colorLightString);
-    document.documentElement.style.setProperty('--app-theme-color-med', colorMedString);
-    document.documentElement.style.setProperty('--app-theme-color-dark', colorDarkString);
-}
 
 function setBorder ({colorString}){
     document.documentElement.style.setProperty('--profile-border-color', colorString);
 }
 
-function ColorButton({colorStyle, colorLightString, colorMedString, colorDarkString}) {
-    return (
-        <button className='color-button drop-shadow-md' style={colorStyle} onClick={() => setColor({colorLightString, colorMedString, colorDarkString})}></button>
-    )
-}
 
 function BorderButton({colorStyle, colorString}) {
     return (
@@ -274,6 +258,25 @@ export default function SettingsPage() {
     const [colorActive, setColorActive] = React.useState(false);
     const [borderActive, setBorderActive] = React.useState(false);
     const [avatarActive, setAvatarActive] = React.useState(false);
+    let {groupData} = useContext(GroupData)
+    let {setGroupData} = useContext(GroupSetterData)
+
+    function setColor ({colorLightString, colorMedString, colorDarkString}){
+        document.documentElement.style.setProperty('--app-theme-color-light', colorLightString);
+        document.documentElement.style.setProperty('--app-theme-color-med', colorMedString);
+        document.documentElement.style.setProperty('--app-theme-color-dark', colorDarkString);
+        let temp = groupData
+        temp.user.myAppThemeMedColor = colorMedString
+        temp.user.myAppThemeLightColor = colorMedString
+        temp.user.myAppThemeDarkColor = colorDarkString
+        setGroupData(temp)
+    }
+
+    function ColorButton({colorStyle, colorLightString, colorMedString, colorDarkString}) {
+        return (
+            <button className='color-button drop-shadow-md' style={colorStyle} onClick={() => setColor({colorLightString, colorMedString, colorDarkString})}></button>
+        )
+    }
 
     return (
         <main>
