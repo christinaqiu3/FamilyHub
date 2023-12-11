@@ -38,8 +38,10 @@ function Event({icon, title, date, owner, border}) {
     return (
         <div style = {{minWidth: 'fit-content'}}
         className="light-theme-color p-4 rounded-md flex flex-col flex-wrap drop-shadow-md text-regular">
-            <div>{date}</div>
-            <div className="text-sm">{title}</div>
+            <Link href = '/calendar'>
+                <div>{date}</div>
+                <div className="text-sm">{title}</div>
+            </Link>
             <div className="flex flex-row pt-2 gap-6">
                 
                 <img src={icon} alt=""
