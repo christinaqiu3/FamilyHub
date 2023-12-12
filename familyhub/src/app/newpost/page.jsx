@@ -30,21 +30,10 @@ export default function Page() {
         setTags(e.target.value)
     };
 
-    function getBase64Image(img) {
-        let canvas = document.createElement("canvas");
-        canvas.width = img.width;
-        canvas.height = img.height;
-
-        let ctx = canvas.getContext("2d");
-        ctx.drawImage(img, 0, 0);
-
-        let dataURL = canvas.toDataURL("image/png");
-
-        return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
-    }
-
     function savePost(caption, title, timeStamp, tags) {
         let newTimeStamp = JSON.stringify(timeStamp)
+        let tagList = tags.split(',')
+        tagList = JSON.stringify(tagList)
         let newPostJsonString = `{"photoURL": "https://media.discordapp.net/attachments/1160247020292948089/1184008395385221193/1200px-NH_Cats-2326158290.jpg?ex=658a68bf&is=6577f3bf&hm=a2f9f148b983ae0ff9595c0b10e4cebf84140f2471a334f95de0af8ba06b8d45&=&format=webp&width=1574&height=886",
                         "caption": "${caption}",
                         "postedBy": "${groupData.user.myName}",
@@ -52,12 +41,11 @@ export default function Page() {
                         "memberBorderColor": "${groupData.user.myBorderColor}",
                         "title": "${title}",
                         "timeStamp": ${newTimeStamp},
-                        "tags": "${tags}"
+                        "tags": ${tagList}
                                   }`
-        console.log(newPostJsonString)
         // save to global JSON data
         let temp = groupData
-        temp.memories.posts.push(JSON.parse(newPostJsonString))
+        temp.memories.posts.unshift(JSON.parse(newPostJsonString))
     }
 
     return (
@@ -91,7 +79,6 @@ export default function Page() {
                             name="myImage"
                             ref={hiddenFileInput}
                             onChange={(event) => {
-                                console.log(event.target.files[0]);
                                 setSelectedImage(event.target.files[0]);
                             }}
                             style={{display: 'none'}}
