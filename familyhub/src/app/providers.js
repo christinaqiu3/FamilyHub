@@ -9,19 +9,6 @@ function populateGroup1() {
             "calendar": {
                 "events": [
                     {
-                        "date": '12/20/2023',
-                        "time": "11:30 AM",
-                        "title": "Lolly's recital",
-                        "location": "Catnip Middle School",
-                        "description": "I have my dance recital today.",
-                        "attendees": [
-                            "Bob", "Ankha", "Punchy", "Rosie"
-                        ],
-                        "owner": "Lolly",
-                        "memberProfilePhotoURL": "https://i.imgur.com/CiXUjrQ.jpg",
-                        "memberBorderColor": "#57769b"
-                    },
-                    {
                         "date": '12/15/2023',
                         "time": "4:30 PM",
                         "title": "Coming home from college",
@@ -33,6 +20,19 @@ function populateGroup1() {
                         "owner": "Rosie",
                         "memberProfilePhotoURL": "https://i.imgur.com/uSn7K4z.png",
                         "memberBorderColor": "#de148b"
+                    },
+                    {
+                        "date": '12/20/2023',
+                        "time": "11:30 AM",
+                        "title": "Lolly's recital",
+                        "location": "Catnip Middle School",
+                        "description": "I have my dance recital today.",
+                        "attendees": [
+                            "Bob", "Ankha", "Punchy", "Rosie"
+                        ],
+                        "owner": "Lolly",
+                        "memberProfilePhotoURL": "https://i.imgur.com/CiXUjrQ.jpg",
+                        "memberBorderColor": "#57769b"
                     },
                     {
                         "date": '12/22/2023',
@@ -142,16 +142,6 @@ function populateGroup1() {
                         "title": "Beach trip",
                         "timeStamp": "2/5/2023 7:12:25 PM",
                         "tags": ["beach", "vacation", "summer"]
-                    },
-                    {
-                        "photoURL": "https://i.imgur.com/AAilSA1.jpg",
-                        "caption": "We all went to cat island!",
-                        "postedBy": "Bob",
-                        "memberIcon": "https://i.imgur.com/pwQSdII.png",
-                        "memberBorderColor": "#ad4eeb",
-                        "title": "Family trip",
-                        "timeStamp": "",
-                        "tags": ["island", "vacation"]
                     },
                     
                 ]
