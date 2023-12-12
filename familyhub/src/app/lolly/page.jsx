@@ -56,7 +56,7 @@ export default function Page() {
 
     return (
         <main>
-            <Header title = "Profile"/>
+            <Header title = "Lolly's Profile"/>
             <div id="content" className="pt-4">
               <div className="mx-4 pb-4 flex gap-4 flex-col text-black">
                 <div className="flex flex-row w-full gap-4">
