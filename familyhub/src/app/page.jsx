@@ -20,24 +20,32 @@ function RSVP(title) {
     //const { group} = useContext(GroupContext);
     let {setGroupData} = useContext(GroupSetterData);
     let temp = groupData;
-    //const [isToggled, setToggle] = useState(false);
+    const allEvents = temp.calendar.events.length !== 0 ? temp.calendar.events : [];
+    let parsedTitle = JSON.stringify(title).split(':"')[1].replace('"}', '')
+    let eventIndex = -1
+    allEvents.map((event, index) => {if (event.title === parsedTitle){eventIndex = index}})
+    const [isToggled, setToggle] = useState(temp.calendar.events.length !== 0 ?
+         temp.calendar.events[eventIndex].attendees.includes(temp.user.myName) : false);
 
-    const allEvents = Array.isArray(temp.calendar.events) ? temp.calendar.events : [];
-    const specificEvent = allEvents.find(event => event.title === title);
+    //const specificEvent = allEvents.find((event) => {event.title === parsedTitle});
     const handleToggle = () => {
-        //setToggle(!isToggled);
-        if (specificEvent && !specificEvent.attendees.includes(temp.user.myName)) {
+        setToggle(!isToggled)
+        console.log(!allEvents[eventIndex].attendees.includes(temp.user.myName))
+        if (eventIndex !== -1 && !allEvents[eventIndex].attendees.includes(temp.user.myName)) {
             // Update the attendees list by adding the user
-            specificEvent.attendees.push(temp.user.myName);
+            temp.calendar.events[eventIndex].attendees.push(temp.user.myName);
+            setGroupData(temp);
+        } else if (allEvents[eventIndex].attendees.includes(temp.user.myName)) {
+            let x = temp.calendar.events[eventIndex].attendees.indexOf(temp.user.myName)
+            temp.calendar.events[eventIndex].attendees.splice(x, 1)
         }
-        setGroupData(temp);
     };
-    const isUserAttending = specificEvent && specificEvent.attendees.includes(temp.user.myName);
-
+    const isUserAttending = eventIndex !== -1 && allEvents[eventIndex].attendees.includes(temp.user.myName);
+    console.log(isUserAttending && isToggled)
     return (
         <button onClick={handleToggle}>
 
-            {isUserAttending ?
+            {isUserAttending && isToggled ?
                 <div className="bg-gray-300 text-gray-400 px-3 py-1 rounded-full">RSVP</div>
                 :
                 <div className="dark-theme-color px-3 py-1 rounded-full drop-shadow-sm">RSVP</div>
