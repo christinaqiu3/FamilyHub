@@ -111,9 +111,9 @@ export default function Page() {
                         <img src={currImage} className="object-cover w-full h-2/3 drop-shadow-md rounded-t-lg "/>
                         <div className="text-white absolute right-0 bottom-32 w-full">
                             <div className="w-full justify-end flex flex-row gap-1 text-sm text-regular pb-2 pr-1">
-                                {currTags.map((row, index) => ( 
+                                {currTags ? currTags.map((row, index) => ( 
                                     <div>#{row}</div>
-                                ))}
+                                )): null}
                             </div>
                         </div>
                         <div className="w-full flex flex-row px-3 gap-3">

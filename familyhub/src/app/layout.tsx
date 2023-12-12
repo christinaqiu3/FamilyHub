@@ -32,9 +32,7 @@ export default function RootLayout({
     )
   } else {
     <html lang="en">
-        <body className={satoshi.className}>
         {children}
-          </body>
       </html>
   }
 }
