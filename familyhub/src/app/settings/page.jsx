@@ -242,18 +242,6 @@ function ColorPersonalization({color, type}) {
     )
 }
 
-
-function setBorder ({colorString}){
-    document.documentElement.style.setProperty('--profile-border-color', colorString);
-}
-
-
-function BorderButton({colorStyle, colorString}) {
-    return (
-        <button className='color-button' style={colorStyle} onClick={() => {setBorder({colorString})}}></button>
-    )
-}
-
 export default function SettingsPage() {
     const [colorActive, setColorActive] = React.useState(false);
     const [borderActive, setBorderActive] = React.useState(false);
@@ -278,13 +266,22 @@ export default function SettingsPage() {
         )
     }
 
-    const SetBorder = (colorString) => {
-        let {groupData} = useContext(GroupData);
-        let {setGroupData} = useContext(GroupSetterData);
+    function setBorder ({colorString}){
+        document.documentElement.style.setProperty('--profile-border-color', colorString);
+        SetAllBorder(colorString);
+    }
+
+    const SetAllBorder = (colorString) => {
 
         let temp = groupData;
         temp.user.myBorderColor = colorString;
         setGroupData(temp);
+    }
+
+    function BorderButton({colorStyle, colorString}) {
+        return (
+            <button className='color-button' style={colorStyle} onClick={() => {setBorder({colorString})}}></button>
+        )
     }
 
     return (

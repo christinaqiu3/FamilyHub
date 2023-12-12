@@ -9,7 +9,7 @@ import {GroupData, GroupSetterData} from '../providers'
 
 import './checkin.css'
 
-function UserProfile({picture, color, status}) {
+function UserProfile({picture, color, status, emoji}) {
     return (
         <div className="flex flex-col gap-1 items-center">
             <img
@@ -22,7 +22,7 @@ function UserProfile({picture, color, status}) {
                     border: `4px solid ${color}`
                 }}
             />
-            <div style={{}} className="border-2 text-center border-slate-950 rounded-md w-20">{status}</div>
+            <div style={{}} className="border-2 text-center border-slate-950 rounded-md w-20">{emoji + " " + status}</div>
         </div>
     )
 }
@@ -183,6 +183,7 @@ export default function Page() {
                                 picture = {row.memberProfilePhotoURL}
                                 color = {row.memberBorderColor}
                                 status = {row.memberStatus.message}
+                                emoji = {row.memberStatus.emoji}
                             />
                         ))}
                     </div>
