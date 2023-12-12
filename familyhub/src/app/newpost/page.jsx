@@ -30,7 +30,9 @@ export default function Page() {
         setTags(e.target.value)
     };
 
-    function savePost(caption, title, timeStamp, tags) {
+    function savePost(caption, title, tags) {
+        let date = new Date()
+        let timeStamp = date.toLocaleString()
         let newTimeStamp = JSON.stringify(timeStamp)
         let tagList = tags.split(',')
         tagList = JSON.stringify(tagList)
@@ -108,7 +110,7 @@ export default function Page() {
                         >
                         <button
                             onClick={() => {
-                                savePost(postCaption, postTitle, "2/5/2023 7:12:25 PM", postTags);
+                                savePost(postCaption, postTitle, postTags);
                             }}
                         >Post
                         </button>
