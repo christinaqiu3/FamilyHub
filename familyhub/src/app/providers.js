@@ -22,7 +22,7 @@ function populateGroup1() {
                         "memberBorderColor": "#57769b"
                     },
                     {
-                        "date": '12/25/2023',
+                        "date": '12/15/2023',
                         "time": "4:30 PM",
                         "title": "Coming home from college",
                         "location": "Airport",
