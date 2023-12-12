@@ -143,6 +143,16 @@ function populateGroup1() {
                         "timeStamp": "2/5/2023 7:12:25 PM",
                         "tags": ["beach", "vacation", "summer"]
                     },
+                    {
+                        "photoURL": "https://i.imgur.com/AAilSA1.jpg",
+                        "caption": "We all went to cat island!",
+                        "postedBy": "Bob",
+                        "memberIcon": "https://i.imgur.com/pwQSdII.png",
+                        "memberBorderColor": "#ad4eeb",
+                        "title": "Family trip",
+                        "timeStamp": "",
+                        "tags": ["island", "vacation"]
+                    },
                     
                 ]
             },

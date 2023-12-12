@@ -94,13 +94,15 @@ export default function Page() {
                       {groupData.checkin.polls.map((row, index) => (
                           // Check if the owner of the poll is the current user
                           row.userData.owner === "Lolly" && (
-                              <Poll
-                                  key={index}
-                                  userData={row.userData}
-                                  icon={row.memberProfilePhotoURL}
-                                  title={row.title}
-                                  border={row.memberBorderColor}
-                              />
+                            <Link href="checkin">
+                                <Poll
+                                    key={index}
+                                    userData={row.userData}
+                                    icon={row.memberProfilePhotoURL}
+                                    title={row.title}
+                                    border={row.memberBorderColor}
+                                />
+                            </Link>
                           )
                       ))}
                   </div>
