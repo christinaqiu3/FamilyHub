@@ -4,12 +4,12 @@ import {createContext, useState} from 'react'
 function populateGroup1() {
     return(
         {
-            "groupName": "Mob's Family",
-            "groups": ["Mob's Family", "Body Improvement Club!"],
+            "groupName": "The Cat Family",
+            "groups": ["The Cat Family", "Body Improvement Club!"],
             "calendar": {
                 "events": [
                     {
-                        "date": '12/05/2003',
+                        "date": '12/20/2023',
                         "time": "11:30 AM",
                         "title": "Visit to Peppercorn",
                         "location": "Peppercorn HS",
@@ -140,9 +140,9 @@ function populateGroup1() {
                 ]
             },
             "user": {
-                "myName": "Hanazawa",
-                "myProfilePhotoURL": "https://i.pinimg.com/736x/16/62/e4/1662e41dd13fb2d31d66e05893359ec3.jpg",
-                "myBorderColor": "#c0aded",
+                "myName": "Bob",
+                "myProfilePhotoURL": "https://i.imgur.com/pwQSdII.png",
+                "myBorderColor": "#ad4eeb",
                 "myAppThemeLightColor": '#fef3c7',
                 "myAppThemeMedColor": "#fee68a",
                 "myAppThemeDarkColor":'#f59e0c',
@@ -154,23 +154,14 @@ function populateGroup1() {
 
             "members": [
                 {
-                    "userName": "Mob",
-                    "memberProfilePhotoURL": "https://64.media.tumblr.com/d822e00f096b9e858e3db11a98c689e7/7f7f189de7b16d26-c6/s400x600/7b600d2c2b869810c89133272551041d615de9bc.png",
-                    "memberBorderColor": "#5d98d4",
-                    "memberStatus": {
-                        "message": "bawling",
-                        "emoji": "😍"
-                    }
-                },
-                {
-                    "userName": "IDK",
+                    "userName": "Ankha",
                     "memberProfilePhotoURL": "https://i.imgur.com/Bwqg0fu.png",
                     "memberBorderColor": "#a8783e",
                     "memberStatus": {
                         "message": "Ahhh!",
                         "emoji": "😍"
                     }},
-                {"userName": "IDK2",
+                {"userName": "Punchy",
                     "memberProfilePhotoURL": "https://i.imgur.com/pwQSdII.png",
                     "memberBorderColor": "#ad4eeb",
                     "memberStatus": {
@@ -178,7 +169,7 @@ function populateGroup1() {
                         "emoji": "😍"
                     }},
 
-                {"userName": "IDK3",
+                {"userName": "Lolly",
                     "memberProfilePhotoURL": "https://acnhcdn.com/latest/NpcBromide/NpcNmlOcp01.png",
                     "memberBorderColor": "#ff9ccb",
                     "memberStatus": {
@@ -186,7 +177,7 @@ function populateGroup1() {
                         "emoji": "😍"
                     }},
 
-                {"userName": "IDK4",
+                {"userName": "Rosie",
                     "memberProfilePhotoURL": "https://pbs.twimg.com/profile_images/1298543441589276672/J-7vMCTE_400x400.png",
                     "memberBorderColor": "#5d70e0",
                     "memberStatus": {
@@ -194,21 +185,7 @@ function populateGroup1() {
                         "emoji": "😍"
 
                     }},
-                {"userName": "IDK5",
-                    "memberProfilePhotoURL": "https://i.imgur.com/HTYMTkd.png",
-                    "memberBorderColor": "#e05f5d",
-                    "memberStatus": {
-                        "message": "Hiii",
-                        "emoji": "😍"
-                    }},
-                {"userName": "IDK6",
-                    "memberProfilePhotoURL": "https://i.imgur.com/bfMRBp2.png",
-                    "memberBorderColor": "#c5e05d",
-                    "memberStatus": {
-                        "message": ":3c",
-                        "emoji": "😍"
-                    }
-                }
+
             ]
         }
     )
@@ -218,7 +195,7 @@ function populateGroup1() {
         return(
             {
                 "groupName": "Body Improvement Club!",
-                "groups": ["Mob's Family", "Body Improvement Club!"],
+                "groups": ["The Cat Family", "Body Improvement Club!"],
                 "calendar": {
                     "events": [
                         {
