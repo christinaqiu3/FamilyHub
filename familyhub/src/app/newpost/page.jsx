@@ -12,7 +12,53 @@ export default function Page() {
     let {setGroupData} = useContext(GroupSetterData);
     const [selectedImage, setSelectedImage] = useState(null);
 
+    const [postTitle,setTitle] = useState("");
+    const [postCaption,setCaption] = useState("");
+    const [postTags,setTags] = useState("");
+
     const hiddenFileInput = useRef(null);
+
+    const handleTitleChange = (e) => {
+        setTitle(e.target.value)
+    };
+
+    const handleCaptionChange = (e) => {
+        setCaption(e.target.value)
+    };
+
+    const handleTagsChange = (e) => {
+        setTags(e.target.value)
+    };
+
+    function getBase64Image(img) {
+        let canvas = document.createElement("canvas");
+        canvas.width = img.width;
+        canvas.height = img.height;
+
+        let ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0);
+
+        let dataURL = canvas.toDataURL("image/png");
+
+        return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+    }
+
+    function savePost(caption, title, timeStamp, tags) {
+        let newTimeStamp = JSON.stringify(timeStamp)
+        let newPostJsonString = `{"photoURL": "https://media.discordapp.net/attachments/1160247020292948089/1184008395385221193/1200px-NH_Cats-2326158290.jpg?ex=658a68bf&is=6577f3bf&hm=a2f9f148b983ae0ff9595c0b10e4cebf84140f2471a334f95de0af8ba06b8d45&=&format=webp&width=1574&height=886",
+                        "caption": "${caption}",
+                        "postedBy": "${groupData.user.myName}",
+                        "memberIcon": "${groupData.user.myProfilePhotoURL}",
+                        "memberBorderColor": "${groupData.user.myBorderColor}",
+                        "title": "${title}",
+                        "timeStamp": ${newTimeStamp},
+                        "tags": "${tags}"
+                                  }`
+        console.log(newPostJsonString)
+        // save to global JSON data
+        let temp = groupData
+        temp.memories.posts.push(JSON.parse(newPostJsonString))
+    }
 
     return (
         <main>
@@ -22,6 +68,7 @@ export default function Page() {
                     {selectedImage && (
                         <div>
                             <img
+                                id={'postImage'}
                                 className="bg-gray-100 hover:bg-gray-200 border-2 border-gray-500 drop-shadow-md rounded-lg flex items-center justify-center"
                                 alt="not found"
                                 src={URL.createObjectURL(selectedImage)}
@@ -51,21 +98,33 @@ export default function Page() {
                         />
                     </button>}
                     <input type="text"
+                           value={postTitle}
+                           onChange={handleTitleChange}
                            className="bg-gray-200 text-black w-full px-3 rounded-lg border-2 py-2 border-gray-400 drop-shadow-md text-regular"
                            placeholder="Enter title..."/>
                     <textarea
+                        value={postCaption}
+                        onChange={handleCaptionChange}
                         className="bg-gray-200 rounded-lg px-3 py-2 w-full h-24 items-start resize-none text-regular border-2 border-gray-400 drop-shadow-md leading-tight"
                         placeholder="Enter caption..."/>
                     <input type="text"
+                           value={postTags}
+                           onChange={handleTagsChange}
                            className="bg-gray-200 text-black w-full px-3 rounded-lg border-2 py-2 border-gray-400 drop-shadow-md text-regular"
                            placeholder="Enter tags..."/>
                     <div className="flex flex-row w-full gap-2 justify-between text-medium">
                         <Link href="memories"
                             className="bg-gray-300 hover:bg-gray-400 text-center py-3 w-1/2 rounded-lg text-gray-500">Cancel
                         </Link>
+                        <Link href="memories"
+                              className="light-theme-color post-hover text-center py-3 w-1/2 rounded-lg text-gray-500">
                         <button
-                            className="light-theme-color post-hover text-center py-3 w-1/2 rounded-lg text-gray-500">Post
+                            onClick={() => {
+                                savePost(postCaption, postTitle, "2/5/2023 7:12:25 PM", postTags);
+                            }}
+                        >Post
                         </button>
+                        </Link>
                     </div>
                 </div>
             </div>
