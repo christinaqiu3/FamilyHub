@@ -107,10 +107,10 @@ export default function Page() {
                             className="bg-gray-300 hover:bg-gray-400 text-center py-3 w-1/2 rounded-lg">Cancel
                         </Link>
                         <Link href="memories"
-                              className="dark-theme-color post-hover text-center py-3 w-1/2 rounded-lg"
+                              className="dark-theme-color post-hover text-center w-1/2 rounded-lg"
                         >
                         <button
-                            className="w-full h-full"
+                            className="w-full h-full py-3"
                             onClick={() => {
                                 savePost(postCaption, postTitle, postTags);
                             }}
