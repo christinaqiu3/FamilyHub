@@ -32,40 +32,40 @@ function populateGroup1() {
                             "Rice w/ Canned Salmon": 1
                         },
                         "userData": {
-                            "owner": "Mob",
-                            "memberProfilePhotoURL": "https://64.media.tumblr.com/d822e00f096b9e858e3db11a98c689e7/7f7f189de7b16d26-c6/s400x600/7b600d2c2b869810c89133272551041d615de9bc.png",
-                            "memberBorderColor": "#5d98d4"
+                            "owner": "Rosie",
+                            "memberProfilePhotoURL": "https://i.imgur.com/uSn7K4z.png",
+                            "memberBorderColor": "#de148b"
                         },
-                        "voters": ["Mob", "Hanazawa"],
+                        "voters": ["Punchy", "Rosie"],
                         "userVote": ""
                     },
                     {
-                        "title": "Will Hanazawa get an A?",
+                        "title": "Will Lolly get an A?",
                         "options": {
                             "Yes": 0,
-                            "Yes.": 1
+                            "No": 1
                         },
                         "userData": {
-                            "owner": "Reigen",
-                            "memberProfilePhotoURL": "https://pbs.twimg.com/media/C4ORj7hUMAAK8sA.jpg",
-                            "memberBorderColor": "#c0aded"
+                            "owner": "Punchy",
+                            "memberProfilePhotoURL": "https://i.imgur.com/3SvGsNw.png",
+                            "memberBorderColor": "#ffe700"
                         },
-                        "voters": ["Reigen"],
-                        "userVote": "Yes."
+                        "voters": ["Lolly"],
+                        "userVote": "Yes"
                     }
                 ]
             },
             "memories": {
                 "posts": [
                     {
-                        "photoURL": "https://preview.redd.it/es7pw6g5jm771.jpg?width=450&format=pjpg&auto=webp&s=db9158b48c02cad8f11aea1f0311f5b93eed4cb3",
-                        "caption": "this was soooooooo fun Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-                        "postedBy": "Reigen",
-                        "memberIcon": "https://i.pinimg.com/736x/16/62/e4/1662e41dd13fb2d31d66e05893359ec3.jpg",
-                        "memberBorderColor": "#c0aded",
-                        "title": "Help me",
+                        "photoURL": "https://i.redd.it/pbn1o6gwh6n51.jpg",
+                        "caption": "amazing sandwich :3",
+                        "postedBy": "Lolly",
+                        "memberIcon": "https://i.imgur.com/CiXUjrQ.jpg",
+                        "memberBorderColor": "#57769b",
+                        "title": "Sammich",
                         "timeStamp": "2/5/2023 7:12:25 PM",
-                        "tags": ["text", "text2", "text3"]
+                        "tags": ["food", "yum", "sandwich"]
                     },
                     {
                         "photoURL": "https://staticg.sportskeeda.com/editor/2021/07/4f13c-16259953891126-800.jpg",
@@ -73,70 +73,51 @@ function populateGroup1() {
                         "postedBy": "Bob",
                         "memberIcon": "https://i.imgur.com/pwQSdII.png",
                         "memberBorderColor": "#ad4eeb",
-                        "title": "Help me",
+                        "title": "Island adventure",
                         "timeStamp": "2/5/2023 7:12:25 PM",
-                        "tags": ["text", "text2"]
+                        "tags": ["island", "summer"]
                     },
                     {
-                        "photoURL": "https://preview.redd.it/es7pw6g5jm771.jpg?width=450&format=pjpg&auto=webp&s=db9158b48c02cad8f11aea1f0311f5b93eed4cb3",
-                        "caption": "this was soooooooo fun",
-                        "postedBy": "Reigen",
-                        "memberIcon": "https://i.pinimg.com/736x/16/62/e4/1662e41dd13fb2d31d66e05893359ec3.jpg",
-                        "memberBorderColor": "#c0aded",
-                        "title": "Help me",
+                        "photoURL": "https://preview.redd.it/97hce5a0q7r21.png?auto=webp&s=13697533b626bff4c1acf63b3f0abaa4cafe1e12",
+                        "caption": "Went on a picnic today!",
+                        "postedBy": "Punchy",
+                        "memberIcon": "https://i.imgur.com/3SvGsNw.png",
+                        "memberBorderColor": "#ffe700",
+                        "title": "Picnic",
                         "timeStamp": "2/5/2023 7:12:25 PM",
-                        "tags": ["text", "text2", "text4"]
+                        "tags": ["picnic", "food", "tasty"]
                     },
                     {
-                        "photoURL": "https://preview.redd.it/es7pw6g5jm771.jpg?width=450&format=pjpg&auto=webp&s=db9158b48c02cad8f11aea1f0311f5b93eed4cb3",
-                        "caption": "this was soooooooo fun",
-                        "postedBy": "Reigen",
-                        "memberIcon": "https://i.pinimg.com/736x/16/62/e4/1662e41dd13fb2d31d66e05893359ec3.jpg",
-                        "memberBorderColor": "#c0aded",
-                        "title": "Help me",
+                        "photoURL": "https://nfccardstore.com/cdn/shop/products/IMG_0557_1200x1200.jpg",
+                        "caption": "Planted some flowers today...",
+                        "postedBy": "Rosie",
+                        "memberIcon": "https://i.imgur.com/uSn7K4z.png",
+                        "memberBorderColor": "#de148b",
+                        "title": "Flowers!",
                         "timeStamp": "2/5/2023 7:12:25 PM",
-                        "tags": ["text", "text2", "text4"]
+                        "tags": ["flowers", "art", "gardening"]
                     },
                     {
-                        "photoURL": "https://preview.redd.it/es7pw6g5jm771.jpg?width=450&format=pjpg&auto=webp&s=db9158b48c02cad8f11aea1f0311f5b93eed4cb3",
-                        "caption": "this was soooooooo fun",
-                        "postedBy": "Reigen",
-                        "memberIcon": "https://i.pinimg.com/736x/16/62/e4/1662e41dd13fb2d31d66e05893359ec3.jpg",
-                        "memberBorderColor": "#c0aded",
-                        "title": "Help me",
+                        "photoURL": "https://staticg.sportskeeda.com/editor/2022/02/c67d7-16442370637141-1920.jpg?w=840",
+                        "caption": "Got some new furniture for my room.",
+                        "postedBy": "Ankha",
+                        "memberIcon": "https://i.imgur.com/xP8qsRX.png",
+                        "memberBorderColor": "#2e3c90",
+                        "title": "New room",
                         "timeStamp": "2/5/2023 7:12:25 PM",
-                        "tags": ["text", "text2", "text4"]
+                        "tags": ["furniture", "interiordecor"]
                     },
                     {
-                        "photoURL": "https://preview.redd.it/es7pw6g5jm771.jpg?width=450&format=pjpg&auto=webp&s=db9158b48c02cad8f11aea1f0311f5b93eed4cb3",
-                        "caption": "this was soooooooo fun",
-                        "postedBy": "Reigen",
-                        "memberIcon": "https://i.pinimg.com/736x/16/62/e4/1662e41dd13fb2d31d66e05893359ec3.jpg",
-                        "memberBorderColor": "#c0aded",
-                        "title": "Help me",
+                        "photoURL": "https://i.redd.it/kw4d857bzl181.jpg",
+                        "caption": "had a great day at the beach today!",
+                        "postedBy": "Lolly",
+                        "memberIcon": "https://i.imgur.com/CiXUjrQ.jpg",
+                        "memberBorderColor": "#57769b",
+                        "title": "Beach trip",
                         "timeStamp": "2/5/2023 7:12:25 PM",
-                        "tags": ["text", "text2", "text3"]
+                        "tags": ["beach", "vacation", "summer"]
                     },
-                    {
-                        "photoURL": "https://preview.redd.it/es7pw6g5jm771.jpg?width=450&format=pjpg&auto=webp&s=db9158b48c02cad8f11aea1f0311f5b93eed4cb3",
-                        "caption": "this was soooooooo fun",
-                        "postedBy": "Reigen",
-                        "memberIcon": "https://i.pinimg.com/736x/16/62/e4/1662e41dd13fb2d31d66e05893359ec3.jpg",
-                        "memberBorderColor": "#c0aded",
-                        "title": "Help me",
-                        "timeStamp": "2/5/2023 7:12:25 PM",
-                        "tags": ["text", "text2", "text3"]
-                    },
-                    {
-                        "photoURL": "https://preview.redd.it/es7pw6g5jm771.jpg?width=450&format=pjpg&auto=webp&s=db9158b48c02cad8f11aea1f0311f5b93eed4cb3",
-                        "caption": "this was soooooooo fun",
-                        "postedBy": "Reigen",
-                        "memberIcon": "https://i.pinimg.com/736x/16/62/e4/1662e41dd13fb2d31d66e05893359ec3.jpg",
-                        "memberBorderColor": "#c0aded",
-                        "title": "Help me",
-                        "timeStamp": "2/5/2023 7:12:25 PM",
-                        "tags": ["text", "text2", "text3"]
-                    },
+                    
                 ]
             },
             "user": {
@@ -155,31 +136,31 @@ function populateGroup1() {
             "members": [
                 {
                     "userName": "Ankha",
-                    "memberProfilePhotoURL": "https://i.imgur.com/Bwqg0fu.png",
-                    "memberBorderColor": "#a8783e",
+                    "memberProfilePhotoURL": "https://i.imgur.com/xP8qsRX.png",
+                    "memberBorderColor": "#2e3c90",
                     "memberStatus": {
                         "message": "Ahhh!",
                         "emoji": "😭"
                     }},
                 {"userName": "Punchy",
-                    "memberProfilePhotoURL": "https://i.imgur.com/pwQSdII.png",
-                    "memberBorderColor": "#ad4eeb",
+                    "memberProfilePhotoURL": "https://i.imgur.com/3SvGsNw.png",
+                    "memberBorderColor": "#ffe700",
                     "memberStatus": {
                         "message": "XD",
                         "emoji": "😆"
                     }},
 
                 {"userName": "Lolly",
-                    "memberProfilePhotoURL": "https://acnhcdn.com/latest/NpcBromide/NpcNmlOcp01.png",
-                    "memberBorderColor": "#ff9ccb",
+                    "memberProfilePhotoURL": "https://i.imgur.com/CiXUjrQ.jpg",
+                    "memberBorderColor": "#57769b",
                     "memberStatus": {
                         "message": ":3",
                         "emoji": "🥴"
                     }},
 
                 {"userName": "Rosie",
-                    "memberProfilePhotoURL": "https://pbs.twimg.com/profile_images/1298543441589276672/J-7vMCTE_400x400.png",
-                    "memberBorderColor": "#5d70e0",
+                    "memberProfilePhotoURL": "https://i.imgur.com/uSn7K4z.png",
+                    "memberBorderColor": "#de148b",
                     "memberStatus": {
                         "message": "Hello",
                         "emoji": "😍"
