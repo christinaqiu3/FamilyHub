@@ -6,8 +6,8 @@ import {GroupData} from '../providers'
 
 const Header = ({title}) => {
     let {groupData} = useContext(GroupData)
-    console.log(getComputedStyle(document.documentElement)
-    .getPropertyValue('--app-theme-color-med'))
+    //console.log(getComputedStyle(document.documentElement)
+    //.getPropertyValue('--app-theme-color-med'))
     document.documentElement.style.setProperty('--app-theme-color-med', groupData.user.myAppThemeMedColor);
     return (
       <div

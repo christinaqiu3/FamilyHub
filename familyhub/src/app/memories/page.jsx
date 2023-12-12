@@ -58,7 +58,7 @@ export default function Page() {
     let {setGroupData} = useContext(GroupSetterData)
 
     const [isZoomed, setZoomed] = React.useState(false);
-
+    const [searchParam, setSearchParam] = React.useState('')
     const [currImage, setCurrImage] = React.useState("");
     const [currTitle, setCurrTitle] = React.useState("");
     const [currIcon, setCurrIcon] = React.useState("");
@@ -66,6 +66,10 @@ export default function Page() {
     const [currCaption, setCurrCaption] = React.useState("");
     const [currTimeLabel, setCurrTimeLabel] = React.useState("");
     const [currTags, setCurrTags] = React.useState([]);
+
+    const searchChangeHandler = (e) => {
+        setSearchParam(e.target.value)
+    }
 
     return (
         <main>
@@ -86,7 +90,9 @@ export default function Page() {
                     }}>
                         <Image src='/search.svg' alt='search' width={27} height={27} priority/>
                     </div>
-                    Search
+                    <input value = {searchParam} 
+                        placeholder = 'Search Tags'
+                        onChange={(e) => searchChangeHandler(e)}/>
                 </div>
             </div>
             <div id="content" className="pb-4">
@@ -142,8 +148,8 @@ export default function Page() {
                     </div>
                 )}
                 <div id="posts" className="drop-shadow-lg">
-                    {groupData.memories.posts.map((row, index) => (
-                        <button onClick={() => {
+                    {groupData.memories.posts.length !== 0 ? groupData.memories.posts.map((row, index) => (
+                        groupData.memories.posts[index].tags.reduce((acc, curr) => acc || curr.includes(searchParam), false) ? (<button onClick={() => {
                             setZoomed(true);
                             setCurrImage(row.photoURL);
                             setCurrTitle(row.title);
@@ -159,9 +165,8 @@ export default function Page() {
                                 color = {row.memberBorderColor}
                                 caption = {row.caption}
                             />
-                        </button>
-                        
-                    ))}
+                        </button>) :null
+                    )): null}
                 </div>
             </div>
 
