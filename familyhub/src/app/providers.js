@@ -266,10 +266,25 @@ function populateGroup1() {
                     "posts": [
                         {
                             "photoURL": "https://preview.redd.it/es7pw6g5jm771.jpg?width=450&format=pjpg&auto=webp&s=db9158b48c02cad8f11aea1f0311f5b93eed4cb3",
-                            "caption": "this was soooooooo fun",
+                            "caption": "I LOVE working out",
+                            "postedBy": "Bob",
+                            "memberIcon": "https://i.imgur.com/pwQSdII.png",
+                            "memberBorderColor": "#ad4eeb",
+                            "title": "Yay",
+                            "timeStamp": "2/5/2023 7:12:25 PM",
+                            "tags": ["animal-crossing", "2023"]
+                        },
+                        {
+                            "photoURL": "https://staticg.sportskeeda.com/editor/2021/07/4f13c-16259953891126-800.jpg",
+                            "caption": "Getting these gains B)",
                             "postedBy": "Reigen",
-                            "memberBorderColor": "#c0aded"
-                        }
+                            "memberIcon": "https://i.pinimg.com/736x/16/62/e4/1662e41dd13fb2d31d66e05893359ec3.jpg",
+                            "memberBorderColor": "#c0aded",
+                            "title": "Whee",
+                            "timeStamp": "2/5/2023 7:12:25 PM",
+                            "tags": ["mob-psycho", "2023"]
+
+                        },
                     ]
                 },
                 "user": {

@@ -176,14 +176,16 @@ function LabelSwitch({label}) {
 }
 
 function UserPersonalization({color, type, setfunc}) {
-    let {groupData} = useContext(GroupData)
+    let {groupData} = useContext(GroupData);
+    let {setGroupData} = useContext(GroupSetterData);
     const hiddenFileInput = useRef(null);
 
     function setPFP(selectedImage) {
         document.getElementById('profilePhoto').style.backgroundImage = 'url("' + URL.createObjectURL(selectedImage) + '")'
         // save to global JSON data
-        let temp = groupData
+        let temp = groupData;
         temp.user.myProfilePhotoURL = "https://i.pinimg.com/originals/58/9d/7e/589d7e92a89acbcf76e43ae7c311c73a.jpg" // static url
+        setGroupData(temp);
     }
 
     const Userbox = ({}) => (
