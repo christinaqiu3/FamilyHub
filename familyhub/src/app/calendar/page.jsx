@@ -99,7 +99,7 @@ function UserProfile({picture, color}) {
 }
 
 export default function Page() {
-
+    let {setGroupData} = useContext(GroupSetterData)
     let {groupData} = useContext(GroupData);
     const user = groupData.user;
     const mems = groupData.members || [];
@@ -192,13 +192,16 @@ export default function Page() {
             "title": title,
             "location": location,
             "description": description,
-            "attendees": attendees,
+            "attendees": [user.myName],
             "owner": user.myName,
             "memberProfilePhotoURL": user.myProfilePhotoURL,
             "memberBorderColor": user.myBorderColor
         };
 
         setEventList([...eventList, newEvent]);
+        let temp = groupData
+        temp.calendar.events.push(newEvent)
+        setGroupData(temp)
         setTitle("");
         setDate("");
         setTime("");
@@ -269,7 +272,7 @@ export default function Page() {
                         // />
                         <UserButton
                             key={member}
-                            picture={members[member].memberProfilePhotoURL}
+                            picture={mems[member].memberProfilePhotoURL}
                             onClick={() => handleUserClick(member)}
                             isSelected={selectedUsers.includes(member)}
                             userPFP={member}
@@ -277,7 +280,7 @@ export default function Page() {
                     ))}
                 </div>
                 {/* Render events with filtered attendees based on selected users */}
-                {EventList.map((event, index) => (
+                {groupData.calendar.events.map((event, index) => (
                     <Event key={index} {...event.props} selectedUsers={selectedUsers} />
                 ))}
             </div>
@@ -295,7 +298,7 @@ export default function Page() {
         const newEvents = providersData.calendar?.events || [];
 
         // Update the state with the new events
-        setEventList(newEvents);
+        setEventList(groupData.calendar.events);
     }, []); // Run this effect only once when the component mounts
 
 
@@ -379,16 +382,16 @@ export default function Page() {
                                     onClick={() => setNewEvent(false)}>Cancel
                             </button>
                             <button className="dark-theme-color px-8 py-2 rounded-lg shadow-md"
-                                    onClick={saveEvent}>Save
+                                    onClick={() => saveEvent()}>Save
                             </button>
                         </div>
                     </div>
                 )}
                 {EventList}
-                {groupData.calendar.events.map((row, index) => (
+                {eventList.length !== 0 ? eventList.map((row, index) => (
                     <Event
                         key={index}
-                        dateTime={row.date + " - " + row.time}
+                        dateTime={row.date + ' - ' + row.time}
                         title={row.title}
                         location={row.location}
                         icon={row.memberProfilePhotoURL}
@@ -396,24 +399,9 @@ export default function Page() {
                         description={row.description}
                         attendees={row.attendees}
                         owner={row.owner}
-                        selectedUsers={selectedUsers}
+                        selectedUsers={selectedUsers} // Assuming selectedUsers is defined in your component
                     />
-                ))}
-                {/*{eventList.map((row, index) => (*/}
-                {/*    <Event*/}
-                {/*        key={index}*/}
-                {/*        dateTime={row.date + ' - ' + row.time}*/}
-                {/*        title={row.title}*/}
-                {/*        location={row.location}*/}
-                {/*        icon={row.memberProfilePhotoURL}*/}
-                {/*        border={row.memberBorderColor}*/}
-                {/*        description={row.description}*/}
-                {/*        attendees={row.attendees}*/}
-                {/*        owner={row.owner}*/}
-                {/*        selectedUsers={selectedUsers} // Assuming selectedUsers is defined in your component*/}
-                {/*    />*/}
-                {/*))}*/}
-
+                )) : null}
             </div>
             <div id="family-members" className="overflow-auto whitespace-nowrap flex flex-row gap-2">
                 {groupData.members.map((row, index) => (
