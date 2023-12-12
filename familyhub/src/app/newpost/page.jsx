@@ -51,6 +51,7 @@ export default function Page() {
         let temp = groupData
         temp.memories.posts.unshift(JSON.parse(newPostJsonString))
         setPostButtonState(false)
+        setGroupData(temp)
     }
 
     return (
