@@ -268,7 +268,7 @@ function populateGroup1() {
                             "photoURL": "https://staticg.sportskeeda.com/editor/2021/07/4f13c-16259953891126-800.jpg",
                             "caption": "Getting these gains B)",
                             "postedBy": "Reigen",
-                            "memberIcon": "https://i.pinimg.com/736x/16/62/e4/1662e41dd13fb2d31d66e05893359ec3.jpg",
+                            "memberIcon": "hana.jpg",
                             "memberBorderColor": "#c0aded",
                             "title": "Whee",
                             "timeStamp": "2/5/2023 7:12:25 PM",

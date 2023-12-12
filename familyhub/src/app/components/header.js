@@ -9,6 +9,10 @@ const Header = ({title}) => {
     //console.log(getComputedStyle(document.documentElement)
     //.getPropertyValue('--app-theme-color-med'))
     document.documentElement.style.setProperty('--app-theme-color-med', groupData.user.myAppThemeMedColor);
+    document.documentElement.style.setProperty('--app-theme-color-dark', groupData.user.myAppThemeDarkColor);
+    document.documentElement.style.setProperty('--app-theme-color-light', groupData.user.myAppThemeLightColor);
+
+
     return (
       <div
           className="flex w-full justify-center med-theme-color border-b py-4 px-6">

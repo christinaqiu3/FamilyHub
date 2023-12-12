@@ -55,6 +55,12 @@ function RSVP(title) {
 }
 
 function Event({icon, title, date, owner, border}) {
+    let {groupData} = useContext(GroupData)
+
+    document.documentElement.style.setProperty('--app-theme-color-med', groupData.user.myAppThemeMedColor);
+    document.documentElement.style.setProperty('--app-theme-color-dark', groupData.user.myAppThemeDarkColor);
+    document.documentElement.style.setProperty('--app-theme-color-light', groupData.user.myAppThemeLightColor);
+
     return (
         <div style = {{minWidth: 'fit-content'}}
         className="light-theme-color p-4 rounded-md flex flex-col flex-wrap drop-shadow-md text-regular">
