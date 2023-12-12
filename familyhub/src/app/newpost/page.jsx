@@ -16,6 +16,8 @@ export default function Page() {
     const [postCaption,setCaption] = useState("");
     const [postTags,setTags] = useState("");
 
+    const [postButtonState,setPostButtonState] = useState(false);
+
     const hiddenFileInput = useRef(null);
 
     const handleTitleChange = (e) => {
@@ -48,6 +50,7 @@ export default function Page() {
         // save to global JSON data
         let temp = groupData
         temp.memories.posts.unshift(JSON.parse(newPostJsonString))
+        setPostButtonState(false)
     }
 
     return (
@@ -110,6 +113,7 @@ export default function Page() {
                         >
                         <button
                             onClick={() => {
+                                setPostButtonState(true)
                                 savePost(postCaption, postTitle, postTags);
                             }}
                         >Post
