@@ -69,7 +69,7 @@ export default function Page() {
 
     return (
         <main>
-            <Header title = "Check-in"/>
+            <Header title = "Memories"/>
             
             <div id="options-bar" className="py-1">
                 <Link href="/newpost">

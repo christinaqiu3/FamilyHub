@@ -20,32 +20,6 @@ function populateGroup1() {
                         "owner": "Mob",
                         "memberProfilePhotoURL": "https://64.media.tumblr.com/d822e00f096b9e858e3db11a98c689e7/7f7f189de7b16d26-c6/s400x600/7b600d2c2b869810c89133272551041d615de9bc.png",
                         "memberBorderColor": "#5d98d4"
-                    },
-                    {
-                        "date": '12/06/2003',
-                        "time": "12:30 PM",
-                        "title": "Skating",
-                        "location": "Ice Rink",
-                        "description": "Wear warm clothes",
-                        "attendees": [
-                            "Mob", "IDK"
-                        ],
-                        "owner": "IDK",
-                        "memberProfilePhotoURL": "https://i.imgur.com/Bwqg0fu.png",
-                        "memberBorderColor": "#a8783e"
-                    },
-                    {
-                        "date": '12/07/2003',
-                        "time": "12:30 PM",
-                        "title": "Test",
-                        "location": "Ice Rink",
-                        "description": "Wear warm clothes",
-                        "attendees": [
-                            "IDK2", "Hanazawa"
-                        ],
-                        "owner": "Hanazawa",
-                        "memberProfilePhotoURL": "https://i.imgur.com/Bwqg0fu.png",
-                        "memberBorderColor": "#a8783e"
                     }
                 ]
             },
@@ -94,11 +68,11 @@ function populateGroup1() {
                         "tags": ["text", "text2", "text3"]
                     },
                     {
-                        "photoURL": "https://preview.redd.it/es7pw6g5jm771.jpg?width=450&format=pjpg&auto=webp&s=db9158b48c02cad8f11aea1f0311f5b93eed4cb3",
-                        "caption": "this was soooooooo fun",
-                        "postedBy": "Reigen",
-                        "memberIcon": "https://i.pinimg.com/736x/16/62/e4/1662e41dd13fb2d31d66e05893359ec3.jpg",
-                        "memberBorderColor": "#c0aded",
+                        "photoURL": "https://staticg.sportskeeda.com/editor/2021/07/4f13c-16259953891126-800.jpg",
+                        "caption": "Had a great time on the island!",
+                        "postedBy": "Bob",
+                        "memberIcon": "https://i.imgur.com/pwQSdII.png",
+                        "memberBorderColor": "#ad4eeb",
                         "title": "Help me",
                         "timeStamp": "2/5/2023 7:12:25 PM",
                         "tags": ["text", "text2"]
