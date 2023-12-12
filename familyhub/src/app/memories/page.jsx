@@ -21,7 +21,7 @@ function Post({icon, photo, color, caption}) {
                     alt=""
                     className="poster-pfp"
                     style={{
-                        border: `3px solid ${color}`
+                        border: `2px solid ${color}`
                     }}
                 />
                 <div className="text-xs truncate text-regular w-full">
@@ -117,8 +117,9 @@ export default function Page() {
                         <img src={currImage} className="object-cover w-full h-2/3 drop-shadow-md rounded-t-lg "/>
                         <div className="text-white absolute right-0 bottom-32 w-full">
                             <div className="w-full justify-end flex flex-row gap-1 text-sm text-regular pb-2 pr-1">
-                                {currTags ? currTags.map((row, index) => ( 
-                                    <div>#{row}</div>
+                                {currTags ? currTags.map((row, index) => (
+                                    <div key={index} style={{ textShadow: '0 2px 4px rgba(0, 0, 0, 0.7)' }}>
+                                        #{row}</div>
                                 )): null}
                             </div>
                         </div>
