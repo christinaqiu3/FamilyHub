@@ -15,17 +15,37 @@ function Picture() {
     )
 }
 
-function RSVP() {
-    const [isToggled, setToggle] = useState(false);
+function RSVP(title) {
+    let {groupData} = useContext(GroupData);
+    //const { group} = useContext(GroupContext);
+    let {setGroupData} = useContext(GroupSetterData);
+    let temp = groupData;
+    const allEvents = temp.calendar.events.length !== 0 ? temp.calendar.events : [];
+    let parsedTitle = JSON.stringify(title).split(':"')[1].replace('"}', '')
+    let eventIndex = -1
+    allEvents.map((event, index) => {if (event.title === parsedTitle){eventIndex = index}})
+    const [isToggled, setToggle] = useState(temp.calendar.events.length !== 0 ?
+         temp.calendar.events[eventIndex].attendees.includes(temp.user.myName) : false);
 
+    //const specificEvent = allEvents.find((event) => {event.title === parsedTitle});
     const handleToggle = () => {
-        setToggle(!isToggled);
+        setToggle(!isToggled)
+        console.log(!allEvents[eventIndex].attendees.includes(temp.user.myName))
+        if (eventIndex !== -1 && !allEvents[eventIndex].attendees.includes(temp.user.myName)) {
+            // Update the attendees list by adding the user
+            temp.calendar.events[eventIndex].attendees.push(temp.user.myName);
+            setGroupData(temp);
+        } else if (allEvents[eventIndex].attendees.includes(temp.user.myName)) {
+            let x = temp.calendar.events[eventIndex].attendees.indexOf(temp.user.myName)
+            temp.calendar.events[eventIndex].attendees.splice(x, 1)
+        }
     };
-
+    const isUserAttending = eventIndex !== -1 && allEvents[eventIndex].attendees.includes(temp.user.myName);
+    console.log(isUserAttending && isToggled)
     return (
         <button onClick={handleToggle}>
 
-            {isToggled ?
+            {isUserAttending && isToggled ?
                 <div className="bg-gray-300 text-gray-400 px-3 py-1 rounded-full">RSVP</div>
                 :
                 <div className="dark-theme-color px-3 py-1 rounded-full drop-shadow-sm">RSVP</div>
@@ -43,16 +63,16 @@ function Event({icon, title, date, owner, border}) {
                 <div className="text-sm">{title}</div>
             </Link>
             <div className="flex flex-row pt-2 gap-6">
-                
+
                 <img src={icon} alt=""
                     style={{
-                        width: 40, 
-                        height: 40, 
+                        width: 40,
+                        height: 40,
                         borderRadius: 100,
                         border: `3px solid ${border}`
                     }}
                 />
-                <RSVP/>
+                <RSVP title = {title}/>
             </div>
         </div>
     )
@@ -64,10 +84,10 @@ function Poll({icon, title, userData}) {
                 href = '/checkin'>
             <img src={userData.memberProfilePhotoURL} alt=""
                 style={{
-                    width: 40, 
-                    height: 40, 
+                    width: 40,
+                    height: 40,
                     borderRadius: 100,
-                    border: `3px solid ${userData.memberBorderColor}`                  
+                    border: `3px solid ${userData.memberBorderColor}`
                 }}
             />
             <div className="flex flex-row justify-between w-full">
@@ -262,7 +282,7 @@ export default function Page() {
                             {groupData.calendar.events.map((row, index) => (
                                 <Event key = {index}
                                 date = {row.date}
-                                title = {row.title} 
+                                title = {row.title}
                                 icon = {row.memberProfilePhotoURL}
                                 border = {row.memberBorderColor}/>
                             ))}
