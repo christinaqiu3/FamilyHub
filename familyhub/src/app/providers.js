@@ -159,14 +159,14 @@ function populateGroup1() {
                     "memberBorderColor": "#a8783e",
                     "memberStatus": {
                         "message": "Ahhh!",
-                        "emoji": "😍"
+                        "emoji": "😭"
                     }},
                 {"userName": "Punchy",
                     "memberProfilePhotoURL": "https://i.imgur.com/pwQSdII.png",
                     "memberBorderColor": "#ad4eeb",
                     "memberStatus": {
                         "message": "XD",
-                        "emoji": "😍"
+                        "emoji": "😆"
                     }},
 
                 {"userName": "Lolly",
@@ -174,7 +174,7 @@ function populateGroup1() {
                     "memberBorderColor": "#ff9ccb",
                     "memberStatus": {
                         "message": ":3",
-                        "emoji": "😍"
+                        "emoji": "🥴"
                     }},
 
                 {"userName": "Rosie",
