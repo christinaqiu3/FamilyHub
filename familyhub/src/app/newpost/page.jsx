@@ -60,9 +60,9 @@ export default function Page() {
                            className="bg-gray-200 text-black w-full px-3 rounded-lg border-2 py-2 border-gray-400 drop-shadow-md text-regular"
                            placeholder="Enter tags..."/>
                     <div className="flex flex-row w-full gap-2 justify-between text-medium">
-                        <button
+                        <Link href="memories"
                             className="bg-gray-300 hover:bg-gray-400 text-center py-3 w-1/2 rounded-lg text-gray-500">Cancel
-                        </button>
+                        </Link>
                         <button
                             className="light-theme-color post-hover text-center py-3 w-1/2 rounded-lg text-gray-500">Post
                         </button>
