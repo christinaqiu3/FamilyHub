@@ -355,25 +355,33 @@ export default function Page() {
                         </div>
                         <div
                             className="w-full bg-white py-1 pl-4 rounded-full drop-shadow-md flex flex-row gap-2 text-black border-2 border-black">
-                            <EditIcon/>
+                            <img src={"/icons8-calendar-24.png"} alt="" style={{
+                                width: 24,
+                                maxWidth: 24,}} />
                             <input className="w-4/5" type="text" placeholder="Date MM/DD/YYYY"
                                    onChange={dateChangeHandler} value={date} />
                         </div>
                         <div
                             className="w-full bg-white py-1 pl-4 rounded-full drop-shadow-md flex flex-row gap-2 text-black border-2 border-black">
-                            <EditIcon/>
+                            <img src={"/icons8-time-24.png"} alt="" style={{
+                                width: 24,
+                                maxWidth: 24,}} />
                             <input className="w-4/5" type="text" placeholder="Time HH:MM AM/PM"
                                    onChange={timeChangeHandler} value={time} />
                         </div>
                         <div
                             className="w-full bg-white py-1 pl-4 rounded-full drop-shadow-md flex flex-row gap-2 text-black border-2 border-black">
-                            <EditIcon/>
+                            <img src={"/icons8-location-48.png"} alt="" style={{
+                                width: 24,
+                                maxWidth: 24,}} />
                             <input className="w-4/5" type="text" placeholder="Location"
                                    onChange={locationChangeHandler} value={location}/>
                         </div>
                         <div
                             className="w-full bg-white py-1 pl-4 rounded-full drop-shadow-md flex flex-row gap-2 text-black border-2 border-black">
-                            <EditIcon/>
+                            <img src={"/icons8-notes-24.png"} alt="" style={{
+                                width: 24,
+                                maxWidth: 24,}} />
                             <input className="w-4/5" type="text" placeholder="Description"
                                    onChange={descriptionChangeHandler} value={description}/>
                         </div>

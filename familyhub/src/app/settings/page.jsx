@@ -310,52 +310,52 @@ export default function SettingsPage() {
                                     colorMedString='#FEE68A' 
                                     colorDarkString='#f59e0c'
                                 />
-                                <ColorButton colorStyle={{backgroundColor: '#f8ac6e'}} 
-                                    colorLightString='#ffd4b1' 
-                                    colorMedString='#f8ac6e' 
-                                    colorDarkString='#fd6c18'
+                                <ColorButton colorStyle={{backgroundColor: '#ffc291'}} 
+                                    colorLightString='#ffe2ca' 
+                                    colorMedString='#ffc291' 
+                                    colorDarkString='#fa9a4b'
                                 />
-                                <ColorButton colorStyle={{backgroundColor: '#f26582'}} 
-                                    colorLightString='#ffa7b9' 
-                                    colorMedString='#f26582' 
-                                    colorDarkString='#ff1848'
+                                <ColorButton colorStyle={{backgroundColor: '#ff9bb0'}} 
+                                    colorLightString='#ffd1da' 
+                                    colorMedString='#ff9bb0' 
+                                    colorDarkString='#f26582'
                                 />
-                                <ColorButton colorStyle={{backgroundColor: '#e75ca9'}} 
-                                    colorLightString='#ffa4d7' 
-                                    colorMedString='#e75ca9' 
-                                    colorDarkString='#f51691'
+                                <ColorButton colorStyle={{backgroundColor: '#ff91ce'}} 
+                                    colorLightString='#ffcae7' 
+                                    colorMedString='#ff91ce' 
+                                    colorDarkString='#f654ae'
                                 />
-                                <ColorButton colorStyle={{backgroundColor: '#c966e7'}} 
-                                    colorLightString='#e99fff' 
-                                    colorMedString='#c966e7' 
-                                    colorDarkString='#c317f7'
+                                <ColorButton colorStyle={{backgroundColor: '#e89dff'}} 
+                                    colorLightString='#f4ceff' 
+                                    colorMedString='#e89dff' 
+                                    colorDarkString='#d55cfa'
                                 />
                             </div>
                             <div className='flex flex-row gap-4'>
-                                <ColorButton colorStyle={{backgroundColor: '#a271f0'}} 
-                                    colorLightString='#FEE68A' 
-                                    colorMedString='#FEE68A' 
-                                    colorDarkString='#FEE68A'
+                                <ColorButton colorStyle={{backgroundColor: '#a18dfc'}} 
+                                    colorLightString='#cdc2ff' 
+                                    colorMedString='#a18dfc' 
+                                    colorDarkString='#8a72f8'
                                 />
-                                <ColorButton colorStyle={{backgroundColor: '#71abf0'}} 
-                                    colorLightString='#c8a6ff' 
-                                    colorMedString='#71abf0' 
-                                    colorDarkString='#8135fb'
+                                <ColorButton colorStyle={{backgroundColor: '#8dc0fc'}} 
+                                    colorLightString='#cae2ff' 
+                                    colorMedString='#8dc0fc' 
+                                    colorDarkString='#5f9ee9'
                                 />
-                                <ColorButton colorStyle={{backgroundColor: '#71d2f0'}} 
-                                    colorLightString='#96ddff' 
-                                    colorMedString='#71d2f0' 
-                                    colorDarkString='#03adfe'
+                                <ColorButton colorStyle={{backgroundColor: '#9ae0f6'}} 
+                                    colorLightString='#c8f2ff' 
+                                    colorMedString='#9ae0f6' 
+                                    colorDarkString='#71d2f0'
                                 />
-                                <ColorButton colorStyle={{backgroundColor: '#63dab2'}} 
-                                    colorLightString='#99f7d7' 
-                                    colorMedString='#63dab2' 
-                                    colorDarkString='#0fcf8e'
+                                <ColorButton colorStyle={{backgroundColor: '#8bf2cf'}} 
+                                    colorLightString='#bef8e5' 
+                                    colorMedString='#8bf2cf' 
+                                    colorDarkString='#5de5b7'
                                 />
-                                <ColorButton colorStyle={{backgroundColor: '#bdea75'}} 
-                                    colorLightString='#d0f792' 
-                                    colorMedString='#bdea75' 
-                                    colorDarkString='#8ae000'
+                                <ColorButton colorStyle={{backgroundColor: '#bceb70'}} 
+                                    colorLightString='#e1faba' 
+                                    colorMedString='#bceb70' 
+                                    colorDarkString='#a2eb2d'
                                 />
                             </div>
                         </div>
