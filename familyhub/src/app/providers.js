@@ -11,15 +11,41 @@ function populateGroup1() {
                     {
                         "date": '12/20/2023',
                         "time": "11:30 AM",
-                        "title": "Visit to Peppercorn",
-                        "location": "Peppercorn HS",
-                        "description": "Exorcism time",
+                        "title": "Lolly's recital",
+                        "location": "Catnip Middle School",
+                        "description": "I have my dance recital today.",
                         "attendees": [
-                            "Mob"
+                            "Bob", "Ankha", "Punchy", "Rosie"
                         ],
-                        "owner": "Mob",
-                        "memberProfilePhotoURL": "https://64.media.tumblr.com/d822e00f096b9e858e3db11a98c689e7/7f7f189de7b16d26-c6/s400x600/7b600d2c2b869810c89133272551041d615de9bc.png",
-                        "memberBorderColor": "#5d98d4"
+                        "owner": "Lolly",
+                        "memberProfilePhotoURL": "https://i.imgur.com/CiXUjrQ.jpg",
+                        "memberBorderColor": "#57769b"
+                    },
+                    {
+                        "date": '12/25/2023',
+                        "time": "4:30 PM",
+                        "title": "Coming home from college",
+                        "location": "Airport",
+                        "description": "I need to be picked up at the airport!",
+                        "attendees": [
+                            "Bob", "Ankha"
+                        ],
+                        "owner": "Rosie",
+                        "memberProfilePhotoURL": "https://i.imgur.com/uSn7K4z.png",
+                        "memberBorderColor": "#de148b"
+                    },
+                    {
+                        "date": '12/22/2023',
+                        "time": "10:00 AM",
+                        "title": "Hanging out with friends",
+                        "location": "Raymond's house",
+                        "description": "I'm going to be away all day to hang out with some friends.",
+                        "attendees": [
+                            "Punchy"
+                        ],
+                        "owner": "Punchy",
+                        "memberProfilePhotoURL": "https://i.imgur.com/3SvGsNw.png",
+                        "memberBorderColor": "#ffe700"
                     }
                 ]
             },
