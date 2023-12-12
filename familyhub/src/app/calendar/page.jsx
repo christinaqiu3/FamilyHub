@@ -92,7 +92,7 @@ function UserProfile({picture, color}) {
                 width: 40,
                 height: 40,
                 borderRadius: 100, 
-                border: `4px solid ${color}`
+                border: `3px solid ${color}`
             }}
         />
     )

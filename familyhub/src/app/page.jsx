@@ -15,17 +15,29 @@ function Picture() {
     )
 }
 
-function RSVP() {
-    const [isToggled, setToggle] = useState(false);
+function RSVP(title) {
+    let {groupData} = useContext(GroupData);
+    //const { group} = useContext(GroupContext);
+    let {setGroupData} = useContext(GroupSetterData);
+    let temp = groupData;
+    //const [isToggled, setToggle] = useState(false);
 
+    const allEvents = Array.isArray(temp.calendar.events) ? temp.calendar.events : [];
+    const specificEvent = allEvents.find(event => event.title === title);
     const handleToggle = () => {
-        setToggle(!isToggled);
+        //setToggle(!isToggled);
+        if (specificEvent && !specificEvent.attendees.includes(temp.user.myName)) {
+            // Update the attendees list by adding the user
+            specificEvent.attendees.push(temp.user.myName);
+        }
+        setGroupData(temp);
     };
+    const isUserAttending = specificEvent && specificEvent.attendees.includes(temp.user.myName);
 
     return (
         <button onClick={handleToggle}>
 
-            {isToggled ?
+            {isUserAttending ?
                 <div className="bg-gray-300 text-gray-400 px-3 py-1 rounded-full">RSVP</div>
                 :
                 <div className="dark-theme-color px-3 py-1 rounded-full drop-shadow-sm">RSVP</div>
@@ -43,16 +55,16 @@ function Event({icon, title, date, owner, border}) {
                 <div className="text-sm">{title}</div>
             </Link>
             <div className="flex flex-row pt-2 gap-6">
-                
+
                 <img src={icon} alt=""
                     style={{
-                        width: 40, 
-                        height: 40, 
+                        width: 40,
+                        height: 40,
                         borderRadius: 100,
                         border: `3px solid ${border}`
                     }}
                 />
-                <RSVP/>
+                <RSVP title = {title}/>
             </div>
         </div>
     )
@@ -64,10 +76,10 @@ function Poll({icon, title, userData}) {
                 href = '/checkin'>
             <img src={userData.memberProfilePhotoURL} alt=""
                 style={{
-                    width: 40, 
-                    height: 40, 
+                    width: 40,
+                    height: 40,
                     borderRadius: 100,
-                    border: `3px solid ${userData.memberBorderColor}`                  
+                    border: `3px solid ${userData.memberBorderColor}`
                 }}
             />
             <div className="flex flex-row justify-between w-full">
@@ -260,7 +272,7 @@ export default function Page() {
                             {groupData.calendar.events.map((row, index) => (
                                 <Event key = {index}
                                 date = {row.date}
-                                title = {row.title} 
+                                title = {row.title}
                                 icon = {row.memberProfilePhotoURL}
                                 border = {row.memberBorderColor}/>
                             ))}
