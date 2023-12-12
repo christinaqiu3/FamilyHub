@@ -247,10 +247,12 @@ export default function Page() {
                         <p className='text-bold'>Family Members</p>
                         <div className="overflow-auto whitespace-nowrap flex flex-row gap-2">
                             {groupData.members.map((row, index) => (
-                                <UserProfile key={index}
-                                picture = {row.memberProfilePhotoURL}
-                                color = {row.memberBorderColor}
-                                />
+                                <Link href="lolly">
+                                    <UserProfile key={index}
+                                        picture = {row.memberProfilePhotoURL}
+                                        color = {row.memberBorderColor}
+                                    />
+                                </Link> 
                             ))}
                         </div>
                     </div>
