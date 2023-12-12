@@ -110,6 +110,7 @@ export default function Page() {
                               className="dark-theme-color post-hover text-center py-3 w-1/2 rounded-lg"
                         >
                         <button
+                            className="w-full h-full"
                             onClick={() => {
                                 savePost(postCaption, postTitle, postTags);
                             }}
