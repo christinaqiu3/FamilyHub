@@ -101,10 +101,11 @@ export default function Page() {
                            placeholder="Enter tags..."/>
                     <div className="flex flex-row w-full gap-2 justify-between text-medium">
                         <Link href="memories"
-                            className="bg-gray-300 hover:bg-gray-400 text-center py-3 w-1/2 rounded-lg text-gray-500">Cancel
+                            className="bg-gray-300 hover:bg-gray-400 text-center py-3 w-1/2 rounded-lg">Cancel
                         </Link>
                         <Link href="memories"
-                              className="light-theme-color post-hover text-center py-3 w-1/2 rounded-lg text-gray-500">
+                              className="dark-theme-color post-hover text-center py-3 w-1/2 rounded-lg"
+                        >
                         <button
                             onClick={() => {
                                 savePost(postCaption, postTitle, "2/5/2023 7:12:25 PM", postTags);
